@@ -11,7 +11,8 @@ CREATE TABLE Roles (
     roleName VARCHAR(50) NOT NULL UNIQUE,
     description VARCHAR(200),
     isActive BIT DEFAULT 1,
-    creationDate DATETIME DEFAULT GETDATE()
+    createdAt DATETIME DEFAULT GETDATE(),
+    deletedAt DATETIME NULL
 );
 
 -- Users Table
@@ -23,8 +24,9 @@ CREATE TABLE Users (
     email VARCHAR(100),
     idRole INT NOT NULL,
     isActive BIT DEFAULT 1,
-    creationDate DATETIME DEFAULT GETDATE(),
-    modificationDate DATETIME,
+    createdAt DATETIME DEFAULT GETDATE(),
+    deletedAt DATETIME NULL,
+    updatedAt DATETIME NULL,
     FOREIGN KEY (idRole) REFERENCES Roles(idRole)
 );
 
@@ -54,10 +56,9 @@ CREATE TABLE Customers (
     idDepartment INT,
     idCity INT,
     isActive BIT DEFAULT 1,
-    creationDate DATETIME DEFAULT GETDATE(),
-    modificationDate DATETIME,
-    userCreation INT,
-    userModification INT,
+    createdAt DATETIME DEFAULT GETDATE(),
+    updatedAt DATETIME NULL,
+    deletedAt DATETIME NULL,
     FOREIGN KEY (idDepartment) REFERENCES Departments(idDepartment),
     FOREIGN KEY (idCity) REFERENCES Cities(idCity),
     FOREIGN KEY (userCreation) REFERENCES Users(idUser),

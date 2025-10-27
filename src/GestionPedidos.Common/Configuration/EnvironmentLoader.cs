@@ -38,7 +38,6 @@ namespace GestionPedidos.Common.Configuration
                     // Ignorar líneas vacías o comentarios
                     if (string.IsNullOrWhiteSpace(line) || line.TrimStart().StartsWith("#"))
                         continue;
-
                     // Separar clave y valor
                     int separatorIndex = line.IndexOf('=');
                     if (separatorIndex > 0)
@@ -94,7 +93,6 @@ namespace GestionPedidos.Common.Configuration
 
                 dirInfo = dirInfo.Parent;
             }
-
             return null;
         }
 

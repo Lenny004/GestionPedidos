@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Rol.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\EstadoPedido.cs" />
     <Compile Include="Enums\EstadoRegistro.cs" />
     <Compile Include="Enums\TipoRoles.cs" />
@@ -48,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTOs\" />
-    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

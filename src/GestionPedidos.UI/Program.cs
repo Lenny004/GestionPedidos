@@ -47,8 +47,8 @@ namespace GestionPedidos.UI
                     $"No se pudo conectar a la base de datos.\n\n{message}\n\n" +
                     "Verifique:\n" +
                     "1. Que SQL Server esté ejecutándose\n" +
-                    "2. La cadena de conexión en el archivo .env o App.config\n" +
-                    "3. Que la base de datos 'GestionPedidosDB' exista",
+                    "2. La cadena de conexión en el archivo .env\n" +
+                    "3. Que la base de datos 'OrderManagementDB' exista",
                     "Error de Conexión",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -68,16 +68,9 @@ namespace GestionPedidos.UI
             }
             else
             {
-                // Mostrar mensaje de conexión exitosa
-                MessageBox.Show(
-                    message,
-                    "Conexión Exitosa",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                // Iniciar la aplicación
+                Application.Run(new Form1());
             }
-
-            // Iniciar la aplicación
-            Application.Run(new Form1());
         }
     }
 }

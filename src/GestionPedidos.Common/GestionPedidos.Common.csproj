@@ -53,6 +53,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\PasswordHelper.cs" />
     <Compile Include="Security\SessionManager.cs" />
+    <Compile Include="Validation\GeneralValidator.cs" />
+    <Compile Include="Validation\UserValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />

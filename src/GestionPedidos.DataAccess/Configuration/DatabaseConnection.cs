@@ -13,7 +13,7 @@ namespace GestionPedidos.DataAccess.Configuration
         private static string _connectionString;
 
         /// <summary>
-        /// Obtiene la cadena de conexión desde variables de entorno (.env) o App.config
+        /// Obtiene la cadena de conexión desde variables de entorno (.env)
         /// </summary>
         public static string ConnectionString
         {
@@ -26,19 +26,17 @@ namespace GestionPedidos.DataAccess.Configuration
                         // Intentar obtener desde variables de entorno (.env)
                         _connectionString = EnvironmentLoader.GetConnectionString();
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        // Si falla, usar App.config como respaldo
-                        _connectionString = ConfigurationManager
-                            .ConnectionStrings["GestionPedidosDB"]
-                            ?.ConnectionString;
+                        // falla explícitamente
+                        throw new InvalidOperationException(
+                            "No se pudo cargar la cadena de conexión desde el archivo .env. " +
+                            "Verifica que existan DB_SERVER, DB_NAME, DB_USER/DB_PASSWORD o DB_INTEGRATED_SECURITY.",
+                            ex);
                     }
-
                     if (string.IsNullOrEmpty(_connectionString))
                     {
-                        throw new InvalidOperationException(
-                            "No se encontró la cadena de conexión. " +
-                            "Asegúrate de tener el archivo .env configurado o la cadena de conexión en App.config");
+                        throw new InvalidOperationException("No se encontró la cadena de conexión en el archivo .env.");
                     }
                 }
                 return _connectionString;
@@ -102,32 +100,11 @@ namespace GestionPedidos.DataAccess.Configuration
                         errorMessage = $"Error SQL {sqlEx.Number}: {sqlEx.Message}";
                         break;
                 }
-
                 return (false, errorMessage);
             }
             catch (Exception ex)
             {
                 return (false, $"Error inesperado: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Obtiene información de la versión del servidor
-        /// </summary>
-        /// <returns>Versión del SQL Server o mensaje de error</returns>
-        public static string GetServerVersion()
-        {
-            try
-            {
-                using (SqlConnection conn = GetConnection())
-                {
-                    conn.Open();
-                    return conn.ServerVersion;
-                }
-            }
-            catch (Exception ex)
-            {
-                return $"Error: {ex.Message}";
             }
         }
     }
