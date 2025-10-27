@@ -12,6 +12,7 @@ CREATE TABLE Roles (
     description VARCHAR(200),
     isActive BIT DEFAULT 1,
     createdAt DATETIME DEFAULT GETDATE(),
+    updatedAt DATETIME NULL,
     deletedAt DATETIME NULL
 );
 
@@ -19,14 +20,14 @@ CREATE TABLE Roles (
 CREATE TABLE Users (
     idUser INT PRIMARY KEY IDENTITY(1,1),
     userName VARCHAR(50) NOT NULL UNIQUE,
-    passwordHash VARCHAR(255) NOT NULL, -- Hash
+    passwordHash VARCHAR(255) NOT NULL,
     fullName VARCHAR(100) NOT NULL,
     email VARCHAR(100),
     idRole INT NOT NULL,
     isActive BIT DEFAULT 1,
     createdAt DATETIME DEFAULT GETDATE(),
-    deletedAt DATETIME NULL,
     updatedAt DATETIME NULL,
+    deletedAt DATETIME NULL,
     FOREIGN KEY (idRole) REFERENCES Roles(idRole)
 );
 
@@ -34,7 +35,10 @@ CREATE TABLE Users (
 CREATE TABLE Departments (
     idDepartment INT PRIMARY KEY IDENTITY(1,1),
     departmentName VARCHAR(100) NOT NULL,
-    isActive BIT DEFAULT 1
+    isActive BIT DEFAULT 1,
+    createdAt DATETIME DEFAULT GETDATE(),
+    updatedAt DATETIME NULL,
+    deletedAt DATETIME NULL
 );
 
 -- Cities Table
@@ -43,6 +47,9 @@ CREATE TABLE Cities (
     cityName VARCHAR(100) NOT NULL,
     idDepartment INT NOT NULL,
     isActive BIT DEFAULT 1,
+    createdAt DATETIME DEFAULT GETDATE(),
+    updatedAt DATETIME NULL,
+    deletedAt DATETIME NULL,
     FOREIGN KEY (idDepartment) REFERENCES Departments(idDepartment)
 );
 
@@ -55,6 +62,8 @@ CREATE TABLE Customers (
     address VARCHAR(255),
     idDepartment INT,
     idCity INT,
+    userCreation INT,
+    userModification INT,
     isActive BIT DEFAULT 1,
     createdAt DATETIME DEFAULT GETDATE(),
     updatedAt DATETIME NULL,
@@ -72,11 +81,12 @@ CREATE TABLE Products (
     description VARCHAR(500),
     stockQuantity INT NOT NULL DEFAULT 0,
     salePrice DECIMAL(10,2) NOT NULL,
-    isActive BIT DEFAULT 1,
-    creationDate DATETIME DEFAULT GETDATE(),
-    modificationDate DATETIME,
     userCreation INT,
     userModification INT,
+    isActive BIT DEFAULT 1,
+    createdAt DATETIME DEFAULT GETDATE(),
+    updatedAt DATETIME NULL,
+    deletedAt DATETIME NULL,
     FOREIGN KEY (userCreation) REFERENCES Users(idUser),
     FOREIGN KEY (userModification) REFERENCES Users(idUser)
 );
@@ -90,10 +100,11 @@ CREATE TABLE Orders (
     comments VARCHAR(500),
     orderStatus VARCHAR(20) DEFAULT 'Pending', -- Pending, InProcess, Delivered, Cancelled
     total DECIMAL(10,2) DEFAULT 0,
-    isActive BIT DEFAULT 1,
     userCreation INT,
-    creationDate DATETIME DEFAULT GETDATE(),
-    modificationDate DATETIME,
+    isActive BIT DEFAULT 1,
+    createdAt DATETIME DEFAULT GETDATE(),
+    updatedAt DATETIME NULL,
+    deletedAt DATETIME NULL,
     FOREIGN KEY (idCustomer) REFERENCES Customers(idCustomer),
     FOREIGN KEY (userCreation) REFERENCES Users(idUser)
 );
@@ -106,6 +117,9 @@ CREATE TABLE OrderDetails (
     quantity INT NOT NULL,
     unitPrice DECIMAL(10,2) NOT NULL,
     subtotal DECIMAL(10,2) NOT NULL,
+    createdAt DATETIME DEFAULT GETDATE(),
+    updatedAt DATETIME NULL,
+    deletedAt DATETIME NULL,
     FOREIGN KEY (idOrder) REFERENCES Orders(idOrder),
     FOREIGN KEY (idProduct) REFERENCES Products(idProduct)
 );
@@ -118,6 +132,8 @@ CREATE TABLE History (
     recordId INT NOT NULL,
     description VARCHAR(500),
     idUser INT NOT NULL,
-    actionDate DATETIME DEFAULT GETDATE(),
+    createdAt DATETIME DEFAULT GETDATE(),
+    updatedAt DATETIME NULL,
+    deletedAt DATETIME NULL,
     FOREIGN KEY (idUser) REFERENCES Users(idUser)
 );
