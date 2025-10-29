@@ -96,17 +96,5 @@ namespace GestionPedidos.Common.Security
             _rol = null;
             _loginTime = null;
         }
-
-        /// <summary>
-        /// Obtiene el tiempo transcurrido desde el inicio de sesión
-        /// </summary>
-        /// <returns>TimeSpan con el tiempo de sesión</returns>
-        public static TimeSpan GetSessionDuration()
-        {
-            if (!IsLoggedIn)
-                return TimeSpan.Zero;
-
-            return DateTime.Now - LoginTime;
-        }
     }
 }

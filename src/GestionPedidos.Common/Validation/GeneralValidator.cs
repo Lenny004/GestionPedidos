@@ -7,7 +7,7 @@ namespace GestionPedidos.Common.Validation
     /// Contiene validaciones generales reutilizables para los controladores y servicios.
     /// </summary>
     public static class GeneralValidator
-    {
+    { 
         /// <summary>
         /// Valida si una cadena no es nula, vacía o solo contiene espacios.
         /// </summary>

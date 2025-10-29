@@ -25,8 +25,8 @@ namespace GestionPedidos.DataAccess.Repositories
                         FROM Users u
                         INNER JOIN Roles r ON r.idRole = u.idRole 
                         WHERE u.userName = @Username 
-                        AND u.passwordHash = @PasswordHash 
-                        AND u.isActive = 1";
+                          AND u.passwordHash = @PasswordHash
+                          AND u.isActive = 1";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {

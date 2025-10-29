@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using GestionPedidos.Common.Configuration;
 using GestionPedidos.DataAccess.Configuration;
+using GestionPedidos.UI.Forms.Auth; // <-- Importar el namespace del FrmLogin
 
 namespace GestionPedidos.UI
 {
@@ -66,11 +67,16 @@ namespace GestionPedidos.UI
                     return; // Salir de la aplicación
                 }
             }
-            else
+
+            // Mostrar Login primero
+            using (var login = new FrmLogin())
             {
-                // Iniciar la aplicación
-                Application.Run(new Form1());
+                if (login.ShowDialog() != DialogResult.OK)
+                    return; // Canceló o fallo login
             }
+
+            // Iniciar la aplicación principal
+            Application.Run(new FrmLogin());
         }
     }
 }
