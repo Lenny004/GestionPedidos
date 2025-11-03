@@ -88,10 +88,10 @@ namespace GestionPedidos.UI.Forms.Auth
 
         private void BtnRegistrar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Funcionalidad de registro aún no implementada.",
-                "Registro",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            FrmLogin lg = new FrmLogin();
+            lg.Close();
+            FrmRegistro rg = new FrmRegistro();
+            rg.Show();
         }
     }
 }
