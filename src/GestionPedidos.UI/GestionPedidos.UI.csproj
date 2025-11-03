@@ -71,6 +71,12 @@
     <Compile Include="Forms\Auth\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Main\FrmDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Main\FrmDashboard.Designer.cs">
+      <DependentUpon>FrmDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Auth\FrmLogin.resx">
@@ -105,7 +111,6 @@
     <Folder Include="Forms\Admin\" />
     <Folder Include="Forms\Clients\" />
     <Folder Include="Forms\Delivery\" />
-    <Folder Include="Forms\Main\" />
     <Folder Include="Forms\Products\" />
     <Folder Include="Helpers\" />
     <Folder Include="UserControls\" />
