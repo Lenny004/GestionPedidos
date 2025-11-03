@@ -38,12 +38,12 @@
             this.btnClose = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtCorreo = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtNombreCompleto = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblLogin = new System.Windows.Forms.Label();
             this.btnRegistro = new Guna.UI2.WinForms.Guna2GradientButton();
             this.txtUsuario = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtContraseña = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtNombreCompleto = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtCorreo = new Guna.UI2.WinForms.Guna2TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -121,6 +121,54 @@
             this.panel1.Size = new System.Drawing.Size(423, 479);
             this.panel1.TabIndex = 24;
             // 
+            // txtCorreo
+            // 
+            this.txtCorreo.Animated = true;
+            this.txtCorreo.BorderRadius = 8;
+            this.txtCorreo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCorreo.DefaultText = "";
+            this.txtCorreo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtCorreo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtCorreo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCorreo.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCorreo.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.txtCorreo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCorreo.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtCorreo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCorreo.IconLeft = global::GestionPedidos.UI.Properties.Resources.Correo;
+            this.txtCorreo.Location = new System.Drawing.Point(24, 325);
+            this.txtCorreo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtCorreo.Name = "txtCorreo";
+            this.txtCorreo.PasswordChar = '\0';
+            this.txtCorreo.PlaceholderText = "Correo";
+            this.txtCorreo.SelectedText = "";
+            this.txtCorreo.Size = new System.Drawing.Size(372, 48);
+            this.txtCorreo.TabIndex = 31;
+            // 
+            // txtNombreCompleto
+            // 
+            this.txtNombreCompleto.Animated = true;
+            this.txtNombreCompleto.BorderRadius = 8;
+            this.txtNombreCompleto.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtNombreCompleto.DefaultText = "";
+            this.txtNombreCompleto.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtNombreCompleto.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtNombreCompleto.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtNombreCompleto.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtNombreCompleto.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.txtNombreCompleto.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtNombreCompleto.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtNombreCompleto.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtNombreCompleto.IconLeft = global::GestionPedidos.UI.Properties.Resources.user;
+            this.txtNombreCompleto.Location = new System.Drawing.Point(24, 260);
+            this.txtNombreCompleto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtNombreCompleto.Name = "txtNombreCompleto";
+            this.txtNombreCompleto.PasswordChar = '\0';
+            this.txtNombreCompleto.PlaceholderText = "Nombre Completo";
+            this.txtNombreCompleto.SelectedText = "";
+            this.txtNombreCompleto.Size = new System.Drawing.Size(372, 48);
+            this.txtNombreCompleto.TabIndex = 30;
+            // 
             // lblLogin
             // 
             this.lblLogin.AutoSize = true;
@@ -145,7 +193,7 @@
             this.btnRegistro.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
             this.btnRegistro.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistro.ForeColor = System.Drawing.Color.White;
-            this.btnRegistro.Location = new System.Drawing.Point(129, 415);
+            this.btnRegistro.Location = new System.Drawing.Point(127, 415);
             this.btnRegistro.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegistro.Name = "btnRegistro";
             this.btnRegistro.Size = new System.Drawing.Size(176, 41);
@@ -200,54 +248,6 @@
             this.txtContraseña.SelectedText = "";
             this.txtContraseña.Size = new System.Drawing.Size(372, 48);
             this.txtContraseña.TabIndex = 23;
-            // 
-            // txtNombreCompleto
-            // 
-            this.txtNombreCompleto.Animated = true;
-            this.txtNombreCompleto.BorderRadius = 8;
-            this.txtNombreCompleto.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtNombreCompleto.DefaultText = "";
-            this.txtNombreCompleto.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtNombreCompleto.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtNombreCompleto.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtNombreCompleto.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtNombreCompleto.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.txtNombreCompleto.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtNombreCompleto.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtNombreCompleto.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtNombreCompleto.IconLeft = global::GestionPedidos.UI.Properties.Resources.user;
-            this.txtNombreCompleto.Location = new System.Drawing.Point(24, 260);
-            this.txtNombreCompleto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtNombreCompleto.Name = "txtNombreCompleto";
-            this.txtNombreCompleto.PasswordChar = '\0';
-            this.txtNombreCompleto.PlaceholderText = "Nombre Completo";
-            this.txtNombreCompleto.SelectedText = "";
-            this.txtNombreCompleto.Size = new System.Drawing.Size(372, 48);
-            this.txtNombreCompleto.TabIndex = 30;
-            // 
-            // txtCorreo
-            // 
-            this.txtCorreo.Animated = true;
-            this.txtCorreo.BorderRadius = 8;
-            this.txtCorreo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCorreo.DefaultText = "";
-            this.txtCorreo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtCorreo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtCorreo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCorreo.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCorreo.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.txtCorreo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCorreo.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtCorreo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCorreo.IconLeft = global::GestionPedidos.UI.Properties.Resources.Correo;
-            this.txtCorreo.Location = new System.Drawing.Point(24, 325);
-            this.txtCorreo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.PasswordChar = '\0';
-            this.txtCorreo.PlaceholderText = "Correo";
-            this.txtCorreo.SelectedText = "";
-            this.txtCorreo.Size = new System.Drawing.Size(372, 48);
-            this.txtCorreo.TabIndex = 31;
             // 
             // FrmRegistro
             // 
