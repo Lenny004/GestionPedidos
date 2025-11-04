@@ -45,7 +45,7 @@ namespace GestionPedidos.UI.Forms.Auth
             // Deshabilitar botón mientras procesa
             btnLogin.Enabled = false;
             btnLogin.Text = "Loading...";
-            this.Cursor = Cursors.WaitCursor;
+            Cursor = Cursors.WaitCursor;
 
             try
             {
@@ -55,8 +55,8 @@ namespace GestionPedidos.UI.Forms.Auth
                 if (success)
                 {
                     MessageBox.Show(message, "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
                 else
                 {
@@ -81,31 +81,36 @@ namespace GestionPedidos.UI.Forms.Auth
             {
                 btnLogin.Enabled = true;
                 btnLogin.Text = "Login";
-                this.Cursor = Cursors.Default;
+                Cursor = Cursors.Default;
             }
         }
 
         private void BtnRegistrar_Click(object sender, EventArgs e)
         {
-            // Ocultar el formulario de login y mostrar el registro
-            this.Hide();
-            using (var rg = new FrmRegistro())
-            {
-                var resultado = rg.ShowDialog(this);
+            // Ocultar el formulario de login
+            Hide();
+            
+            FrmRegistro registroForm = new FrmRegistro();
+            DialogResult resultado = registroForm.ShowDialog(this);
 
-                if (resultado == DialogResult.OK)
-                {
-                    // Registro exitoso, regresar al login
-                    this.Show();
-                    this.Activate();
-                }
-                else
-                {
-                    // Cerrar totalmente la aplicación si el registro se cancela o se cierra
-                    Application.Exit();
-                    return;
-                }
+            if (resultado == DialogResult.OK)
+            {
+                // Registro exitoso, regresar al login y mostrar mensaje
+                MessageBox.Show("Registro completado. Por favor inicia sesión con tus credenciales.", 
+                    "Registro Exitoso", 
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                Show();
+                Activate();
             }
+            else
+            {
+                // Usuario canceló manualmente, mostrar login de nuevo
+                Show();
+                Activate();
+            }
+            
+            registroForm.Dispose();
         }
     }
 }

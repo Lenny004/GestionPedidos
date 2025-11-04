@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.ptrbox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.btnClose = new Guna.UI2.WinForms.Guna2ControlBox();
             this.btnMinimize = new Guna.UI2.WinForms.Guna2ControlBox();
@@ -45,8 +45,8 @@
             this.txtContraseña = new Guna.UI2.WinForms.Guna2TextBox();
             this.tggMostrarContraseña = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.btnRegistrar = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
+            this.dragptrbox1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.ptrbox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,17 +59,17 @@
             // 
             this.guna2ShadowForm1.TargetForm = this;
             // 
-            // guna2PictureBox1
+            // ptrbox1
             // 
-            this.guna2PictureBox1.Image = global::GestionPedidos.UI.Properties.Resources.background1;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(-15, -117);
-            this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(568, 699);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
+            this.ptrbox1.Image = global::GestionPedidos.UI.Properties.Resources.background1;
+            this.ptrbox1.ImageRotate = 0F;
+            this.ptrbox1.Location = new System.Drawing.Point(-15, -117);
+            this.ptrbox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ptrbox1.Name = "ptrbox1";
+            this.ptrbox1.Size = new System.Drawing.Size(568, 699);
+            this.ptrbox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptrbox1.TabIndex = 0;
+            this.ptrbox1.TabStop = false;
             // 
             // guna2DragControl1
             // 
@@ -267,6 +267,12 @@
             this.btnRegistrar.Text = "Sign up";
             this.btnRegistrar.Click += new System.EventHandler(this.BtnRegistrar_Click);
             // 
+            // dragptrbox1
+            // 
+            this.dragptrbox1.DockIndicatorTransparencyValue = 0.6D;
+            this.dragptrbox1.TargetControl = this.ptrbox1;
+            this.dragptrbox1.UseTransparentDrag = true;
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -276,13 +282,13 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.guna2PictureBox1);
+            this.Controls.Add(this.ptrbox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptrbox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -292,7 +298,7 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
+        private Guna.UI2.WinForms.Guna2PictureBox ptrbox1;
         private Guna.UI2.WinForms.Guna2ShadowForm guna2ShadowForm1;
         private Guna.UI2.WinForms.Guna2ControlBox btnMinimize;
         private Guna.UI2.WinForms.Guna2ControlBox btnClose;
@@ -307,6 +313,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtContraseña;
         private Guna.UI2.WinForms.Guna2ToggleSwitch tggMostrarContraseña;
         private Guna.UI2.WinForms.Guna2GradientButton btnRegistrar;
-        private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;
+        private Guna.UI2.WinForms.Guna2DragControl dragptrbox1;
     }
 }
