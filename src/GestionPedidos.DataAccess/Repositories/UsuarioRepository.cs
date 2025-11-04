@@ -126,5 +126,42 @@ namespace GestionPedidos.DataAccess.Repositories
                 throw new Exception($"Error al crear usuario: {ex.Message}", ex);
             }
         }
+
+        public bool UpdatePasswordByEmail(string email, string newPasswordHash)
+        {
+            // Esta consulta actualiza el hash en la tabla Users
+            string query = @"
+                UPDATE Users
+                SET passwordHash = @NewHash,
+                    updatedAt = GETDATE()
+                WHERE email = @Email AND isActive = 1;
+                SELECT @@ROWCOUNT; 
+            ";
+
+            using (SqlConnection connection = DatabaseConnection.GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                try
+                {
+                    command.Parameters.AddWithValue("@NewHash", newPasswordHash);
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToInt32(result) == 1; // 1 fila afectada = Éxito
+                    }
+                    return false;
+                }
+                catch (Exception)
+                {
+                    // Manejo de errores de base de datos
+                    return false;
+                }
+            }
+        }
     }
 }
