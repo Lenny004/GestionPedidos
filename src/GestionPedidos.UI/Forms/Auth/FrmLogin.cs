@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using GestionPedidos.Controllers;
+using GestionPedidos.UI.Forms.Auth;
 
 namespace GestionPedidos.UI.Forms.Auth
 {
@@ -92,6 +93,21 @@ namespace GestionPedidos.UI.Forms.Auth
                 "Registro",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+        }
+
+        private void lblForgot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+
+            // 2. Crear y mostrar el formulario de restablecimiento
+            FrmForgotPassword frmForgotPassword = new FrmForgotPassword();
+
+            // Mostrar como modal. La ejecución se pausa aquí hasta que se cierre frmForgotPassword.
+            frmForgotPassword.ShowDialog();
+
+            // 3. Mostrar el formulario de Login de nuevo
+            this.Show();
+
         }
     }
 }
