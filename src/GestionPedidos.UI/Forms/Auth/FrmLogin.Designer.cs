@@ -176,6 +176,7 @@
             this.btnLogin.Size = new System.Drawing.Size(176, 41);
             this.btnLogin.TabIndex = 25;
             this.btnLogin.Text = "Login";
+            this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
             // txtUsuario
             // 
@@ -224,6 +225,7 @@
             this.txtContraseña.SelectedText = "";
             this.txtContraseña.Size = new System.Drawing.Size(372, 48);
             this.txtContraseña.TabIndex = 23;
+            this.txtContraseña.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtContraseña_KeyPress);
             // 
             // tggMostrarContraseña
             // 
@@ -240,6 +242,7 @@
             this.tggMostrarContraseña.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.tggMostrarContraseña.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.tggMostrarContraseña.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.tggMostrarContraseña.CheckedChanged += new System.EventHandler(this.ChkMostrarContraseña_CheckedChanged);
             // 
             // btnRegistrar
             // 
@@ -262,6 +265,7 @@
             this.btnRegistrar.Size = new System.Drawing.Size(176, 41);
             this.btnRegistrar.TabIndex = 26;
             this.btnRegistrar.Text = "Sign up";
+            this.btnRegistrar.Click += new System.EventHandler(this.BtnRegistrar_Click);
             // 
             // FrmLogin
             // 

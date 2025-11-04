@@ -16,7 +16,6 @@ namespace GestionPedidos.UI.Forms.Auth
 
         private void ConfigurarEventos()
         {
-            btnLogin.Click += BtnLogin_Click;
             txtContraseña.KeyPress += TxtContraseña_KeyPress;
             tggMostrarContraseña.CheckedChanged += ChkMostrarContraseña_CheckedChanged;
             btnRegistrar.Click += BtnRegistrar_Click;
@@ -88,10 +87,25 @@ namespace GestionPedidos.UI.Forms.Auth
 
         private void BtnRegistrar_Click(object sender, EventArgs e)
         {
-            FrmLogin lg = new FrmLogin();
-            lg.Close();
-            FrmRegistro rg = new FrmRegistro();
-            rg.Show();
+            // Ocultar el formulario de login y mostrar el registro
+            this.Hide();
+            using (var rg = new FrmRegistro())
+            {
+                var resultado = rg.ShowDialog(this);
+
+                if (resultado == DialogResult.OK)
+                {
+                    // Registro exitoso, regresar al login
+                    this.Show();
+                    this.Activate();
+                }
+                else
+                {
+                    // Cerrar totalmente la aplicación si el registro se cancela o se cierra
+                    Application.Exit();
+                    return;
+                }
+            }
         }
     }
 }

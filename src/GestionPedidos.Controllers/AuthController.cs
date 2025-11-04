@@ -129,10 +129,11 @@ namespace GestionPedidos.Controllers
                 }
 
                 // Validar fortaleza de contraseña
-                if (!GeneralValidator.ValidatePasswordStrength(contraseña))
+                var (passwordValida, errorContraseña) = GeneralValidator.ValidatePasswordStrength(contraseña);
+                if (!passwordValida)
                 {
-                    Logger.Warn($"Contraseña débil en registro para usuario: {nombreUsuario}");
-                    return (false, AppConstants.CONTRASENA_DEBIL);
+                    Logger.Warn($"Contraseña inválida en registro para usuario: {nombreUsuario}. Motivo: {errorContraseña}");
+                    return (false, errorContraseña);
                 }
 
                 // Verificar si el usuario ya existe
