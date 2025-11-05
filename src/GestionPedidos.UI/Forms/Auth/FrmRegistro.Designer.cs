@@ -33,10 +33,9 @@
             this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
-            this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.btnMinimize = new Guna.UI2.WinForms.Guna2ControlBox();
             this.btnClose = new Guna.UI2.WinForms.Guna2ControlBox();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.ptrBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtCorreo = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtNombreCompleto = new Guna.UI2.WinForms.Guna2TextBox();
@@ -44,7 +43,9 @@
             this.btnRegistro = new Guna.UI2.WinForms.Guna2GradientButton();
             this.txtUsuario = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtContraseña = new Guna.UI2.WinForms.Guna2TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
+            this.dragptrBox1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
+            this.guna2BorderlessForm2 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.ptrBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,10 +70,6 @@
             this.guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
             this.guna2BorderlessForm1.TransparentWhileDrag = true;
             // 
-            // guna2AnimateWindow1
-            // 
-            this.guna2AnimateWindow1.TargetForm = this;
-            // 
             // btnMinimize
             // 
             this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -95,18 +92,19 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(44, 33);
             this.btnClose.TabIndex = 11;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // guna2PictureBox1
+            // ptrBox1
             // 
-            this.guna2PictureBox1.Image = global::GestionPedidos.UI.Properties.Resources.background1;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(-15, -117);
-            this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(568, 699);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox1.TabIndex = 10;
-            this.guna2PictureBox1.TabStop = false;
+            this.ptrBox1.Image = global::GestionPedidos.UI.Properties.Resources.background1;
+            this.ptrBox1.ImageRotate = 0F;
+            this.ptrBox1.Location = new System.Drawing.Point(-15, -117);
+            this.ptrBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ptrBox1.Name = "ptrBox1";
+            this.ptrBox1.Size = new System.Drawing.Size(568, 699);
+            this.ptrBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptrBox1.TabIndex = 10;
+            this.ptrBox1.TabStop = false;
             // 
             // panel1
             // 
@@ -249,6 +247,19 @@
             this.txtContraseña.Size = new System.Drawing.Size(372, 48);
             this.txtContraseña.TabIndex = 23;
             // 
+            // dragptrBox1
+            // 
+            this.dragptrBox1.DockIndicatorTransparencyValue = 0.6D;
+            this.dragptrBox1.TargetControl = this.ptrBox1;
+            this.dragptrBox1.UseTransparentDrag = true;
+            // 
+            // guna2BorderlessForm2
+            // 
+            this.guna2BorderlessForm2.BorderRadius = 8;
+            this.guna2BorderlessForm2.ContainerControl = this;
+            this.guna2BorderlessForm2.DockIndicatorTransparencyValue = 0.6D;
+            this.guna2BorderlessForm2.TransparentWhileDrag = true;
+            // 
             // FrmRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -258,11 +269,12 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.guna2PictureBox1);
+            this.Controls.Add(this.ptrBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmRegistro";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmRegistro";
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptrBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -275,10 +287,9 @@
         private Guna.UI2.WinForms.Guna2ShadowForm guna2ShadowForm1;
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
-        private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;
         private Guna.UI2.WinForms.Guna2ControlBox btnMinimize;
         private Guna.UI2.WinForms.Guna2ControlBox btnClose;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
+        private Guna.UI2.WinForms.Guna2PictureBox ptrBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblLogin;
         private Guna.UI2.WinForms.Guna2GradientButton btnRegistro;
@@ -286,5 +297,7 @@
         private Guna.UI2.WinForms.Guna2TextBox txtContraseña;
         private Guna.UI2.WinForms.Guna2TextBox txtCorreo;
         private Guna.UI2.WinForms.Guna2TextBox txtNombreCompleto;
+        private Guna.UI2.WinForms.Guna2DragControl dragptrBox1;
+        private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm2;
     }
 }

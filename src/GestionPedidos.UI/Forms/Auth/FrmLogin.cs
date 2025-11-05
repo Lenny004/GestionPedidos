@@ -16,7 +16,6 @@ namespace GestionPedidos.UI.Forms.Auth
 
         private void ConfigurarEventos()
         {
-            btnLogin.Click += BtnLogin_Click;
             txtContraseña.KeyPress += TxtContraseña_KeyPress;
             tggMostrarContraseña.CheckedChanged += ChkMostrarContraseña_CheckedChanged;
             btnRegistrar.Click += BtnRegistrar_Click;
@@ -36,17 +35,12 @@ namespace GestionPedidos.UI.Forms.Auth
             txtContraseña.PasswordChar = tggMostrarContraseña.Checked ? '\0' : '●';
         }
 
-        private void BtnLogin_Click(object sender, EventArgs e)
-        {
-            RealizarLogin();
-        }
-
         private void RealizarLogin()
         {
             // Deshabilitar botón mientras procesa
             btnLogin.Enabled = false;
             btnLogin.Text = "Loading...";
-            this.Cursor = Cursors.WaitCursor;
+            Cursor = Cursors.WaitCursor;
 
             try
             {
@@ -56,8 +50,13 @@ namespace GestionPedidos.UI.Forms.Auth
                 if (success)
                 {
                     MessageBox.Show(message, "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    
+                    // Crear y mostrar el formulario del dashboard
+                    Form1 dashboard = new Form1();
+                    dashboard.Show();
+                    
+                    // Cerrar el formulario de login
+                    Close();
                 }
                 else
                 {
@@ -82,7 +81,7 @@ namespace GestionPedidos.UI.Forms.Auth
             {
                 btnLogin.Enabled = true;
                 btnLogin.Text = "Login";
-                this.Cursor = Cursors.Default;
+                Cursor = Cursors.Default;
             }
         }
 
@@ -92,6 +91,11 @@ namespace GestionPedidos.UI.Forms.Auth
             lg.Close();
             FrmRegistro rg = new FrmRegistro();
             rg.Show();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            RealizarLogin();
         }
     }
 }
