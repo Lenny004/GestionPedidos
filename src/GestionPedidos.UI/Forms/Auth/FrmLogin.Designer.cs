@@ -31,11 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.ptrBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.btnClose = new Guna.UI2.WinForms.Guna2ControlBox();
             this.btnMinimize = new Guna.UI2.WinForms.Guna2ControlBox();
-            this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblLogin = new System.Windows.Forms.Label();
             this.lblForgot = new System.Windows.Forms.LinkLabel();
@@ -45,8 +44,8 @@
             this.txtContraseña = new Guna.UI2.WinForms.Guna2TextBox();
             this.tggMostrarContraseña = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.btnRegistrar = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
+            this.dragptrBox1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.ptrBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,17 +58,17 @@
             // 
             this.guna2ShadowForm1.TargetForm = this;
             // 
-            // guna2PictureBox1
+            // ptrBox1
             // 
-            this.guna2PictureBox1.Image = global::GestionPedidos.UI.Properties.Resources.background1;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(-15, -117);
-            this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(568, 699);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
+            this.ptrBox1.Image = global::GestionPedidos.UI.Properties.Resources.background1;
+            this.ptrBox1.ImageRotate = 0F;
+            this.ptrBox1.Location = new System.Drawing.Point(-11, -95);
+            this.ptrBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ptrBox1.Name = "ptrBox1";
+            this.ptrBox1.Size = new System.Drawing.Size(426, 568);
+            this.ptrBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptrBox1.TabIndex = 0;
+            this.ptrBox1.TabStop = false;
             // 
             // guna2DragControl1
             // 
@@ -85,7 +84,7 @@
             this.btnClose.Location = new System.Drawing.Point(760, 15);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(44, 33);
+            this.btnClose.Size = new System.Drawing.Size(33, 27);
             this.btnClose.TabIndex = 8;
             // 
             // btnMinimize
@@ -97,15 +96,8 @@
             this.btnMinimize.Location = new System.Drawing.Point(708, 15);
             this.btnMinimize.Margin = new System.Windows.Forms.Padding(4);
             this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(44, 33);
+            this.btnMinimize.Size = new System.Drawing.Size(33, 27);
             this.btnMinimize.TabIndex = 9;
-            // 
-            // guna2BorderlessForm1
-            // 
-            this.guna2BorderlessForm1.BorderRadius = 8;
-            this.guna2BorderlessForm1.ContainerControl = this;
-            this.guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
-            this.guna2BorderlessForm1.TransparentWhileDrag = true;
             // 
             // panel1
             // 
@@ -117,9 +109,10 @@
             this.panel1.Controls.Add(this.txtContraseña);
             this.panel1.Controls.Add(this.tggMostrarContraseña);
             this.panel1.Controls.Add(this.btnRegistrar);
-            this.panel1.Location = new System.Drawing.Point(392, 90);
+            this.panel1.Location = new System.Drawing.Point(294, 73);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(423, 427);
+            this.panel1.Size = new System.Drawing.Size(317, 347);
             this.panel1.TabIndex = 23;
             // 
             // lblLogin
@@ -127,9 +120,10 @@
             this.lblLogin.AutoSize = true;
             this.lblLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
-            this.lblLogin.Location = new System.Drawing.Point(159, 28);
+            this.lblLogin.Location = new System.Drawing.Point(119, 23);
+            this.lblLogin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(95, 36);
+            this.lblLogin.Size = new System.Drawing.Size(78, 29);
             this.lblLogin.TabIndex = 29;
             this.lblLogin.Text = "Login";
             // 
@@ -139,9 +133,10 @@
             this.lblForgot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblForgot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.lblForgot.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
-            this.lblForgot.Location = new System.Drawing.Point(136, 395);
+            this.lblForgot.Location = new System.Drawing.Point(102, 321);
+            this.lblForgot.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblForgot.Name = "lblForgot";
-            this.lblForgot.Size = new System.Drawing.Size(131, 18);
+            this.lblForgot.Size = new System.Drawing.Size(106, 15);
             this.lblForgot.TabIndex = 28;
             this.lblForgot.TabStop = true;
             this.lblForgot.Text = "Forgot Password?";
@@ -152,9 +147,10 @@
             this.lblshowpass.AutoSize = true;
             this.lblshowpass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblshowpass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
-            this.lblshowpass.Location = new System.Drawing.Point(78, 267);
+            this.lblshowpass.Location = new System.Drawing.Point(58, 217);
+            this.lblshowpass.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblshowpass.Name = "lblshowpass";
-            this.lblshowpass.Size = new System.Drawing.Size(117, 18);
+            this.lblshowpass.Size = new System.Drawing.Size(95, 15);
             this.lblshowpass.TabIndex = 27;
             this.lblshowpass.Text = "Show Password";
             // 
@@ -171,12 +167,12 @@
             this.btnLogin.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(24, 324);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogin.Location = new System.Drawing.Point(18, 263);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(176, 41);
+            this.btnLogin.Size = new System.Drawing.Size(132, 33);
             this.btnLogin.TabIndex = 25;
             this.btnLogin.Text = "Login";
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // txtUsuario
             // 
@@ -193,13 +189,13 @@
             this.txtUsuario.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtUsuario.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtUsuario.IconLeft = global::GestionPedidos.UI.Properties.Resources.user;
-            this.txtUsuario.Location = new System.Drawing.Point(24, 117);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtUsuario.Location = new System.Drawing.Point(18, 95);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.PlaceholderText = "Username";
             this.txtUsuario.SelectedText = "";
-            this.txtUsuario.Size = new System.Drawing.Size(372, 48);
-            this.txtUsuario.TabIndex = 22;
+            this.txtUsuario.Size = new System.Drawing.Size(279, 39);
+            this.txtUsuario.TabIndex = 1;
             // 
             // txtContraseña
             // 
@@ -216,14 +212,14 @@
             this.txtContraseña.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtContraseña.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtContraseña.IconLeft = global::GestionPedidos.UI.Properties.Resources.password;
-            this.txtContraseña.Location = new System.Drawing.Point(24, 196);
-            this.txtContraseña.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtContraseña.Location = new System.Drawing.Point(18, 159);
+            this.txtContraseña.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.PasswordChar = '●';
             this.txtContraseña.PlaceholderText = "Password";
             this.txtContraseña.SelectedText = "";
-            this.txtContraseña.Size = new System.Drawing.Size(372, 48);
-            this.txtContraseña.TabIndex = 23;
+            this.txtContraseña.Size = new System.Drawing.Size(279, 39);
+            this.txtContraseña.TabIndex = 2;
             // 
             // tggMostrarContraseña
             // 
@@ -231,10 +227,9 @@
             this.tggMostrarContraseña.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tggMostrarContraseña.CheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.tggMostrarContraseña.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.tggMostrarContraseña.Location = new System.Drawing.Point(24, 265);
-            this.tggMostrarContraseña.Margin = new System.Windows.Forms.Padding(4);
+            this.tggMostrarContraseña.Location = new System.Drawing.Point(18, 215);
             this.tggMostrarContraseña.Name = "tggMostrarContraseña";
-            this.tggMostrarContraseña.Size = new System.Drawing.Size(47, 25);
+            this.tggMostrarContraseña.Size = new System.Drawing.Size(35, 20);
             this.tggMostrarContraseña.TabIndex = 24;
             this.tggMostrarContraseña.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.tggMostrarContraseña.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
@@ -256,29 +251,34 @@
             this.btnRegistrar.FillColor2 = System.Drawing.Color.Transparent;
             this.btnRegistrar.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btnRegistrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
-            this.btnRegistrar.Location = new System.Drawing.Point(220, 324);
-            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRegistrar.Location = new System.Drawing.Point(165, 263);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(176, 41);
+            this.btnRegistrar.Size = new System.Drawing.Size(132, 33);
             this.btnRegistrar.TabIndex = 26;
             this.btnRegistrar.Text = "Sign up";
             // 
+            // dragptrBox1
+            // 
+            this.dragptrBox1.DockIndicatorTransparencyValue = 0.6D;
+            this.dragptrBox1.TargetControl = this.ptrBox1;
+            this.dragptrBox1.UseTransparentDrag = true;
+            // 
             // FrmLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(840, 589);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.guna2PictureBox1);
+            this.Controls.Add(this.ptrBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptrBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -288,12 +288,11 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
+        private Guna.UI2.WinForms.Guna2PictureBox ptrBox1;
         private Guna.UI2.WinForms.Guna2ShadowForm guna2ShadowForm1;
         private Guna.UI2.WinForms.Guna2ControlBox btnMinimize;
         private Guna.UI2.WinForms.Guna2ControlBox btnClose;
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
-        private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.LinkLabel lblForgot;
@@ -303,6 +302,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtContraseña;
         private Guna.UI2.WinForms.Guna2ToggleSwitch tggMostrarContraseña;
         private Guna.UI2.WinForms.Guna2GradientButton btnRegistrar;
-        private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;
+        private Guna.UI2.WinForms.Guna2DragControl dragptrBox1;
     }
 }

@@ -11,13 +11,6 @@ namespace GestionPedidos.UI.Forms.Auth
         public FrmRegistro()
         {
             InitializeComponent();
-            ConfigurarEventos();
-        }
-
-        
-        private void ConfigurarEventos()
-        {
-            btnRegistro.Click += btnRegistro_Click;
         }
 
         private void btnRegistro_Click(object sender, EventArgs e)
@@ -74,5 +67,9 @@ namespace GestionPedidos.UI.Forms.Auth
             }
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
