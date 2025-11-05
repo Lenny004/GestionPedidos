@@ -236,6 +236,7 @@
             this.tggMostrarContraseña.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.tggMostrarContraseña.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.tggMostrarContraseña.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.tggMostrarContraseña.CheckedChanged += new System.EventHandler(this.ChkMostrarContraseña_CheckedChanged);
             // 
             // btnRegistrar
             // 
@@ -257,6 +258,13 @@
             this.btnRegistrar.Size = new System.Drawing.Size(132, 33);
             this.btnRegistrar.TabIndex = 26;
             this.btnRegistrar.Text = "Sign up";
+            this.btnRegistrar.Click += new System.EventHandler(this.BtnRegistrar_Click);
+            // 
+            // dragptrbox1
+            // 
+            this.dragptrbox1.DockIndicatorTransparencyValue = 0.6D;
+            this.dragptrbox1.TargetControl = this.ptrbox1;
+            this.dragptrbox1.UseTransparentDrag = true;
             // 
             // dragptrBox1
             // 

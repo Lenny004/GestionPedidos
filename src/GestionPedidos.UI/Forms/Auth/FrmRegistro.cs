@@ -18,12 +18,18 @@ namespace GestionPedidos.UI.Forms.Auth
             RealizarRegistro();
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            // Cerrar la aplicación completamente
+            Application.Exit();
+        }
+
         private void RealizarRegistro()
         {
             // Deshabilitar botón mientras procesa
             btnRegistro.Enabled = false;
             btnRegistro.Text = "Loading...";
-            this.Cursor = Cursors.WaitCursor;
+            Cursor = Cursors.WaitCursor;
 
             try
             {
@@ -38,8 +44,8 @@ namespace GestionPedidos.UI.Forms.Auth
                 if (success)
                 {
                     MessageBox.Show(message, "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
                 else
                 {
@@ -63,7 +69,7 @@ namespace GestionPedidos.UI.Forms.Auth
             {
                 btnRegistro.Enabled = true;
                 btnRegistro.Text = "Registro";
-                this.Cursor = Cursors.Default;
+                Cursor = Cursors.Default;
             }
         }
 

@@ -88,10 +88,30 @@ namespace GestionPedidos.UI.Forms.Auth
 
         private void BtnRegistrar_Click(object sender, EventArgs e)
         {
-            FrmLogin lg = new FrmLogin();
-            lg.Close();
-            FrmRegistro rg = new FrmRegistro();
-            rg.Show();
+            // Ocultar el formulario de login
+            Hide();
+            
+            FrmRegistro registroForm = new FrmRegistro();
+            DialogResult resultado = registroForm.ShowDialog(this);
+
+            if (resultado == DialogResult.OK)
+            {
+                // Registro exitoso, regresar al login y mostrar mensaje
+                MessageBox.Show("Registro completado. Por favor inicia sesión con tus credenciales.", 
+                    "Registro Exitoso", 
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                Show();
+                Activate();
+            }
+            else
+            {
+                // Usuario canceló manualmente, mostrar login de nuevo
+                Show();
+                Activate();
+            }
+            
+            registroForm.Dispose();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

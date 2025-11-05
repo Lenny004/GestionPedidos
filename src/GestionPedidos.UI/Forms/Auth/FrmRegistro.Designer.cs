@@ -66,6 +66,7 @@
             // 
             // guna2BorderlessForm1
             // 
+            this.guna2BorderlessForm1.BorderRadius = 8;
             this.guna2BorderlessForm1.ContainerControl = this;
             this.guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
             this.guna2BorderlessForm1.TransparentWhileDrag = true;
@@ -258,6 +259,12 @@
             this.guna2BorderlessForm2.ContainerControl = this;
             this.guna2BorderlessForm2.DockIndicatorTransparencyValue = 0.6D;
             this.guna2BorderlessForm2.TransparentWhileDrag = true;
+            // 
+            // dragptrBox2
+            // 
+            this.dragptrBox2.DockIndicatorTransparencyValue = 0.6D;
+            this.dragptrBox2.TargetControl = this.ptrBox2;
+            this.dragptrBox2.UseTransparentDrag = true;
             // 
             // FrmRegistro
             // 
