@@ -8,7 +8,7 @@ using System;
 using static GestionPedidos.Common.Constants.Messages;
 using GestionPedidos.Common.Validation;
 using NLog;
-
+    
 namespace GestionPedidos.Controllers
 {
     public class AuthController
@@ -179,6 +179,43 @@ namespace GestionPedidos.Controllers
             string username = SessionManager.NombreUsuario;
             SessionManager.Logout();
             Logger.Info($"Usuario cerró sesión: {username}");
+        }
+
+        public (bool Success, string Message) ResetPassword(string email, string newPassword, string confirmPassword)
+        {
+            // Validación de campos UI
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(newPassword))
+            {
+                return (false, "El email y la contraseña son obligatorios.");
+            }
+
+            // Validación de coincidencia de contraseñas
+            if (newPassword != confirmPassword)
+            {
+                return (false, "La nueva contraseña y la confirmación no coinciden.");
+            }
+            
+            // Validación de seguridad (Usando tu helper)
+            if (!PasswordHelper.ValidatePasswordStrength(newPassword))
+            {
+                return (false, "La contraseña no cumple con los requisitos de seguridad (mínimo 6 caracteres).");
+            }
+
+            // Hasheo de la Nueva Contraseña
+            string passwordHash = PasswordHelper.HashPassword(newPassword); 
+
+            // Llamada al Repositorio para actualizar la contraseña
+            bool success = _usuarioRepository.UpdatePasswordByEmail(email, passwordHash);
+
+            if (success)
+            {
+                return (true, "¡Contraseña actualizada con éxito!");
+            }
+            else
+            {
+                // Mensaje genérico por seguridad (no indicamos si el email no existe)
+                return (false, "Error: No se pudo actualizar la contraseña. Verifique el correo o contacte a soporte.");
+            }
         }
 
         public bool IsUserLoggedIn() => SessionManager.IsLoggedIn;

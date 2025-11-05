@@ -30,5 +30,7 @@ namespace GestionPedidos.DataAccess.Interfaces
         /// <param name="user"></param>
         /// <returns>True si se creo correctamente, False sino</returns>
         bool CrearUsuario(User user);
+
+        bool UpdatePasswordByEmail(string email, string newPasswordHash);
     }
 }

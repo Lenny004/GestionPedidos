@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using GestionPedidos.Controllers;
+using GestionPedidos.UI.Forms.Auth;
 
 namespace GestionPedidos.UI.Forms.Auth
 {
@@ -96,6 +97,15 @@ namespace GestionPedidos.UI.Forms.Auth
         private void btnLogin_Click(object sender, EventArgs e)
         {
             RealizarLogin();
+        }
+
+        private void lblForgot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            FrmForgotPassword frmForgotPassword = new FrmForgotPassword();
+            frmForgotPassword.ShowDialog();
+            this.Show();
+
         }
     }
 }

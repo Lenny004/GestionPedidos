@@ -63,7 +63,7 @@
             this.ptrBox1.Image = global::GestionPedidos.UI.Properties.Resources.background1;
             this.ptrBox1.ImageRotate = 0F;
             this.ptrBox1.Location = new System.Drawing.Point(-11, -95);
-            this.ptrBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ptrBox1.Margin = new System.Windows.Forms.Padding(2);
             this.ptrBox1.Name = "ptrBox1";
             this.ptrBox1.Size = new System.Drawing.Size(426, 568);
             this.ptrBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -81,7 +81,8 @@
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.FillColor = System.Drawing.Color.Transparent;
             this.btnClose.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
-            this.btnClose.Location = new System.Drawing.Point(578, 12);
+            this.btnClose.Location = new System.Drawing.Point(558, 15);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(33, 27);
             this.btnClose.TabIndex = 8;
@@ -92,7 +93,8 @@
             this.btnMinimize.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox;
             this.btnMinimize.FillColor = System.Drawing.Color.Transparent;
             this.btnMinimize.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
-            this.btnMinimize.Location = new System.Drawing.Point(538, 12);
+            this.btnMinimize.Location = new System.Drawing.Point(506, 15);
+            this.btnMinimize.Margin = new System.Windows.Forms.Padding(4);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(33, 27);
             this.btnMinimize.TabIndex = 9;
@@ -108,7 +110,7 @@
             this.panel1.Controls.Add(this.tggMostrarContraseña);
             this.panel1.Controls.Add(this.btnRegistrar);
             this.panel1.Location = new System.Drawing.Point(294, 73);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(317, 347);
             this.panel1.TabIndex = 23;
@@ -138,6 +140,7 @@
             this.lblForgot.TabIndex = 28;
             this.lblForgot.TabStop = true;
             this.lblForgot.Text = "Forgot Password?";
+            this.lblForgot.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblForgot_LinkClicked);
             // 
             // lblshowpass
             // 
@@ -272,7 +275,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ptrBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
