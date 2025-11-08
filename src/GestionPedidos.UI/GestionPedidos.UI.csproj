@@ -92,14 +92,31 @@
     <Compile Include="Forms\Auth\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Auth\FrmRegistro.cs">
+    <Compile Include="Forms\Main\FrmDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Auth\FrmRegistro.Designer.cs">
-      <DependentUpon>FrmRegistro.cs</DependentUpon>
+    <Compile Include="Forms\Main\FrmDashboard.Designer.cs">
+      <DependentUpon>FrmDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Clients\customer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Clients\customer.Designer.cs">
+      <DependentUpon>customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Main\FrmDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Main\FrmDashboard.Designer.cs">
+      <DependentUpon>FrmDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\Auth\FrmForgotPassword.resx">
       <DependentUpon>FrmForgotPassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,16 +126,17 @@
     <EmbeddedResource Include="Forms\Auth\FrmRegistro.resx">
       <DependentUpon>FrmRegistro.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Clients\customer.resx">
+      <DependentUpon>customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Main\FrmDashboard.resx">
+      <DependentUpon>FrmDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -138,9 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Forms\Admin\" />
-    <Folder Include="Forms\Clients\" />
     <Folder Include="Forms\Delivery\" />
-    <Folder Include="Forms\Main\" />
     <Folder Include="Forms\Products\" />
     <Folder Include="Helpers\" />
     <Folder Include="UserControls\" />
@@ -161,9 +177,6 @@
     <ProjectReference Include="..\GestionPedidos.DataAccess\GestionPedidos.DataAccess.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Correo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
@@ -174,6 +187,48 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EMAIL1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dashboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delivery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\products.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_section.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dashboard_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customer_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delivery_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\products_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_section_w.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

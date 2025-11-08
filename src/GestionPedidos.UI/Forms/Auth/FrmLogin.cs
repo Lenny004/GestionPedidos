@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using GestionPedidos.Controllers;
 using GestionPedidos.UI.Forms.Auth;
+using GestionPedidos.UI.Forms.Main;
 
 namespace GestionPedidos.UI.Forms.Auth
 {
@@ -53,11 +54,8 @@ namespace GestionPedidos.UI.Forms.Auth
                     MessageBox.Show(message, "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     
                     // Crear y mostrar el formulario del dashboard
-                    Form1 dashboard = new Form1();
+                    FrmDashboard dashboard = new FrmDashboard();
                     dashboard.Show();
-                    
-                    // Cerrar el formulario de login
-                    Close();
                 }
                 else
                 {
@@ -114,18 +112,17 @@ namespace GestionPedidos.UI.Forms.Auth
             registroForm.Dispose();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            RealizarLogin();
-        }
-
         private void lblForgot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
             FrmForgotPassword frmForgotPassword = new FrmForgotPassword();
             frmForgotPassword.ShowDialog();
             this.Show();
+        }
 
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            RealizarLogin();
         }
     }
 }
