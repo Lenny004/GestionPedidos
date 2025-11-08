@@ -18,12 +18,6 @@ namespace GestionPedidos.UI.Forms.Auth
             RealizarRegistro();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            // Cerrar la aplicación completamente
-            Application.Exit();
-        }
-
         private void RealizarRegistro()
         {
             // Deshabilitar botón mientras procesa
@@ -75,6 +69,7 @@ namespace GestionPedidos.UI.Forms.Auth
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            // Cerrar la aplicación completamente
             Application.Exit();
         }
     }

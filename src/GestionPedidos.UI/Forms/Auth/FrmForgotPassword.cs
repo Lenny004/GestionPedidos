@@ -18,19 +18,9 @@ namespace GestionPedidos.UI.Forms.Auth
             InitializeComponent();
         }
 
-        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblLogin_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void tggMostrarContraseña_CheckedChanged(object sender, EventArgs e)
         {
-
+            txtConfirmPassword.PasswordChar = tggMostrarContraseña.Checked ? '\0' : '●';
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -53,6 +43,11 @@ namespace GestionPedidos.UI.Forms.Auth
             {
                 MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
