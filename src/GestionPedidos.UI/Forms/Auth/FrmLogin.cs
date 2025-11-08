@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using GestionPedidos.Controllers;
 using GestionPedidos.UI.Forms.Auth;
+using GestionPedidos.UI.Forms.Main;
 
 namespace GestionPedidos.UI.Forms.Auth
 {
@@ -53,11 +54,8 @@ namespace GestionPedidos.UI.Forms.Auth
                     MessageBox.Show(message, "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     
                     // Crear y mostrar el formulario del dashboard
-                    Form1 dashboard = new Form1();
+                    FrmDashboard dashboard = new FrmDashboard();
                     dashboard.Show();
-                    
-                    // Cerrar el formulario de login
-                    Close();
                 }
                 else
                 {
@@ -88,23 +86,37 @@ namespace GestionPedidos.UI.Forms.Auth
 
         private void BtnRegistrar_Click(object sender, EventArgs e)
         {
-            FrmLogin lg = new FrmLogin();
-            lg.Close();
-            FrmRegistro rg = new FrmRegistro();
-            rg.Show();
+            // Ocultar el formulario de login
+            Hide();
+            
+            FrmRegistro registroForm = new FrmRegistro();
+            DialogResult resultado = registroForm.ShowDialog(this);
+
+            if (resultado == DialogResult.OK)
+            {
+                // Registro exitoso, regresar al login y mostrar mensaje
+                MessageBox.Show("Registro completado. Por favor inicia sesión con tus credenciales.", 
+                    "Registro Exitoso", 
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                Show();
+                Activate();
+            }
+            else
+            {
+                // Usuario canceló manualmente, mostrar login de nuevo
+                Show();
+                Activate();
+            }
+            
+            registroForm.Dispose();
         }
 
         private void lblForgot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-
-            // 2. Crear y mostrar el formulario de restablecimiento
             FrmForgotPassword frmForgotPassword = new FrmForgotPassword();
-
-            // Mostrar como modal. La ejecución se pausa aquí hasta que se cierre frmForgotPassword.
             frmForgotPassword.ShowDialog();
-
-            // 3. Mostrar el formulario de Login de nuevo
             this.Show();
         }
 
