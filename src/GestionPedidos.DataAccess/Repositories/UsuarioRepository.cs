@@ -132,6 +132,37 @@ namespace GestionPedidos.DataAccess.Repositories
             }
         }
 
+        public bool VerifyPassword(string email, string passwordHash)
+        {
+            string query = "SELECT passwordHash FROM Users WHERE email = @Email AND isActive = 1";
+
+            using (SqlConnection connection = DatabaseConnection.GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                try
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        string currentHash = Convert.ToString(result);
+                        return string.Equals(currentHash, passwordHash, StringComparison.OrdinalIgnoreCase);
+                    }
+
+                    return false;
+                }
+                catch (Exception)
+                {
+                    // Manejo de errores de base de datos
+                    return false;
+                }
+            }
+        }
+
         public bool UpdatePasswordByEmail(string email, string newPasswordHash)
         {
             // Esta consulta actualiza el hash en la tabla Users

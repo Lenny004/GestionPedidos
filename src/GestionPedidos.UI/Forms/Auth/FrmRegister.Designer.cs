@@ -34,7 +34,7 @@
             this.txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblLogin = new System.Windows.Forms.Label();
-            this.lblForgot = new System.Windows.Forms.LinkLabel();
+            this.lblreturn = new System.Windows.Forms.LinkLabel();
             this.lblshowpass = new System.Windows.Forms.Label();
             this.btnRegister = new Guna.UI2.WinForms.Guna2GradientButton();
             this.txtFullName = new Guna.UI2.WinForms.Guna2TextBox();
@@ -67,12 +67,12 @@
             this.panel1.Controls.Add(this.txtEmail);
             this.panel1.Controls.Add(this.txtUsername);
             this.panel1.Controls.Add(this.lblLogin);
-            this.panel1.Controls.Add(this.lblForgot);
+            this.panel1.Controls.Add(this.lblreturn);
             this.panel1.Controls.Add(this.lblshowpass);
             this.panel1.Controls.Add(this.btnRegister);
             this.panel1.Controls.Add(this.txtFullName);
             this.panel1.Controls.Add(this.txtPassword);
-            this.panel1.Location = new System.Drawing.Point(392, 68);
+            this.panel1.Location = new System.Drawing.Point(391, 55);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(423, 511);
             this.panel1.TabIndex = 25;
@@ -99,7 +99,7 @@
             this.txtEmail.PlaceholderText = "Correo";
             this.txtEmail.SelectedText = "";
             this.txtEmail.Size = new System.Drawing.Size(372, 48);
-            this.txtEmail.TabIndex = 31;
+            this.txtEmail.TabIndex = 4;
             // 
             // txtUsername
             // 
@@ -123,31 +123,32 @@
             this.txtUsername.PlaceholderText = "Username";
             this.txtUsername.SelectedText = "";
             this.txtUsername.Size = new System.Drawing.Size(372, 48);
-            this.txtUsername.TabIndex = 30;
+            this.txtUsername.TabIndex = 2;
             // 
             // lblLogin
             // 
             this.lblLogin.AutoSize = true;
             this.lblLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
-            this.lblLogin.Location = new System.Drawing.Point(159, 14);
+            this.lblLogin.Location = new System.Drawing.Point(166, 22);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(134, 36);
             this.lblLogin.TabIndex = 29;
             this.lblLogin.Text = "Register";
             // 
-            // lblForgot
+            // lblreturn
             // 
-            this.lblForgot.AutoSize = true;
-            this.lblForgot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblForgot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
-            this.lblForgot.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
-            this.lblForgot.Location = new System.Drawing.Point(134, 468);
-            this.lblForgot.Name = "lblForgot";
-            this.lblForgot.Size = new System.Drawing.Size(176, 18);
-            this.lblForgot.TabIndex = 28;
-            this.lblForgot.TabStop = true;
-            this.lblForgot.Text = "Do you have an account?";
+            this.lblreturn.AutoSize = true;
+            this.lblreturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblreturn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
+            this.lblreturn.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
+            this.lblreturn.Location = new System.Drawing.Point(134, 468);
+            this.lblreturn.Name = "lblreturn";
+            this.lblreturn.Size = new System.Drawing.Size(176, 18);
+            this.lblreturn.TabIndex = 6;
+            this.lblreturn.TabStop = true;
+            this.lblreturn.Text = "Do you have an account?";
+            this.lblreturn.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblreturn_LinkClicked);
             // 
             // lblshowpass
             // 
@@ -176,7 +177,7 @@
             this.btnRegister.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(176, 41);
-            this.btnRegister.TabIndex = 25;
+            this.btnRegister.TabIndex = 5;
             this.btnRegister.Text = "Registrate";
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
@@ -202,7 +203,7 @@
             this.txtFullName.PlaceholderText = "Nombre Completo";
             this.txtFullName.SelectedText = "";
             this.txtFullName.Size = new System.Drawing.Size(372, 48);
-            this.txtFullName.TabIndex = 22;
+            this.txtFullName.TabIndex = 1;
             // 
             // txtPassword
             // 
@@ -226,7 +227,7 @@
             this.txtPassword.PlaceholderText = "Password";
             this.txtPassword.SelectedText = "";
             this.txtPassword.Size = new System.Drawing.Size(372, 48);
-            this.txtPassword.TabIndex = 23;
+            this.txtPassword.TabIndex = 3;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // btnMinimize
@@ -251,6 +252,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(44, 33);
             this.btnClose.TabIndex = 27;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // guna2Elipse1
             // 
@@ -302,7 +304,7 @@
         private Guna.UI2.WinForms.Guna2TextBox txtEmail;
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
         private System.Windows.Forms.Label lblLogin;
-        private System.Windows.Forms.LinkLabel lblForgot;
+        private System.Windows.Forms.LinkLabel lblreturn;
         private System.Windows.Forms.Label lblshowpass;
         private Guna.UI2.WinForms.Guna2GradientButton btnRegister;
         private Guna.UI2.WinForms.Guna2TextBox txtFullName;

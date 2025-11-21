@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-using GestionPedidos.Common.Validation;
 
 namespace GestionPedidos.Common.Security
 {
@@ -65,8 +64,15 @@ namespace GestionPedidos.Common.Security
         /// <returns>True si la contraseña cumple los requisitos mínimos</returns>
         public static bool ValidatePasswordStrength(string password)
         {
-            var (isValid, _) = GeneralValidator.ValidatePasswordStrength(password);
-            return isValid;
+            if (string.IsNullOrWhiteSpace(password))
+                return false;
+
+            // Requisitos mínimos:
+            // Al menos 6 caracteres
+            if (password.Length < 6)
+                return false;
+
+            return true;
         }
 
         /// <summary>

@@ -129,11 +129,14 @@ namespace GestionPedidos.Controllers
                 }
 
                 // Validar fortaleza de contraseña
-                var (passwordValida, errorContraseña) = GeneralValidator.ValidatePasswordStrength(contraseña);
-                if (!passwordValida)
+                string passwordValidationMessage = GeneralValidator.ValidatePasswordStrength(contraseña);
+
+                if (!string.IsNullOrEmpty(passwordValidationMessage))
                 {
-                    Logger.Warn($"Contraseña inválida en registro para usuario: {nombreUsuario}. Motivo: {errorContraseña}");
-                    return (false, errorContraseña);
+                    Logger.Warn($"Contraseña débil en registro para usuario: {nombreUsuario}. Errores: {passwordValidationMessage.Replace('\n', ' ')}");
+
+                    // Si la validación falla, retorna el mensaje detallado
+                    return (false, passwordValidationMessage);
                 }
 
                 // Verificar si el usuario ya existe
@@ -196,27 +199,33 @@ namespace GestionPedidos.Controllers
                 return (false, "La nueva contraseña y la confirmación no coinciden.");
             }
             
-            // Validación de seguridad (Usando tu helper)
-            if (!PasswordHelper.ValidatePasswordStrength(newPassword))
+            // Validación de seguridad de la contraseña
+            string passwordValidationMessage = GeneralValidator.ValidatePasswordStrength(newPassword);
+
+            if (!string.IsNullOrEmpty(passwordValidationMessage))
             {
-                return (false, "La contraseña no cumple con los requisitos de seguridad (mínimo 6 caracteres).");
+                return (false, passwordValidationMessage);
             }
 
-            // Hasheo de la Nueva Contraseña
-            string passwordHash = PasswordHelper.HashPassword(newPassword); 
+            // Hashear la nueva contraseña
+            string passwordHash = PasswordHelper.HashPassword(newPassword);
 
-            // Llamada al Repositorio para actualizar la contraseña
+            // Validar que la nueva contraseña no sea igual a la actual
+            if (_usuarioRepository.VerifyPassword(email, passwordHash))
+            {
+                Logger.Warn($"Intento de restablecer contraseña con la misma contraseña actual: {email}");
+                return (false, "La nueva contraseña debe ser diferente a la contraseña actual.");
+            }
+
             bool success = _usuarioRepository.UpdatePasswordByEmail(email, passwordHash);
 
             if (success)
             {
                 return (true, "¡Contraseña actualizada con éxito!");
             }
-            else
-            {
-                // Mensaje genérico por seguridad (no indicamos si el email no existe)
-                return (false, "Error: No se pudo actualizar la contraseña. Verifique el correo o contacte a soporte.");
-            }
+
+            // Mensaje genérico por seguridad (no indicamos si el email no existe)
+            return (false, "Error: No se pudo actualizar la contraseña. Verifique el correo o contacte a soporte.");
         }
 
         public bool IsUserLoggedIn() => SessionManager.IsLoggedIn;

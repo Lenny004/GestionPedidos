@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using GestionPedidos.Controllers;
 using GestionPedidos.UI.Forms.Auth;
-using GestionPedidos.UI.Forms.Main;
 
 namespace GestionPedidos.UI.Forms.Auth
 {
@@ -18,6 +17,7 @@ namespace GestionPedidos.UI.Forms.Auth
 
         private void ConfigurarEventos()
         {
+            btnLogin.Click += BtnLogin_Click;
             txtContraseña.KeyPress += TxtContraseña_KeyPress;
             tggMostrarContraseña.CheckedChanged += ChkMostrarContraseña_CheckedChanged;
             btnSignUp.Click += BtnRegistrar_Click;
@@ -37,12 +37,17 @@ namespace GestionPedidos.UI.Forms.Auth
             txtContraseña.PasswordChar = tggMostrarContraseña.Checked ? '\0' : '●';
         }
 
+        private void BtnLogin_Click(object sender, EventArgs e)
+        {
+            RealizarLogin();
+        }
+
         private void RealizarLogin()
         {
             // Deshabilitar botón mientras procesa
             btnLogin.Enabled = false;
             btnLogin.Text = "Loading...";
-            Cursor = Cursors.WaitCursor;
+            this.Cursor = Cursors.WaitCursor;
 
             try
             {
@@ -52,10 +57,8 @@ namespace GestionPedidos.UI.Forms.Auth
                 if (success)
                 {
                     MessageBox.Show(message, "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                    // Crear y mostrar el formulario del dashboard
-                    FrmDashboard dashboard = new FrmDashboard();
-                    dashboard.Show();
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {
@@ -80,36 +83,16 @@ namespace GestionPedidos.UI.Forms.Auth
             {
                 btnLogin.Enabled = true;
                 btnLogin.Text = "Login";
-                Cursor = Cursors.Default;
+                this.Cursor = Cursors.Default;
             }
         }
 
         private void BtnRegistrar_Click(object sender, EventArgs e)
         {
-            // Ocultar el formulario de login
-            Hide();
-            
-            FrmRegistro registroForm = new FrmRegistro();
-            DialogResult resultado = registroForm.ShowDialog(this);
-
-            if (resultado == DialogResult.OK)
-            {
-                // Registro exitoso, regresar al login y mostrar mensaje
-                MessageBox.Show("Registro completado. Por favor inicia sesión con tus credenciales.", 
-                    "Registro Exitoso", 
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                Show();
-                Activate();
-            }
-            else
-            {
-                // Usuario canceló manualmente, mostrar login de nuevo
-                Show();
-                Activate();
-            }
-            
-            registroForm.Dispose();
+            MessageBox.Show("Funcionalidad de registro aún no implementada.",
+                "Registro",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         private void lblForgot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -118,11 +101,7 @@ namespace GestionPedidos.UI.Forms.Auth
             FrmForgotPassword frmForgotPassword = new FrmForgotPassword();
             frmForgotPassword.ShowDialog();
             this.Show();
-        }
 
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            RealizarLogin();
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)

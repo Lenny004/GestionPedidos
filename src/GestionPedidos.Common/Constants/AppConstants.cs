@@ -53,21 +53,6 @@ namespace GestionPedidos.Common.Constants
         /// Mensaje para contraseñas débiles
         /// </summary>
         public const string CONTRASENA_DEBIL = "La contraseña debe tener al menos 6 caracteres";
-
-    /// <summary>
-    /// Mensaje cuando falta una letra mayúscula en la contraseña
-    /// </summary>
-    public const string CONTRASENA_REQUIERE_MAYUSCULA = "La contraseña debe contener al menos una letra mayúscula";
-
-    /// <summary>
-    /// Mensaje cuando falta una letra minúscula en la contraseña
-    /// </summary>
-    public const string CONTRASENA_REQUIERE_MINUSCULA = "La contraseña debe contener al menos una letra minúscula";
-
-    /// <summary>
-    /// Mensaje cuando falta un carácter especial en la contraseña
-    /// </summary>
-    public const string CONTRASENA_REQUIERE_CARACTER_ESPECIAL = "La contraseña debe contener al menos un carácter especial";
         #endregion
 
         #region Mensajes de Operaciones CRUD

@@ -29,23 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.btnClose = new Guna.UI2.WinForms.Guna2ControlBox();
             this.btnMinimize = new Guna.UI2.WinForms.Guna2ControlBox();
+            this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblLogin = new System.Windows.Forms.Label();
             this.lblForgot = new System.Windows.Forms.LinkLabel();
             this.lblshowpass = new System.Windows.Forms.Label();
             this.btnLogin = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.txtUsuario = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtContraseña = new Guna.UI2.WinForms.Guna2TextBox();
             this.tggMostrarContraseña = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.btnSignUp = new Guna.UI2.WinForms.Guna2GradientButton();
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
-            this.txtUsuario = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtContraseña = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
@@ -69,11 +68,10 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.CustomIconSize = 15F;
             this.btnClose.FillColor = System.Drawing.Color.Transparent;
             this.btnClose.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
-            this.btnClose.Location = new System.Drawing.Point(771, 18);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(5);
+            this.btnClose.Location = new System.Drawing.Point(760, 15);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(44, 33);
             this.btnClose.TabIndex = 8;
@@ -84,15 +82,21 @@
             this.btnMinimize.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox;
             this.btnMinimize.FillColor = System.Drawing.Color.Transparent;
             this.btnMinimize.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
-            this.btnMinimize.Location = new System.Drawing.Point(717, 18);
-            this.btnMinimize.Margin = new System.Windows.Forms.Padding(5);
+            this.btnMinimize.Location = new System.Drawing.Point(708, 15);
+            this.btnMinimize.Margin = new System.Windows.Forms.Padding(4);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(44, 33);
             this.btnMinimize.TabIndex = 9;
             // 
+            // guna2BorderlessForm1
+            // 
+            this.guna2BorderlessForm1.BorderRadius = 8;
+            this.guna2BorderlessForm1.ContainerControl = this;
+            this.guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
+            this.guna2BorderlessForm1.TransparentWhileDrag = true;
+            // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.lblLogin);
             this.panel1.Controls.Add(this.lblForgot);
             this.panel1.Controls.Add(this.lblshowpass);
@@ -102,28 +106,16 @@
             this.panel1.Controls.Add(this.tggMostrarContraseña);
             this.panel1.Controls.Add(this.btnSignUp);
             this.panel1.Location = new System.Drawing.Point(392, 90);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(423, 427);
             this.panel1.TabIndex = 23;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(118, 13);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(76, 68);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 25;
-            this.pictureBox1.TabStop = false;
             // 
             // lblLogin
             // 
             this.lblLogin.AutoSize = true;
             this.lblLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
-            this.lblLogin.Location = new System.Drawing.Point(200, 30);
+            this.lblLogin.Location = new System.Drawing.Point(159, 28);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(95, 36);
             this.lblLogin.TabIndex = 29;
@@ -135,10 +127,10 @@
             this.lblForgot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblForgot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.lblForgot.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
-            this.lblForgot.Location = new System.Drawing.Point(136, 395);
+            this.lblForgot.Location = new System.Drawing.Point(152, 394);
             this.lblForgot.Name = "lblForgot";
             this.lblForgot.Size = new System.Drawing.Size(131, 18);
-            this.lblForgot.TabIndex = 28;
+            this.lblForgot.TabIndex = 6;
             this.lblForgot.TabStop = true;
             this.lblForgot.Text = "Forgot Password?";
             this.lblForgot.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblForgot_LinkClicked);
@@ -148,7 +140,7 @@
             this.lblshowpass.AutoSize = true;
             this.lblshowpass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblshowpass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
-            this.lblshowpass.Location = new System.Drawing.Point(77, 267);
+            this.lblshowpass.Location = new System.Drawing.Point(78, 267);
             this.lblshowpass.Name = "lblshowpass";
             this.lblshowpass.Size = new System.Drawing.Size(117, 18);
             this.lblshowpass.TabIndex = 27;
@@ -171,48 +163,8 @@
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(176, 41);
-            this.btnLogin.TabIndex = 25;
+            this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
-            // tggMostrarContraseña
-            // 
-            this.tggMostrarContraseña.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tggMostrarContraseña.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tggMostrarContraseña.CheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.tggMostrarContraseña.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.tggMostrarContraseña.Location = new System.Drawing.Point(24, 265);
-            this.tggMostrarContraseña.Margin = new System.Windows.Forms.Padding(4);
-            this.tggMostrarContraseña.Name = "tggMostrarContraseña";
-            this.tggMostrarContraseña.Size = new System.Drawing.Size(47, 25);
-            this.tggMostrarContraseña.TabIndex = 24;
-            this.tggMostrarContraseña.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.tggMostrarContraseña.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.tggMostrarContraseña.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.tggMostrarContraseña.UncheckedState.InnerColor = System.Drawing.Color.White;
-            // 
-            // btnSignUp
-            // 
-            this.btnSignUp.Animated = true;
-            this.btnSignUp.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
-            this.btnSignUp.BorderRadius = 8;
-            this.btnSignUp.BorderThickness = 2;
-            this.btnSignUp.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSignUp.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnSignUp.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSignUp.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSignUp.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSignUp.FillColor = System.Drawing.Color.Transparent;
-            this.btnSignUp.FillColor2 = System.Drawing.Color.Transparent;
-            this.btnSignUp.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.btnSignUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
-            this.btnSignUp.Location = new System.Drawing.Point(220, 324);
-            this.btnSignUp.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSignUp.Name = "btnSignUp";
-            this.btnSignUp.Size = new System.Drawing.Size(176, 41);
-            this.btnSignUp.TabIndex = 26;
-            this.btnSignUp.Text = "Sign up";
-            this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
             // 
             // txtUsuario
             // 
@@ -262,6 +214,45 @@
             this.txtContraseña.Size = new System.Drawing.Size(372, 48);
             this.txtContraseña.TabIndex = 2;
             // 
+            // tggMostrarContraseña
+            // 
+            this.tggMostrarContraseña.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tggMostrarContraseña.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tggMostrarContraseña.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.tggMostrarContraseña.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.tggMostrarContraseña.Location = new System.Drawing.Point(24, 265);
+            this.tggMostrarContraseña.Margin = new System.Windows.Forms.Padding(4);
+            this.tggMostrarContraseña.Name = "tggMostrarContraseña";
+            this.tggMostrarContraseña.Size = new System.Drawing.Size(47, 25);
+            this.tggMostrarContraseña.TabIndex = 3;
+            this.tggMostrarContraseña.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.tggMostrarContraseña.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.tggMostrarContraseña.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.tggMostrarContraseña.UncheckedState.InnerColor = System.Drawing.Color.White;
+            // 
+            // btnSignUp
+            // 
+            this.btnSignUp.Animated = true;
+            this.btnSignUp.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
+            this.btnSignUp.BorderRadius = 8;
+            this.btnSignUp.BorderThickness = 2;
+            this.btnSignUp.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSignUp.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSignUp.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSignUp.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSignUp.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSignUp.FillColor = System.Drawing.Color.Transparent;
+            this.btnSignUp.FillColor2 = System.Drawing.Color.Transparent;
+            this.btnSignUp.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.btnSignUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
+            this.btnSignUp.Location = new System.Drawing.Point(220, 324);
+            this.btnSignUp.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSignUp.Name = "btnSignUp";
+            this.btnSignUp.Size = new System.Drawing.Size(176, 41);
+            this.btnSignUp.TabIndex = 5;
+            this.btnSignUp.Text = "Sign up";
+            this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
+            // 
             // guna2PictureBox1
             // 
             this.guna2PictureBox1.Image = global::GestionPedidos.UI.Properties.Resources.background1;
@@ -279,11 +270,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(850, 580);
+            this.ClientSize = new System.Drawing.Size(840, 589);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.ptrBox1);
+            this.Controls.Add(this.guna2PictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmLogin";
@@ -299,17 +290,19 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
-        private Guna.UI2.WinForms.Guna2PictureBox ptrBox1;
+        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private Guna.UI2.WinForms.Guna2ShadowForm guna2ShadowForm1;
         private Guna.UI2.WinForms.Guna2ControlBox btnMinimize;
         private Guna.UI2.WinForms.Guna2ControlBox btnClose;
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
+        private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.LinkLabel lblForgot;
         private System.Windows.Forms.Label lblshowpass;
         private Guna.UI2.WinForms.Guna2GradientButton btnLogin;
         private Guna.UI2.WinForms.Guna2TextBox txtUsuario;
+        private Guna.UI2.WinForms.Guna2TextBox txtContraseña;
         private Guna.UI2.WinForms.Guna2ToggleSwitch tggMostrarContraseña;
         private Guna.UI2.WinForms.Guna2GradientButton btnSignUp;
         private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;

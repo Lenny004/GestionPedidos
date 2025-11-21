@@ -1,7 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using GestionPedidos.Common.Constants;
 
 namespace GestionPedidos.Common.Validation
 {
@@ -9,9 +9,9 @@ namespace GestionPedidos.Common.Validation
     /// Contiene validaciones generales reutilizables para los controladores y servicios.
     /// </summary>
     public static class GeneralValidator
-    {
+    { 
         /// <summary>
-        /// Valida si una cadena no es nula, vac√≠a o solo contiene espacios.
+        /// Valida si una cadena no es nula, vacÌa o solo contiene espacios.
         /// </summary>
         public static bool IsNotEmpty(string value)
         {
@@ -19,7 +19,7 @@ namespace GestionPedidos.Common.Validation
         }
 
         /// <summary>
-        /// Valida si una cadena cumple con la longitud m√≠nima y m√°xima.
+        /// Valida si una cadena cumple con la longitud mÌnima y m·xima.
         /// </summary>
         public static bool ValidateLength(string value, int minLength, int maxLength)
         {
@@ -30,39 +30,66 @@ namespace GestionPedidos.Common.Validation
         }
 
         /// <summary>
-        /// Valida si el formato del correo electr√≥nico es correcto.
+        /// Valida si el formato del correo electrÛnico es correcto.
         /// </summary>
         public static bool ValidateEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
                 return false;
 
-            // Regex b√°sico para validar formato de email
+            // Regex b·sico para validar formato de email
             string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             return Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase);
         }
 
         /// <summary>
-        /// Valida que la contrase√±a cumpla con los requisitos m√≠nimos y retorna el motivo si no los cumple.
+        /// Valida la fortaleza de una contraseÒa (mÌnimo 8 caracteres, may˙sculas, min˙sculas, n˙mero y sÌmbolo).
         /// </summary>
-        public static (bool IsValid, string ErrorMessage) ValidatePasswordStrength(string password)
+        public static string ValidatePasswordStrength(string password)
         {
-            if (string.IsNullOrWhiteSpace(password))
-                return (false, AppConstants.CONTRASENA_DEBIL);
+            var errors = new List<string>();
 
-            if (password.Length < AppConstants.MIN_PASSWORD_LENGTH)
-                return (false, AppConstants.CONTRASENA_DEBIL);
+            // DefiniciÛn de caracteres especiales
+            // Esta expresiÛn incluye caracteres que no son letras ni dÌgitos
+            var specialChars = new char[] { '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '{', '}', '[', ']', ':', ';', '"', '\'', '<', '>', ',', '.', '?', '/' };
 
+            // 1. Regla: MÌnimo 6 caracteres
+            if (password.Length < 6)
+            {
+                errors.Add("Debe tener al menos 6 caracteres.");
+            }
+
+            // 2. Regla: Al menos una letra may˙scula
             if (!password.Any(char.IsUpper))
-                return (false, AppConstants.CONTRASENA_REQUIERE_MAYUSCULA);
+            {
+                errors.Add("Debe contener al menos una letra may˙scula.");
+            }
 
+            // 3. Regla: Al menos una letra min˙scula
             if (!password.Any(char.IsLower))
-                return (false, AppConstants.CONTRASENA_REQUIERE_MINUSCULA);
+            {
+                errors.Add("Debe contener al menos una letra min˙scula.");
+            }
 
-            if (!password.Any(character => !char.IsLetterOrDigit(character)))
-                return (false, AppConstants.CONTRASENA_REQUIERE_CARACTER_ESPECIAL);
+            // 4. Regla: Al menos un dÌgito (n˙mero)
+            if (!password.Any(char.IsDigit))
+            {
+                errors.Add("Debe contener al menos un n˙mero.");
+            }
 
-            return (true, string.Empty);
+            // 5. Regla: Al menos un sÌmbolo o car·cter especial
+            if (!password.Any(c => !char.IsLetterOrDigit(c)))
+            {
+                errors.Add("Debe contener al menos un sÌmbolo o car·cter especial.");
+            }
+
+            // Unir todos los errores
+            if (errors.Count > 0)
+            {
+                return "La contraseÒa no cumple con los requisitos:\n- " + string.Join("\n- ", errors);
+            }
+
+            return string.Empty; // Devuelve cadena vacÌa si es v·lida
         }
 
         /// <summary>
@@ -73,12 +100,12 @@ namespace GestionPedidos.Common.Validation
             if (string.IsNullOrWhiteSpace(value))
                 return false;
 
-            string pattern = @"^[a-zA-Z√Å√â√ç√ì√ö√°√©√≠√≥√∫√ë√±\s]+$";
+            string pattern = @"^[a-zA-Z·ÈÌÛ˙¡…Õ”⁄Ò—\s]+$";
             return Regex.IsMatch(value, pattern);
         }
 
         /// <summary>
-        /// Valida si el campo de texto solo contiene d√≠gitos num√©ricos.
+        /// Valida si el campo de texto solo contiene dÌgitos numÈricos.
         /// </summary>
         public static bool ValidateOnlyNumbers(string value)
         {

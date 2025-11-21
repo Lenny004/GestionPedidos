@@ -32,5 +32,7 @@ namespace GestionPedidos.DataAccess.Interfaces
         bool CrearUsuario(User user);
 
         bool UpdatePasswordByEmail(string email, string newPasswordHash);
+
+        bool VerifyPassword(string email, string newPasswordHash);
     }
 }
