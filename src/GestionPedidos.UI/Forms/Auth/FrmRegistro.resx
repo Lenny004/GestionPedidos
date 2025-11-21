@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="guna2Elipse1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>225, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="guna2Elipse1.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>225, 17</value>
+  </data>
   <data name="txtCorreo.IconLeft" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAABYxJREFUeF7tnNmLHFUUxifu+y6uRMUNEUUCKoIKQh4EFR9khPwDjdM9nVl6hn6c
+        DAAACwwBP0AiyAAABYxJREFUeF7tnNmLHFUUxifu+y6uRMUNEUUCKoIKQh4EFR9khPwDjdM9nVl6hn6c
         13n1SRQR0bd5ETQqOIgiSEBEhOBADAkuEPeYcYlZNPqdnq9ieTnT99bpqu62+/zgR81S97u3TlV13+rq
         7gnHcRzHcRzHcRzHcRzHcRzHcZxutFqtG2ZmZnbCt+E++Nvs7Ozfoyy38XNu806wleXoHyz8S/BEOMBx
         kzV4sW87Ap09AX/OBuCech074SmWqRrQwTQ6Ohl07P7rybm5uTrLVS4Ifxqn219Bh26g1Kj0M2FhYeFq
@@ -151,19 +151,16 @@
         kSMAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="guna2ShadowForm1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="guna2ShadowForm1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>369, 17</value>
-  </metadata>
-  <metadata name="guna2DragControl1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="guna2DragControl1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>561, 17</value>
-  </metadata>
-  <metadata name="guna2BorderlessForm1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="guna2BorderlessForm1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="dragptrBox1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>748, 17</value>
-  </metadata>
-  <metadata name="guna2BorderlessForm2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="guna2BorderlessForm2.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>887, 17</value>
-  </metadata>
+  </data>
 </root>
