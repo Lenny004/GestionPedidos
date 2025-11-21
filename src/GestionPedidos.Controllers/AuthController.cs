@@ -137,7 +137,7 @@ namespace GestionPedidos.Controllers
                 }
 
                 // Verificar si el usuario ya existe
-                if (_usuarioRepository.ExisteUsuario(nombreUsuario))
+                if (_usuarioRepository.ExisteUsuario(nombreUsuario, correo))
                 {
                     Logger.Warn($"Intento de registro con usuario existente: {nombreUsuario}");
                     return (false, Messages.Usuarios.USUARIO_YA_EXISTE);

@@ -20,7 +20,7 @@ namespace GestionPedidos.UI.Forms.Auth
         {
             txtContraseña.KeyPress += TxtContraseña_KeyPress;
             tggMostrarContraseña.CheckedChanged += ChkMostrarContraseña_CheckedChanged;
-            btnRegistrar.Click += BtnRegistrar_Click;
+            btnSignUp.Click += BtnRegistrar_Click;
         }
 
         private void TxtContraseña_KeyPress(object sender, KeyPressEventArgs e)
@@ -123,6 +123,30 @@ namespace GestionPedidos.UI.Forms.Auth
         private void btnLogin_Click(object sender, EventArgs e)
         {
             RealizarLogin();
+        }
+
+        private void btnSignUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 1. Ocultar el formulario de Login actual
+                this.Hide();
+
+                // 2. Crear una nueva instancia del formulario de Registro
+                FrmRegister registerForm = new FrmRegister();
+
+                // 3. Mostrar el formulario de Registro en modo Modal
+                // El modo ShowDialog() mantiene la aplicación enfocada en el nuevo formulario
+                registerForm.ShowDialog();
+
+                // 4. Mostrar el formulario de Login de nuevo
+                // Esto se ejecuta cuando el FrmRegister se cierra.
+                this.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error al abrir el registro: {ex.Message}", "Error de Navegación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

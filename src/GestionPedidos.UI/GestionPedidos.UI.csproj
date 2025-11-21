@@ -92,11 +92,11 @@
     <Compile Include="Forms\Auth\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Clients\customer.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Forms\Auth\FrmRegister.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Clients\customer.Designer.cs">
-      <DependentUpon>customer.cs</DependentUpon>
+    <Compile Include="Forms\Auth\FrmRegister.Designer.cs">
+      <DependentUpon>FrmRegister.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,11 +111,8 @@
     <EmbeddedResource Include="Forms\Auth\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Auth\FrmRegistro.resx">
-      <DependentUpon>FrmRegistro.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Clients\customer.resx">
-      <DependentUpon>customer.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Auth\FrmRegister.resx">
+      <DependentUpon>FrmRegister.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
