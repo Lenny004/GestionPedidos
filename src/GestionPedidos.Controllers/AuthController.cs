@@ -129,14 +129,18 @@ namespace GestionPedidos.Controllers
                 }
 
                 // Validar fortaleza de contraseña
-                if (!GeneralValidator.ValidatePasswordStrength(contraseña))
+                string passwordValidationMessage = GeneralValidator.ValidatePasswordStrength(contraseña);
+
+                if (!string.IsNullOrEmpty(passwordValidationMessage))
                 {
-                    Logger.Warn($"Contraseña débil en registro para usuario: {nombreUsuario}");
-                    return (false, AppConstants.CONTRASENA_DEBIL);
+                    Logger.Warn($"Contraseña débil en registro para usuario: {nombreUsuario}. Errores: {passwordValidationMessage.Replace('\n', ' ')}");
+
+                    // Si la validación falla, retorna el mensaje detallado
+                    return (false, passwordValidationMessage);
                 }
 
                 // Verificar si el usuario ya existe
-                if (_usuarioRepository.ExisteUsuario(nombreUsuario))
+                if (_usuarioRepository.ExisteUsuario(nombreUsuario, correo))
                 {
                     Logger.Warn($"Intento de registro con usuario existente: {nombreUsuario}");
                     return (false, Messages.Usuarios.USUARIO_YA_EXISTE);

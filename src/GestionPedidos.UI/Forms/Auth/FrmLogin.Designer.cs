@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.btnClose = new Guna.UI2.WinForms.Guna2ControlBox();
             this.btnMinimize = new Guna.UI2.WinForms.Guna2ControlBox();
@@ -41,13 +40,14 @@
             this.lblForgot = new System.Windows.Forms.LinkLabel();
             this.lblshowpass = new System.Windows.Forms.Label();
             this.btnLogin = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.tggMostrarContraseña = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            this.btnSignUp = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.txtUsuario = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtContraseña = new Guna.UI2.WinForms.Guna2TextBox();
-            this.tggMostrarContraseña = new Guna.UI2.WinForms.Guna2ToggleSwitch();
-            this.btnRegistrar = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2Elipse1
@@ -58,18 +58,6 @@
             // guna2ShadowForm1
             // 
             this.guna2ShadowForm1.TargetForm = this;
-            // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.Image = global::GestionPedidos.UI.Properties.Resources.background1;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(-15, -117);
-            this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(568, 699);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
             // 
             // guna2DragControl1
             // 
@@ -116,7 +104,7 @@
             this.panel1.Controls.Add(this.txtUsuario);
             this.panel1.Controls.Add(this.txtContraseña);
             this.panel1.Controls.Add(this.tggMostrarContraseña);
-            this.panel1.Controls.Add(this.btnRegistrar);
+            this.panel1.Controls.Add(this.btnSignUp);
             this.panel1.Location = new System.Drawing.Point(392, 90);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(423, 427);
@@ -178,6 +166,45 @@
             this.btnLogin.TabIndex = 25;
             this.btnLogin.Text = "Login";
             // 
+            // tggMostrarContraseña
+            // 
+            this.tggMostrarContraseña.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tggMostrarContraseña.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tggMostrarContraseña.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.tggMostrarContraseña.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.tggMostrarContraseña.Location = new System.Drawing.Point(24, 265);
+            this.tggMostrarContraseña.Margin = new System.Windows.Forms.Padding(4);
+            this.tggMostrarContraseña.Name = "tggMostrarContraseña";
+            this.tggMostrarContraseña.Size = new System.Drawing.Size(47, 25);
+            this.tggMostrarContraseña.TabIndex = 24;
+            this.tggMostrarContraseña.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.tggMostrarContraseña.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.tggMostrarContraseña.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.tggMostrarContraseña.UncheckedState.InnerColor = System.Drawing.Color.White;
+            // 
+            // btnSignUp
+            // 
+            this.btnSignUp.Animated = true;
+            this.btnSignUp.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
+            this.btnSignUp.BorderRadius = 8;
+            this.btnSignUp.BorderThickness = 2;
+            this.btnSignUp.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSignUp.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSignUp.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSignUp.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSignUp.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSignUp.FillColor = System.Drawing.Color.Transparent;
+            this.btnSignUp.FillColor2 = System.Drawing.Color.Transparent;
+            this.btnSignUp.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.btnSignUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
+            this.btnSignUp.Location = new System.Drawing.Point(220, 324);
+            this.btnSignUp.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSignUp.Name = "btnSignUp";
+            this.btnSignUp.Size = new System.Drawing.Size(176, 41);
+            this.btnSignUp.TabIndex = 26;
+            this.btnSignUp.Text = "Sign up";
+            this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
+            // 
             // txtUsuario
             // 
             this.txtUsuario.Animated = true;
@@ -196,6 +223,7 @@
             this.txtUsuario.Location = new System.Drawing.Point(24, 117);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.PasswordChar = '\0';
             this.txtUsuario.PlaceholderText = "Username";
             this.txtUsuario.SelectedText = "";
             this.txtUsuario.Size = new System.Drawing.Size(372, 48);
@@ -225,43 +253,17 @@
             this.txtContraseña.Size = new System.Drawing.Size(372, 48);
             this.txtContraseña.TabIndex = 23;
             // 
-            // tggMostrarContraseña
+            // guna2PictureBox1
             // 
-            this.tggMostrarContraseña.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tggMostrarContraseña.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tggMostrarContraseña.CheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.tggMostrarContraseña.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.tggMostrarContraseña.Location = new System.Drawing.Point(24, 265);
-            this.tggMostrarContraseña.Margin = new System.Windows.Forms.Padding(4);
-            this.tggMostrarContraseña.Name = "tggMostrarContraseña";
-            this.tggMostrarContraseña.Size = new System.Drawing.Size(47, 25);
-            this.tggMostrarContraseña.TabIndex = 24;
-            this.tggMostrarContraseña.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.tggMostrarContraseña.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.tggMostrarContraseña.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.tggMostrarContraseña.UncheckedState.InnerColor = System.Drawing.Color.White;
-            // 
-            // btnRegistrar
-            // 
-            this.btnRegistrar.Animated = true;
-            this.btnRegistrar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
-            this.btnRegistrar.BorderRadius = 8;
-            this.btnRegistrar.BorderThickness = 2;
-            this.btnRegistrar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnRegistrar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnRegistrar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnRegistrar.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnRegistrar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnRegistrar.FillColor = System.Drawing.Color.Transparent;
-            this.btnRegistrar.FillColor2 = System.Drawing.Color.Transparent;
-            this.btnRegistrar.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.btnRegistrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
-            this.btnRegistrar.Location = new System.Drawing.Point(220, 324);
-            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(176, 41);
-            this.btnRegistrar.TabIndex = 26;
-            this.btnRegistrar.Text = "Sign up";
+            this.guna2PictureBox1.Image = global::GestionPedidos.UI.Properties.Resources.background1;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(-15, -117);
+            this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(568, 699);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.guna2PictureBox1.TabIndex = 0;
+            this.guna2PictureBox1.TabStop = false;
             // 
             // FrmLogin
             // 
@@ -278,9 +280,9 @@
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -302,7 +304,7 @@
         private Guna.UI2.WinForms.Guna2TextBox txtUsuario;
         private Guna.UI2.WinForms.Guna2TextBox txtContraseña;
         private Guna.UI2.WinForms.Guna2ToggleSwitch tggMostrarContraseña;
-        private Guna.UI2.WinForms.Guna2GradientButton btnRegistrar;
+        private Guna.UI2.WinForms.Guna2GradientButton btnSignUp;
         private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;
     }
 }

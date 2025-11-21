@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace GestionPedidos.Common.Validation
@@ -43,14 +45,51 @@ namespace GestionPedidos.Common.Validation
         /// <summary>
         /// Valida la fortaleza de una contraseña (mínimo 8 caracteres, mayúsculas, minúsculas, número y símbolo).
         /// </summary>
-        public static bool ValidatePasswordStrength(string password)
+        public static string ValidatePasswordStrength(string password)
         {
-            if (string.IsNullOrWhiteSpace(password))
-                return false;
+            var errors = new List<string>();
 
-            // Debe tener al menos una mayúscula, una minúscula, un número y un carácter especial
-            string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$";
-            return Regex.IsMatch(password, pattern);
+            // Definición de caracteres especiales
+            // Esta expresión incluye caracteres que no son letras ni dígitos
+            var specialChars = new char[] { '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '{', '}', '[', ']', ':', ';', '"', '\'', '<', '>', ',', '.', '?', '/' };
+
+            // 1. Regla: Mínimo 6 caracteres
+            if (password.Length < 6)
+            {
+                errors.Add("Debe tener al menos 6 caracteres.");
+            }
+
+            // 2. Regla: Al menos una letra mayúscula
+            if (!password.Any(char.IsUpper))
+            {
+                errors.Add("Debe contener al menos una letra mayúscula.");
+            }
+
+            // 3. Regla: Al menos una letra minúscula
+            if (!password.Any(char.IsLower))
+            {
+                errors.Add("Debe contener al menos una letra minúscula.");
+            }
+
+            // 4. Regla: Al menos un dígito (número)
+            if (!password.Any(char.IsDigit))
+            {
+                errors.Add("Debe contener al menos un número.");
+            }
+
+            // 5. Regla: Al menos un símbolo o carácter especial <<< ¡NUEVA REGLA!
+            if (!password.Any(c => !char.IsLetterOrDigit(c)))
+            {
+                errors.Add("Debe contener al menos un símbolo o carácter especial.");
+            }
+
+            // Unir todos los errores
+            if (errors.Count > 0)
+            {
+                return "La contraseña no cumple con los requisitos:\n- " + string.Join("\n- ", errors);
+            }
+
+            return string.Empty; // Devuelve cadena vacía si es válida
         }
 
         /// <summary>
