@@ -13,6 +13,8 @@ namespace GestionPedidos.UI.Forms.Auth
 {
     public partial class FrmForgotPassword : Form
     {
+        private readonly AuthController _authController = new AuthController();
+
         public FrmForgotPassword()
         {
             InitializeComponent();
@@ -25,29 +27,41 @@ namespace GestionPedidos.UI.Forms.Auth
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            string email = txtEmail.Text.Trim();
-            string newPass = txtNewPassword.Text;
-            string confirmPass = txtConfirmPassword.Text;
+            string originalText = btnConfirmar.Text;
+            btnConfirmar.Enabled = false;
+            btnConfirmar.Text = "Loading...";
+            this.Cursor = Cursors.WaitCursor;
 
-            AuthController controller = new AuthController();
-
-            // Llama al método del controlador
-            var result = controller.ResetPassword(email, newPass, confirmPass);
-
-            if (result.Success)
+            try
             {
-                MessageBox.Show(result.Message, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+                string email = txtEmail.Text.Trim();
+                string newPass = txtNewPassword.Text;
+                string confirmPass = txtConfirmPassword.Text;
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
+                var result = _authController.ResetPassword(email, newPass, confirmPass);
+
+                if (result.Success)
+                {
+                    MessageBox.Show(result.Message, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtNewPassword.Clear();
+                    txtConfirmPassword.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error inesperado. Mensaje: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btnConfirmar.Enabled = true;
+                btnConfirmar.Text = originalText;
+                this.Cursor = Cursors.Default;
+            }
         }
     }
 }

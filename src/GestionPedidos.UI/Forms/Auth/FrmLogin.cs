@@ -8,7 +8,7 @@ namespace GestionPedidos.UI.Forms.Auth
 {
     public partial class FrmLogin : Form
     {
-        private AuthController _authController = new AuthController();
+        private readonly AuthController _authController = new AuthController();
 
         public FrmLogin()
         {
@@ -18,9 +18,10 @@ namespace GestionPedidos.UI.Forms.Auth
 
         private void ConfigurarEventos()
         {
+            btnLogin.Click += BtnLogin_Click;
             txtContraseña.KeyPress += TxtContraseña_KeyPress;
             tggMostrarContraseña.CheckedChanged += ChkMostrarContraseña_CheckedChanged;
-            btnRegistrar.Click += BtnRegistrar_Click;
+            btnSignUp.Click += BtnRegistrar_Click;
         }
 
         private void TxtContraseña_KeyPress(object sender, KeyPressEventArgs e)
@@ -37,12 +38,19 @@ namespace GestionPedidos.UI.Forms.Auth
             txtContraseña.PasswordChar = tggMostrarContraseña.Checked ? '\0' : '●';
         }
 
+        private void BtnLogin_Click(object sender, EventArgs e)
+        {
+            RealizarLogin();
+        }
+
         private void RealizarLogin()
         {
             // Deshabilitar botón mientras procesa
+            string originalText = btnLogin.Text;
+            bool closingAfterDashboard = false;
             btnLogin.Enabled = false;
             btnLogin.Text = "Loading...";
-            Cursor = Cursors.WaitCursor;
+            this.Cursor = Cursors.WaitCursor;
 
             try
             {
@@ -52,16 +60,20 @@ namespace GestionPedidos.UI.Forms.Auth
                 if (success)
                 {
                     MessageBox.Show(message, "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                    // Crear y mostrar el formulario del dashboard
-                    FrmDashboard dashboard = new FrmDashboard();
-                    dashboard.Show();
+
+                    this.Hide();
+                    using (var dashboard = new FrmDashboard())
+                    {
+                        dashboard.ShowDialog(this);
+                    }
+                    closingAfterDashboard = true;
+                    this.Close();
+                    return;
                 }
                 else
                 {
                     MessageBox.Show(message, "Error de Autenticación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtContraseña.Clear();
-
                     // Dar foco según el error
                     if (message.Contains("usuario"))
                         txtUsuario.Focus();
@@ -78,38 +90,21 @@ namespace GestionPedidos.UI.Forms.Auth
             }
             finally
             {
-                btnLogin.Enabled = true;
-                btnLogin.Text = "Login";
-                Cursor = Cursors.Default;
+                if (!closingAfterDashboard)
+                {
+                    btnLogin.Enabled = true;
+                    btnLogin.Text = originalText;
+                    this.Cursor = Cursors.Default;
+                }
             }
         }
 
         private void BtnRegistrar_Click(object sender, EventArgs e)
         {
-            // Ocultar el formulario de login
-            Hide();
-            
-            FrmRegistro registroForm = new FrmRegistro();
-            DialogResult resultado = registroForm.ShowDialog(this);
-
-            if (resultado == DialogResult.OK)
-            {
-                // Registro exitoso, regresar al login y mostrar mensaje
-                MessageBox.Show("Registro completado. Por favor inicia sesión con tus credenciales.", 
-                    "Registro Exitoso", 
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                Show();
-                Activate();
-            }
-            else
-            {
-                // Usuario canceló manualmente, mostrar login de nuevo
-                Show();
-                Activate();
-            }
-            
-            registroForm.Dispose();
+            MessageBox.Show("Funcionalidad de registro aún no implementada.",
+                "Registro",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         private void lblForgot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -118,11 +113,31 @@ namespace GestionPedidos.UI.Forms.Auth
             FrmForgotPassword frmForgotPassword = new FrmForgotPassword();
             frmForgotPassword.ShowDialog();
             this.Show();
+
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void btnSignUp_Click(object sender, EventArgs e)
         {
-            RealizarLogin();
+            try
+            {
+                // 1. Ocultar el formulario de Login actual
+                this.Hide();
+
+                // 2. Crear una nueva instancia del formulario de Registro
+                FrmRegister registerForm = new FrmRegister();
+
+                // 3. Mostrar el formulario de Registro en modo Modal
+                // El modo ShowDialog() mantiene la aplicación enfocada en el nuevo formulario
+                registerForm.ShowDialog();
+
+                // 4. Mostrar el formulario de Login de nuevo
+                // Esto se ejecuta cuando el FrmRegister se cierra.
+                this.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error al abrir el registro: {ex.Message}", "Error de Navegación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

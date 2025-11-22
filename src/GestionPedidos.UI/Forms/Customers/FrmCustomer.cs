@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GestionPedidos.UI.Forms.Clients
+namespace GestionPedidos.UI.Forms.Customers
 {
-    public partial class customer : UserControl
+    public partial class FrmCustomer : Form
     {
-        public customer()
+        public FrmCustomer()
         {
             InitializeComponent();
         }
 
-        private void customer_Load(object sender, EventArgs e)
+        private void FrmCustomer_Load(object sender, EventArgs e)
         {
 
         }

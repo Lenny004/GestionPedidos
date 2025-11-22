@@ -22,7 +22,7 @@ namespace GestionPedidos.DataAccess.Interfaces
         /// </summary>
         /// <param name="userName"></param>
         /// <returns>True si existe, False si no</returns>
-        bool ExisteUsuario(string userName);
+        bool ExisteUsuario(string userName, string email);
 
         /// <summary>
         /// Crea un nuevo usuario en el sistema
@@ -32,5 +32,7 @@ namespace GestionPedidos.DataAccess.Interfaces
         bool CrearUsuario(User user);
 
         bool UpdatePasswordByEmail(string email, string newPasswordHash);
+
+        bool VerifyPassword(string email, string newPasswordHash);
     }
 }

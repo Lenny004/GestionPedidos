@@ -12,21 +12,6 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,7 +37,7 @@
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.6\lib\net472\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.6.0.4\lib\net46\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.6.0.5\lib\net46\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -92,17 +77,17 @@
     <Compile Include="Forms\Auth\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Main\FrmDashboard.cs">
+    <Compile Include="Forms\Auth\FrmRegister.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Main\FrmDashboard.Designer.cs">
-      <DependentUpon>FrmDashboard.cs</DependentUpon>
+    <Compile Include="Forms\Auth\FrmRegister.Designer.cs">
+      <DependentUpon>FrmRegister.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Clients\customer.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Forms\Customers\FrmCustomer.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Clients\customer.Designer.cs">
-      <DependentUpon>customer.cs</DependentUpon>
+    <Compile Include="Forms\Customers\FrmCustomer.Designer.cs">
+      <DependentUpon>FrmCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Main\FrmDashboard.cs">
       <SubType>Form</SubType>
@@ -112,34 +97,32 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Forms\Auth\FrmForgotPassword.resx">
       <DependentUpon>FrmForgotPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Auth\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Auth\FrmRegistro.resx">
-      <DependentUpon>FrmRegistro.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Auth\FrmRegister.resx">
+      <DependentUpon>FrmRegister.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Clients\customer.resx">
-      <DependentUpon>customer.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Customers\FrmCustomer.resx">
+      <DependentUpon>FrmCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main\FrmDashboard.resx">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="NLog.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="NLog.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -155,7 +138,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Forms\Admin\" />
     <Folder Include="Forms\Delivery\" />
     <Folder Include="Forms\Products\" />
     <Folder Include="Helpers\" />
@@ -177,49 +159,22 @@
     <ProjectReference Include="..\GestionPedidos.DataAccess\GestionPedidos.DataAccess.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\EMAIL1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\logo1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dashboard.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\customer.png" />
+    <None Include="Resources\dashboard_w.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\delivery.png" />
+    <None Include="Resources\customer.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\products.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\user_section.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\dashboard_w.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\customer_w.png" />
+    <None Include="Resources\delivery.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\delivery_w.png" />
@@ -228,7 +183,37 @@
     <None Include="Resources\products_w.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\customer_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_section.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\user_section_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\order_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

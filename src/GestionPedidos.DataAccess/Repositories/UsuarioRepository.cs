@@ -65,7 +65,7 @@ namespace GestionPedidos.DataAccess.Repositories
         /// <summary>
         /// Verifica si un nombre de usuario ya existe en la base de datos.
         /// </summary>
-        public bool ExisteUsuario(string userName)
+        public bool ExisteUsuario(string userName, string email)
         {
             try
             {
@@ -73,11 +73,14 @@ namespace GestionPedidos.DataAccess.Repositories
                 {
                     conn.Open();
 
-                    string query = "SELECT COUNT(*) FROM Users WHERE userName = @userName";
+                    // Usamos OR para verificar si el nombre de usuario O el correo ya existe.
+                    string query = "SELECT COUNT(*) FROM Users WHERE userName = @userName OR email = @email";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@userName", userName);
+                        cmd.Parameters.AddWithValue("@email", email); // Agregamos el parámetro Email
+
                         int count = (int)cmd.ExecuteScalar();
                         return count > 0;
                     }
@@ -85,7 +88,7 @@ namespace GestionPedidos.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error al verificar existencia del usuario: {ex.Message}", ex);
+                throw new Exception($"Error al verificar existencia del usuario/email: {ex.Message}", ex);
             }
         }
 
@@ -93,7 +96,9 @@ namespace GestionPedidos.DataAccess.Repositories
         /// Crea un nuevo usuario en la base de datos.
         /// </summary>
         public bool CrearUsuario(User user)
+
         {
+          
             try
             {
                 using (SqlConnection conn = DatabaseConnection.GetConnection())
@@ -124,6 +129,37 @@ namespace GestionPedidos.DataAccess.Repositories
             catch (Exception ex)
             {
                 throw new Exception($"Error al crear usuario: {ex.Message}", ex);
+            }
+        }
+
+        public bool VerifyPassword(string email, string passwordHash)
+        {
+            string query = "SELECT passwordHash FROM Users WHERE email = @Email AND isActive = 1";
+
+            using (SqlConnection connection = DatabaseConnection.GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                try
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        string currentHash = Convert.ToString(result);
+                        return string.Equals(currentHash, passwordHash, StringComparison.OrdinalIgnoreCase);
+                    }
+
+                    return false;
+                }
+                catch (Exception)
+                {
+                    // Manejo de errores de base de datos
+                    return false;
+                }
             }
         }
 
