@@ -2,12 +2,13 @@
 using System.Windows.Forms;
 using GestionPedidos.Controllers;
 using GestionPedidos.UI.Forms.Auth;
+using GestionPedidos.UI.Forms.Main;
 
 namespace GestionPedidos.UI.Forms.Auth
 {
     public partial class FrmLogin : Form
     {
-        private AuthController _authController = new AuthController();
+        private readonly AuthController _authController = new AuthController();
 
         public FrmLogin()
         {
@@ -45,6 +46,8 @@ namespace GestionPedidos.UI.Forms.Auth
         private void RealizarLogin()
         {
             // Deshabilitar botón mientras procesa
+            string originalText = btnLogin.Text;
+            bool closingAfterDashboard = false;
             btnLogin.Enabled = false;
             btnLogin.Text = "Loading...";
             this.Cursor = Cursors.WaitCursor;
@@ -57,14 +60,20 @@ namespace GestionPedidos.UI.Forms.Auth
                 if (success)
                 {
                     MessageBox.Show(message, "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK;
+
+                    this.Hide();
+                    using (var dashboard = new FrmDashboard())
+                    {
+                        dashboard.ShowDialog(this);
+                    }
+                    closingAfterDashboard = true;
                     this.Close();
+                    return;
                 }
                 else
                 {
                     MessageBox.Show(message, "Error de Autenticación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtContraseña.Clear();
-
                     // Dar foco según el error
                     if (message.Contains("usuario"))
                         txtUsuario.Focus();
@@ -81,9 +90,12 @@ namespace GestionPedidos.UI.Forms.Auth
             }
             finally
             {
-                btnLogin.Enabled = true;
-                btnLogin.Text = "Login";
-                this.Cursor = Cursors.Default;
+                if (!closingAfterDashboard)
+                {
+                    btnLogin.Enabled = true;
+                    btnLogin.Text = originalText;
+                    this.Cursor = Cursors.Default;
+                }
             }
         }
 

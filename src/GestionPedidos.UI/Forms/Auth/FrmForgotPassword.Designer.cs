@@ -243,7 +243,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(840, 589);
+            this.ClientSize = new System.Drawing.Size(840, 580);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.guna2PictureBox1);
             this.Controls.Add(this.btnClose);
