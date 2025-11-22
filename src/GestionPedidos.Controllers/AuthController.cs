@@ -73,12 +73,20 @@ namespace GestionPedidos.Controllers
                 }
 
                 // Determinar rol
-                if (usuario.TipoRol != null)
-                    rol = usuario.TipoRol;
+                TipoRoles rol;
+
+                if (usuario.TipoRol.HasValue)
+                {
+                    rol = usuario.TipoRol.Value;
+                }
                 else if (usuario.Rol != null && Enum.IsDefined(typeof(TipoRoles), usuario.Rol.IdRole))
+                {
                     rol = (TipoRoles)usuario.Rol.IdRole;
+                }
                 else
+                {
                     rol = TipoRoles.Operador;
+                }
 
                 // Crear sesión
                 SessionManager.Login(usuario.IdUser, usuario.Username, usuario.FullName, rol);

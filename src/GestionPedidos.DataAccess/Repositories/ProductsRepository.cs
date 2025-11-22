@@ -58,7 +58,6 @@ namespace GestionPedidos.DataAccess.Repositories
             {
                 throw new Exception($"Error al leer registros en productos: {ex.Message}", ex);
             }
-
             return products;
         }
     }

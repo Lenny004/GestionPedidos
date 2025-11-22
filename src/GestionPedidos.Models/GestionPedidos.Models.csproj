@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\ProductListDto.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Rol.cs" />
     <Compile Include="Entities\User.cs" />
@@ -53,9 +54,7 @@
     <Compile Include="Enums\TipoRoles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTOs\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

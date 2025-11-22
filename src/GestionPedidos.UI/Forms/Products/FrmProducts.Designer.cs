@@ -34,6 +34,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.guna2CircleButton2 = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -46,15 +48,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
+            this.btnReload = new Guna.UI2.WinForms.Guna2ImageButton();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAddC = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2CircleButton2 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.btnReload = new Guna.UI2.WinForms.Guna2ImageButton();
             this.guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2ShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -96,6 +96,46 @@
             this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel1.Size = new System.Drawing.Size(1096, 689);
             this.guna2ShadowPanel1.TabIndex = 8;
+            // 
+            // guna2CircleButton2
+            // 
+            this.guna2CircleButton2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2CircleButton2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2CircleButton2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2CircleButton2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2CircleButton2.FillColor = System.Drawing.Color.White;
+            this.guna2CircleButton2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2CircleButton2.ForeColor = System.Drawing.Color.White;
+            this.guna2CircleButton2.Image = global::GestionPedidos.UI.Properties.Resources.details;
+            this.guna2CircleButton2.ImageSize = new System.Drawing.Size(35, 35);
+            this.guna2CircleButton2.Location = new System.Drawing.Point(22, 100);
+            this.guna2CircleButton2.Name = "guna2CircleButton2";
+            this.guna2CircleButton2.ShadowDecoration.Color = System.Drawing.Color.Silver;
+            this.guna2CircleButton2.ShadowDecoration.Enabled = true;
+            this.guna2CircleButton2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.guna2CircleButton2.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(1, 1, 7, 10);
+            this.guna2CircleButton2.Size = new System.Drawing.Size(56, 56);
+            this.guna2CircleButton2.TabIndex = 50;
+            // 
+            // guna2CircleButton1
+            // 
+            this.guna2CircleButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2CircleButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2CircleButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2CircleButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2CircleButton1.FillColor = System.Drawing.Color.White;
+            this.guna2CircleButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2CircleButton1.ForeColor = System.Drawing.Color.White;
+            this.guna2CircleButton1.Image = global::GestionPedidos.UI.Properties.Resources.stock;
+            this.guna2CircleButton1.ImageSize = new System.Drawing.Size(35, 35);
+            this.guna2CircleButton1.Location = new System.Drawing.Point(346, 100);
+            this.guna2CircleButton1.Name = "guna2CircleButton1";
+            this.guna2CircleButton1.ShadowDecoration.Color = System.Drawing.Color.Silver;
+            this.guna2CircleButton1.ShadowDecoration.Enabled = true;
+            this.guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.guna2CircleButton1.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(1, 1, 7, 10);
+            this.guna2CircleButton1.Size = new System.Drawing.Size(56, 56);
+            this.guna2CircleButton1.TabIndex = 49;
             // 
             // label10
             // 
@@ -254,6 +294,20 @@
             this.lblID.TabIndex = 32;
             this.lblID.Text = "#12";
             // 
+            // btnReload
+            // 
+            this.btnReload.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
+            this.btnReload.HoverState.ImageSize = new System.Drawing.Size(35, 35);
+            this.btnReload.Image = global::GestionPedidos.UI.Properties.Resources.reload;
+            this.btnReload.ImageOffset = new System.Drawing.Point(0, 0);
+            this.btnReload.ImageRotate = 0F;
+            this.btnReload.ImageSize = new System.Drawing.Size(33, 33);
+            this.btnReload.Location = new System.Drawing.Point(313, 193);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.PressedState.ImageSize = new System.Drawing.Size(33, 33);
+            this.btnReload.Size = new System.Drawing.Size(50, 48);
+            this.btnReload.TabIndex = 31;
+            // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
@@ -293,7 +347,6 @@
             this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.guna2DataGridView1.Location = new System.Drawing.Point(22, 283);
             this.guna2DataGridView1.Name = "guna2DataGridView1";
-            this.guna2DataGridView1.RowHeadersVisible = false;
             this.guna2DataGridView1.RowHeadersWidth = 51;
             this.guna2DataGridView1.RowTemplate.Height = 24;
             this.guna2DataGridView1.Size = new System.Drawing.Size(1060, 378);
@@ -350,6 +403,20 @@
             this.btnAddC.Text = "Add";
             this.btnAddC.Click += new System.EventHandler(this.btnAddC_Click);
             // 
+            // guna2ImageButton1
+            // 
+            this.guna2ImageButton1.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
+            this.guna2ImageButton1.HoverState.ImageSize = new System.Drawing.Size(32, 32);
+            this.guna2ImageButton1.Image = global::GestionPedidos.UI.Properties.Resources.search1;
+            this.guna2ImageButton1.ImageOffset = new System.Drawing.Point(0, 0);
+            this.guna2ImageButton1.ImageRotate = 0F;
+            this.guna2ImageButton1.ImageSize = new System.Drawing.Size(30, 30);
+            this.guna2ImageButton1.Location = new System.Drawing.Point(257, 193);
+            this.guna2ImageButton1.Name = "guna2ImageButton1";
+            this.guna2ImageButton1.PressedState.ImageSize = new System.Drawing.Size(30, 30);
+            this.guna2ImageButton1.Size = new System.Drawing.Size(50, 48);
+            this.guna2ImageButton1.TabIndex = 3;
+            // 
             // guna2TextBox1
             // 
             this.guna2TextBox1.BorderRadius = 8;
@@ -370,74 +437,6 @@
             this.guna2TextBox1.SelectedText = "";
             this.guna2TextBox1.Size = new System.Drawing.Size(229, 48);
             this.guna2TextBox1.TabIndex = 2;
-            // 
-            // guna2CircleButton2
-            // 
-            this.guna2CircleButton2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2CircleButton2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2CircleButton2.FillColor = System.Drawing.Color.White;
-            this.guna2CircleButton2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2CircleButton2.ForeColor = System.Drawing.Color.White;
-            this.guna2CircleButton2.Image = global::GestionPedidos.UI.Properties.Resources.details;
-            this.guna2CircleButton2.ImageSize = new System.Drawing.Size(35, 35);
-            this.guna2CircleButton2.Location = new System.Drawing.Point(22, 100);
-            this.guna2CircleButton2.Name = "guna2CircleButton2";
-            this.guna2CircleButton2.ShadowDecoration.Color = System.Drawing.Color.Silver;
-            this.guna2CircleButton2.ShadowDecoration.Enabled = true;
-            this.guna2CircleButton2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton2.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(1, 1, 7, 10);
-            this.guna2CircleButton2.Size = new System.Drawing.Size(56, 56);
-            this.guna2CircleButton2.TabIndex = 50;
-            // 
-            // guna2CircleButton1
-            // 
-            this.guna2CircleButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2CircleButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2CircleButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2CircleButton1.FillColor = System.Drawing.Color.White;
-            this.guna2CircleButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2CircleButton1.ForeColor = System.Drawing.Color.White;
-            this.guna2CircleButton1.Image = global::GestionPedidos.UI.Properties.Resources.stock;
-            this.guna2CircleButton1.ImageSize = new System.Drawing.Size(35, 35);
-            this.guna2CircleButton1.Location = new System.Drawing.Point(346, 100);
-            this.guna2CircleButton1.Name = "guna2CircleButton1";
-            this.guna2CircleButton1.ShadowDecoration.Color = System.Drawing.Color.Silver;
-            this.guna2CircleButton1.ShadowDecoration.Enabled = true;
-            this.guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton1.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(1, 1, 7, 10);
-            this.guna2CircleButton1.Size = new System.Drawing.Size(56, 56);
-            this.guna2CircleButton1.TabIndex = 49;
-            // 
-            // btnReload
-            // 
-            this.btnReload.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btnReload.HoverState.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnReload.Image = global::GestionPedidos.UI.Properties.Resources.reload;
-            this.btnReload.ImageOffset = new System.Drawing.Point(0, 0);
-            this.btnReload.ImageRotate = 0F;
-            this.btnReload.ImageSize = new System.Drawing.Size(33, 33);
-            this.btnReload.Location = new System.Drawing.Point(313, 193);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.PressedState.ImageSize = new System.Drawing.Size(33, 33);
-            this.btnReload.Size = new System.Drawing.Size(50, 48);
-            this.btnReload.TabIndex = 31;
-            // 
-            // guna2ImageButton1
-            // 
-            this.guna2ImageButton1.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.guna2ImageButton1.HoverState.ImageSize = new System.Drawing.Size(32, 32);
-            this.guna2ImageButton1.Image = global::GestionPedidos.UI.Properties.Resources.search1;
-            this.guna2ImageButton1.ImageOffset = new System.Drawing.Point(0, 0);
-            this.guna2ImageButton1.ImageRotate = 0F;
-            this.guna2ImageButton1.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2ImageButton1.Location = new System.Drawing.Point(257, 193);
-            this.guna2ImageButton1.Name = "guna2ImageButton1";
-            this.guna2ImageButton1.PressedState.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2ImageButton1.Size = new System.Drawing.Size(50, 48);
-            this.guna2ImageButton1.TabIndex = 3;
             // 
             // FrmProducts
             // 
