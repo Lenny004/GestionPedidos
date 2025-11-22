@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GestionPedidos.UI.Forms.Customers;
+using GestionPedidos.UI.Forms.Delivery;
+using GestionPedidos.UI.Forms.Orders;
 
 namespace GestionPedidos.UI.Forms.Main
 {
@@ -30,6 +32,17 @@ namespace GestionPedidos.UI.Forms.Main
             panelChildForm.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
+        }
+        private void btnDelivery_Click(object sender, EventArgs e)
+        {
+            // Reutilizas tu método openChildForm con el formulario de Delivery
+            openChildForm(new FrmDelivery());
+        }
+
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+            // Reutilizas tu método openChildForm con el formulario de Delivery
+            openChildForm(new FrmOrders());
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)

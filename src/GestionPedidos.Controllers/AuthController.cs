@@ -1,14 +1,16 @@
 ﻿using GestionPedidos.Common.Constants;
 using GestionPedidos.Common.Security;
+using GestionPedidos.Common.Validation;
 using GestionPedidos.DataAccess.Interfaces;
 using GestionPedidos.DataAccess.Repositories;
-using GestionPedidos.Models.Enums;
+using GestionPedidos.Models.DTOs;
 using GestionPedidos.Models.Entities;
-using System;
-using static GestionPedidos.Common.Constants.Messages;
-using GestionPedidos.Common.Validation;
+using GestionPedidos.Models.Enums;
 using NLog;
-    
+using System;
+using System.Collections.Generic;
+using static GestionPedidos.Common.Constants.Messages;
+
 namespace GestionPedidos.Controllers
 {
     public class AuthController
@@ -229,5 +231,25 @@ namespace GestionPedidos.Controllers
         }
 
         public bool IsUserLoggedIn() => SessionManager.IsLoggedIn;
+
+
+        public class OrderController
+        {
+            // Usamos la interfaz para desacoplar
+            private readonly IOrderRepository _orderRepository;
+
+            public OrderController()
+            {
+                // Aquí instanciamos el repositorio concreto
+                _orderRepository = new OrderRepository();
+            }
+
+            public List<OrderDeliveryDTO> GetOrdersForDeliveryView()
+            {
+                // Aquí podrías agregar lógica de negocio (ej: filtrar por horarios, permisos, etc.)
+
+                return _orderRepository.GetOrdersForDelivery();
+            }
+        }
     }
 }
