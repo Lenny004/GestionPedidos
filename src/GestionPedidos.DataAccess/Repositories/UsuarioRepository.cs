@@ -21,12 +21,12 @@ namespace GestionPedidos.DataAccess.Repositories
 
                     string query = @"
                         SELECT u.idUser, u.userName, u.fullName, u.email, 
-                               u.isActive, u.idRole, r.roleName
+                                u.isActive, u.idRole, r.roleName
                         FROM Users u
                         INNER JOIN Roles r ON r.idRole = u.idRole 
                         WHERE u.userName = @Username 
-                          AND u.passwordHash = @PasswordHash
-                          AND u.isActive = 1";
+                        AND u.passwordHash = @PasswordHash
+                        AND u.isActive = 1";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -44,6 +44,7 @@ namespace GestionPedidos.DataAccess.Repositories
                                     FullName = reader["fullName"].ToString(),
                                     Email = reader["email"] != DBNull.Value ? reader["email"].ToString() : null,
                                     IsActive = Convert.ToBoolean(reader["isActive"]),
+                                    IdRole = Convert.ToInt32(reader["idRole"]),
                                     Rol = new Rol
                                     {
                                         IdRole = Convert.ToInt32(reader["idRole"]),
@@ -118,7 +119,16 @@ namespace GestionPedidos.DataAccess.Repositories
                         cmd.Parameters.AddWithValue("@fullName", user.FullName);
                         cmd.Parameters.AddWithValue("@email", (object)user.Email ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@isActive", user.IsActive);
-                        cmd.Parameters.AddWithValue("@idRole", user.Rol.IdRole);
+                        int roleId = user.IdRole != 0
+                            ? user.IdRole
+                            : user.Rol != null ? user.Rol.IdRole : 0;
+
+                        if (roleId == 0)
+                        {
+                            throw new ArgumentException("El usuario debe tener un rol asignado antes de crear el registro.", nameof(user));
+                        }
+
+                        cmd.Parameters.AddWithValue("@idRole", roleId);
                         cmd.Parameters.AddWithValue("@createdAt", user.CreatedAt);
 
                         int rowsAffected = cmd.ExecuteNonQuery();

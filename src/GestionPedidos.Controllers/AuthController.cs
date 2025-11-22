@@ -73,9 +73,12 @@ namespace GestionPedidos.Controllers
                 }
 
                 // Determinar rol
-                TipoRoles rol = (usuario.Rol != null && usuario.Rol.IdRole == 1)
-                    ? TipoRoles.Administrador
-                    : TipoRoles.Operador;
+                if (usuario.TipoRol != null)
+                    rol = usuario.TipoRol;
+                else if (usuario.Rol != null && Enum.IsDefined(typeof(TipoRoles), usuario.Rol.IdRole))
+                    rol = (TipoRoles)usuario.Rol.IdRole;
+                else
+                    rol = TipoRoles.Operador;
 
                 // Crear sesión
                 SessionManager.Login(usuario.IdUser, usuario.Username, usuario.FullName, rol);
@@ -96,11 +99,17 @@ namespace GestionPedidos.Controllers
         /// Registra un nuevo usuario
         /// </summary>
         public (bool Success, string Message) Registrar(string nombreUsuario, string contraseña,
-            string nombreCompleto, string correo, int idRol = 2)
+            string nombreCompleto, string correo, int idRol)
         {
             try
             {
                 Logger.Debug($"Intento de registro para usuario: {nombreUsuario}");
+
+                if (idRol <= 0)
+                {
+                    Logger.Warn($"Intento de registro sin rol válido para usuario: {nombreUsuario}");
+                    return (false, "El rol seleccionado no es válido.");
+                }
 
                 // Validaciones completas en el controlador
                 if (!GeneralValidator.IsNotEmpty(nombreUsuario))
@@ -153,6 +162,7 @@ namespace GestionPedidos.Controllers
                     PasswordHash = PasswordHelper.HashPassword(contraseña),
                     FullName = nombreCompleto.Trim(),
                     Email = correo?.Trim(),
+                    IdRole = idRol,
                     Rol = new Rol { IdRole = idRol },
                     IsActive = true,
                     CreatedAt = DateTime.Now

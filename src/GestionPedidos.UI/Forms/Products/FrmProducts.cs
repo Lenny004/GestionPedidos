@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using GestionPedidos.UI.Helpers.Products;
 
 namespace GestionPedidos.UI.Forms.Products
 {
@@ -15,6 +9,22 @@ namespace GestionPedidos.UI.Forms.Products
         public FrmProducts()
         {
             InitializeComponent();
+        }
+
+        private void btnAddC_Click(object sender, EventArgs e)
+        {
+            using (var addProductForm = new FrmAddProduct())
+            {
+                addProductForm.ShowDialog(this);
+            }
+        }
+
+        private void btnModifyC_Click(object sender, EventArgs e)
+        {
+            using (var modifyProductForm = new FrmModifyProduct())
+            {
+                modifyProductForm.ShowDialog(this);
+            }
         }
     }
 }

@@ -113,6 +113,12 @@
     <Compile Include="Helpers\Products\FrmAddProduct.Designer.cs">
       <DependentUpon>FrmAddProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Products\FrmModifyProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpers\Products\FrmModifyProduct.Designer.cs">
+      <DependentUpon>FrmModifyProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\About\FrmAbout.resx">
@@ -135,6 +141,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Products\FrmProducts.resx">
       <DependentUpon>FrmProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpers\Products\FrmAddProduct.resx">
+      <DependentUpon>FrmAddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpers\Products\FrmModifyProduct.resx">
+      <DependentUpon>FrmModifyProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

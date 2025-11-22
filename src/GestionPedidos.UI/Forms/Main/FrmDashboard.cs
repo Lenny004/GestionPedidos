@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GestionPedidos.UI.Forms.Customers;
+using GestionPedidos.UI.Forms.Products;
 
 namespace GestionPedidos.UI.Forms.Main
 {
@@ -32,9 +33,14 @@ namespace GestionPedidos.UI.Forms.Main
             childForm.Show();
         }
 
-        private void guna2Button2_Click(object sender, EventArgs e)
+        private void btnCustomer_Click(object sender, EventArgs e)
         {
             openChildForm(new FrmCustomer());
+        }
+
+        private void btnProducts_Click(object sender, EventArgs e)
+        {
+            openChildForm(new FrmProducts());
         }
     }
 }

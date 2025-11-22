@@ -205,7 +205,7 @@
             // 
             // guna2GradientButton1
             // 
-            this.guna2GradientButton1.BorderRadius = 15;
+            this.guna2GradientButton1.BorderRadius = 12;
             this.guna2GradientButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2GradientButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2GradientButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));

@@ -235,7 +235,7 @@
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(218, 45);
             this.guna2Button1.TabIndex = 12;
-            this.guna2Button1.Text = "Acerca de Creadores";
+            this.guna2Button1.Text = "About Us";
             this.guna2Button1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // btnUsers
@@ -325,6 +325,7 @@
             this.btnProducts.TabIndex = 4;
             this.btnProducts.Text = "Products";
             this.btnProducts.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
             // 
             // btnCustomer
             // 
@@ -347,7 +348,7 @@
             this.btnCustomer.TabIndex = 3;
             this.btnCustomer.Text = "Customers";
             this.btnCustomer.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCustomer.Click += new System.EventHandler(this.guna2Button2_Click);
+            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
             // btnDashboard
             // 
@@ -391,6 +392,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmDashboard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmDashboard";
             this.panel1.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);

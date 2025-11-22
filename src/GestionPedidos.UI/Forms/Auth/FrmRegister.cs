@@ -39,7 +39,7 @@ namespace GestionPedidos.UI.Forms.Auth
                     password,
                     fullName,
                     email,
-                    idRol: 1
+                    idRol: 2
                 );
 
                 if (resultado.Success)
