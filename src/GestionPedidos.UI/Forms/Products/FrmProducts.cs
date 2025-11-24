@@ -53,7 +53,7 @@ namespace GestionPedidos.UI.Forms.Products
             var (success, message, fullProduct) = _productController.ReadOne(product.IdProduct);
             if (success && fullProduct != null)
             {
-                lblID.Text = fullProduct.IdProduct.ToString();
+                lblID.Text = "#" + fullProduct.IdProduct.ToString();
                 lblName.Text = fullProduct.ProductName;
                 lblDescription.Text = fullProduct.Description;
                 lblStock.Text = "Stock: " + fullProduct.StockQuantity.ToString();
