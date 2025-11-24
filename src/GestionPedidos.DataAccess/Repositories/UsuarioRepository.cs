@@ -99,7 +99,6 @@ namespace GestionPedidos.DataAccess.Repositories
         public bool CrearUsuario(User user)
 
         {
-          
             try
             {
                 using (SqlConnection conn = DatabaseConnection.GetConnection())

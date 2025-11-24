@@ -9,11 +9,8 @@ namespace GestionPedidos.Models.Entities
         public string Description { get; set; }
         public decimal SalePrice { get; set; }
         public int StockQuantity { get; set; }
-
-        public int? UserCreationId { get; set; }
-
-        public int? UserModificationId { get; set; }
-
+        public string UserCreation { get; set; }
+        public string UserModification { get; set; }
         public bool IsActive { get; set; }
         
         public DateTime CreatedAt { get; set; }
@@ -21,10 +18,6 @@ namespace GestionPedidos.Models.Entities
         public DateTime? UpdatedAt { get; set; }
 
         public DateTime? DeletedAt { get; set; }
-
-        public User CreatedBy { get; set; }
-
-        public User ModifiedBy { get; set; }
 
         public Product()
         {

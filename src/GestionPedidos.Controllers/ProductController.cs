@@ -4,6 +4,7 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using GestionPedidos.Models.DTOs;
+using GestionPedidos.Models.Entities;
 
 namespace GestionPedidos.Controllers
 {
@@ -47,6 +48,29 @@ namespace GestionPedidos.Controllers
                 // El logger ayuda a registrar los errores en un archivo
                 Logger.Error(ex, $"Error al leer registros en productos");
                 return (false, "Error al leer registros en productos", null);
+            }
+        }
+
+        public (bool Success, string Message, Product Product) ReadOne(int id)
+        {
+            try
+            {
+                Logger.Warn("ID de producto solicitado: {id}", id);
+                if (id <= 0) return (false, "ID de producto inválido", null);
+
+                var product = _productRepository.ReadOne(id);
+
+                if (product == null)
+                {
+                    return (false, "Producto no encontrado", null);
+                }
+
+                return (true, "Producto encontrado", product);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, $"Error al obtener producto ID {id}");
+                return (false, $"Error al cargar el producto: {ex.Message}", null);
             }
         }
     }
