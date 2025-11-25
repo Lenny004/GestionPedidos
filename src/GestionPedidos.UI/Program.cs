@@ -69,18 +69,18 @@ namespace GestionPedidos.UI
                 }
             }
 
-            // Mostrar Login primero
-            //using (var login = new FrmLogin())
-            //{
-            //    if (login.ShowDialog() != DialogResult.OK)
-            //        return; // Canceló o fallo login
-            //}
-
-            using (var dashbord = new FrmDashboard())
+            //Mostrar Login primero
+            using (var login = new FrmLogin())
             {
-                if (dashbord.ShowDialog() != DialogResult.OK)
+                if (login.ShowDialog() != DialogResult.OK)
                     return; // Canceló o fallo login
             }
+
+            //using (var dashbord = new FrmDashboard())
+            //{
+            //    if (dashbord.ShowDialog() != DialogResult.OK)
+            //        return; // Canceló o fallo login
+            //}
 
             // Iniciar la aplicación principal
             Application.Run(new FrmLogin());

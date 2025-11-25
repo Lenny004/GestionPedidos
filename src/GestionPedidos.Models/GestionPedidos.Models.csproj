@@ -50,6 +50,7 @@
     <Compile Include="Entities\Rol.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\EstadoPedido.cs" />
+    <Compile Include="Enums\EstadoProducto.cs" />
     <Compile Include="Enums\EstadoRegistro.cs" />
     <Compile Include="Enums\TipoRoles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

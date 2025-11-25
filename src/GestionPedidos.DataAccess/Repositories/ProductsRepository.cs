@@ -1,7 +1,7 @@
 ﻿using GestionPedidos.DataAccess.Configuration;
 using GestionPedidos.DataAccess.Interfaces;
 using GestionPedidos.Models.DTOs;
-using GestionPedidos.Models.Entities; // <--- 1. Agregado este using
+using GestionPedidos.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -13,7 +13,6 @@ namespace GestionPedidos.DataAccess.Repositories
         public IEnumerable<ProductListDto> ReadAllProducts()
         {
             var products = new List<ProductListDto>();
-
             try
             {
                 using (SqlConnection conn = DatabaseConnection.GetConnection())
@@ -120,6 +119,106 @@ namespace GestionPedidos.DataAccess.Repositories
             }
 
             return null;
+        }
+
+        // Modificamos para recibir userId
+        public bool Create(Product product, int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+                    // Usamos @UserId para userCreation
+                    string query = @"INSERT INTO Products (productName, description, stockQuantity, salePrice, isActive, userCreation, createdAt)
+                                    VALUES (@ProductName, @Description, @StockQuantity, @SalePrice, 1, @UserId, GETDATE())";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductName", product.ProductName);
+                        cmd.Parameters.AddWithValue("@Description", (object)product.Description ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@StockQuantity", product.StockQuantity);
+                        cmd.Parameters.AddWithValue("@SalePrice", product.SalePrice);
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+
+                        int rows = cmd.ExecuteNonQuery();
+                        return rows > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al crear producto: {ex.Message}", ex);
+            }
+        }
+
+        // Modificamos para recibir userId
+        public bool Update(Product product, int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+                    // Usamos @UserId para userModification
+                    string query = @"UPDATE Products
+                                     SET productName = @ProductName,
+                                         description = @Description,
+                                         stockQuantity = @StockQuantity,
+                                         salePrice = @SalePrice,
+                                         isActive = @IsActive,
+                                         userModification = @UserId, 
+                                         updatedAt = GETDATE()
+                                     WHERE idProduct = @IdProduct";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@IdProduct", product.IdProduct);
+                        cmd.Parameters.AddWithValue("@ProductName", product.ProductName);
+                        cmd.Parameters.AddWithValue("@Description", (object)product.Description ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@StockQuantity", product.StockQuantity);
+                        cmd.Parameters.AddWithValue("@SalePrice", product.SalePrice);
+                        cmd.Parameters.AddWithValue("@IsActive", product.IsActive);
+                        cmd.Parameters.AddWithValue("@UserId", userId); // <--- Aquí pasamos el ID real
+
+                        int rows = cmd.ExecuteNonQuery();
+                        return rows > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al actualizar producto: {ex.Message}", ex);
+            }
+        }
+
+        public bool Delete(int id, int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+                    string query = @"UPDATE Products 
+                                     SET isActive = 0, 
+                                         userModification = @UserId, 
+                                         deletedAt = GETDATE() 
+                                     WHERE idProduct = @Id";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", id);
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+
+                        int rows = cmd.ExecuteNonQuery();
+                        return rows > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al eliminar producto: {ex.Message}", ex);
+            }
         }
     }
 }

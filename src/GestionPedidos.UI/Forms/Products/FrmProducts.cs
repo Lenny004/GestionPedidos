@@ -11,6 +11,7 @@ namespace GestionPedidos.UI.Forms.Products
     public partial class FrmProducts : Form
     {
         private readonly ProductController _productController = new ProductController();
+        private static int selectedProductId = 0;
 
         public FrmProducts()
         {
@@ -23,7 +24,7 @@ namespace GestionPedidos.UI.Forms.Products
             LoadProductsIntoGrid();
         }
 
-        private void LoadProductsIntoGrid()
+        public void LoadProductsIntoGrid()
         {
             try
             {
@@ -81,22 +82,6 @@ namespace GestionPedidos.UI.Forms.Products
             }
         }
 
-        private void btnAddC_Click(object sender, EventArgs e)
-        {
-            using (var addProductForm = new FrmAddProduct())
-            {
-                addProductForm.ShowDialog(this);
-            }
-        }
-
-        private void btnModifyC_Click(object sender, EventArgs e)
-        {
-            using (var modifyProductForm = new FrmModifyProduct())
-            {
-                modifyProductForm.ShowDialog(this);
-            }
-        }
-
         private void DataGridProduct_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Evitar clic en header
@@ -110,6 +95,63 @@ namespace GestionPedidos.UI.Forms.Products
             var selectedProduct = (ProductListDto)selectedRow.DataBoundItem;
             // Mandamos el objeto a otra función para cargar los datos
             LoadProduct(selectedProduct);
+            selectedProductId = selectedProduct.IdProduct;
+        }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            using (var addProductForm = new FrmAddProduct())
+            {
+                if (addProductForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    LoadProductsIntoGrid();
+                }
+            }
+        }
+
+        private void btnModifyC_Click(object sender, EventArgs e)
+        {
+            if (selectedProductId <= 0)
+            {
+                MessageBox.Show("Por favor, seleccione un producto para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var modifyProductForm = new FrmModifyProduct(selectedProductId))
+            {
+                if (modifyProductForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    LoadProductsIntoGrid();
+                }
+            }
+        }
+
+        private void btnDeleteC_Click(object sender, EventArgs e)
+        {
+            if (selectedProductId <= 0)
+            {
+                MessageBox.Show("Por favor, seleccione un producto para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (MessageBox.Show("¿Está seguro que desea eliminar este producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                var (success, message) = _productController.Delete(selectedProductId);
+                if (success)
+                {
+                    MessageBox.Show("Producto eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadProductsIntoGrid();
+                }
+                else
+                {
+                    MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            LoadProductsIntoGrid();
         }
     }
 }
