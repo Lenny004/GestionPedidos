@@ -180,7 +180,7 @@ namespace GestionPedidos.DataAccess.Repositories
                         cmd.Parameters.AddWithValue("@StockQuantity", product.StockQuantity);
                         cmd.Parameters.AddWithValue("@SalePrice", product.SalePrice);
                         cmd.Parameters.AddWithValue("@IsActive", product.IsActive);
-                        cmd.Parameters.AddWithValue("@UserId", userId); // <--- Aquí pasamos el ID real
+                        cmd.Parameters.AddWithValue("@UserId", userId);
 
                         int rows = cmd.ExecuteNonQuery();
                         return rows > 0;
