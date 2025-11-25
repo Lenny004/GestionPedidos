@@ -11,6 +11,7 @@ namespace GestionPedidos.UI.Forms.Products
     public partial class FrmProducts : Form
     {
         private readonly ProductController _productController = new ProductController();
+        private static int selectedProductId = 0;
 
         public FrmProducts()
         {
@@ -81,22 +82,6 @@ namespace GestionPedidos.UI.Forms.Products
             }
         }
 
-        private void btnAddC_Click(object sender, EventArgs e)
-        {
-            using (var addProductForm = new FrmAddProduct())
-            {
-                addProductForm.ShowDialog(this);
-            }
-        }
-
-        private void btnModifyC_Click(object sender, EventArgs e)
-        {
-            using (var modifyProductForm = new FrmModifyProduct())
-            {
-                modifyProductForm.ShowDialog(this);
-            }
-        }
-
         private void DataGridProduct_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Evitar clic en header
@@ -110,6 +95,28 @@ namespace GestionPedidos.UI.Forms.Products
             var selectedProduct = (ProductListDto)selectedRow.DataBoundItem;
             // Mandamos el objeto a otra función para cargar los datos
             LoadProduct(selectedProduct);
+            selectedProductId = selectedProduct.IdProduct;
+        }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            using (var addProductForm = new FrmAddProduct())
+            {
+                addProductForm.ShowDialog(this);
+            }
+        }
+
+        private void btnModifyC_Click(object sender, EventArgs e)
+        {
+            using (var modifyProductForm = new FrmModifyProduct(selectedProductId))
+            {
+                modifyProductForm.ShowDialog(this);
+            }
+        }
+
+        private void btnDeleteC_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
