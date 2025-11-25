@@ -153,5 +153,29 @@ namespace GestionPedidos.UI.Forms.Products
         {
             LoadProductsIntoGrid();
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var (success, message, products) = _productController.SearchByName(txtSearch.Text);
+
+                if (!success)
+                {
+                    MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                var data = products != null ? new List<ProductListDto>(products) : new List<ProductListDto>();
+                DataGridProduct.AutoGenerateColumns = true;
+                DataGridProduct.DataSource = data;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inesperado: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
     }
 }

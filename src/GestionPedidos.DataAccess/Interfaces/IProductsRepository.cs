@@ -12,5 +12,7 @@ namespace GestionPedidos.DataAccess.Interfaces
         bool Create(Product product, int id);
         bool Update(Product product, int id);
         bool Delete(int id, int userId);
+
+        IEnumerable<ProductListDto> SearchProducts(string productName);
     }
 }
