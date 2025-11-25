@@ -191,5 +191,34 @@ namespace GestionPedidos.DataAccess.Repositories
                 throw new Exception($"Error al actualizar producto: {ex.Message}", ex);
             }
         }
+
+        public bool Delete(int id, int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+                    string query = @"UPDATE Products 
+                                     SET isActive = 0, 
+                                         userModification = @UserId, 
+                                         deletedAt = GETDATE() 
+                                     WHERE idProduct = @Id";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", id);
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+
+                        int rows = cmd.ExecuteNonQuery();
+                        return rows > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al eliminar producto: {ex.Message}", ex);
+            }
+        }
     }
 }

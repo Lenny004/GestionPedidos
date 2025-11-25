@@ -11,5 +11,6 @@ namespace GestionPedidos.DataAccess.Interfaces
         Product ReadOne(int id);
         bool Create(Product product, int id);
         bool Update(Product product, int id);
+        bool Delete(int id, int userId);
     }
 }

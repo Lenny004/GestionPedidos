@@ -128,7 +128,25 @@ namespace GestionPedidos.UI.Forms.Products
 
         private void btnDeleteC_Click(object sender, EventArgs e)
         {
-            
+            if (selectedProductId <= 0)
+            {
+                MessageBox.Show("Por favor, seleccione un producto para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (MessageBox.Show("¿Está seguro que desea eliminar este producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                var (success, message) = _productController.Delete(selectedProductId);
+                if (success)
+                {
+                    MessageBox.Show("Producto eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadProductsIntoGrid();
+                }
+                else
+                {
+                    MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void btnReload_Click(object sender, EventArgs e)

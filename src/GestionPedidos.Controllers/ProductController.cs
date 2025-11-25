@@ -8,6 +8,7 @@ using GestionPedidos.Models.DTOs;
 using GestionPedidos.Models.Entities;
 using GestionPedidos.Models.Enums;
 using GestionPedidos.Common.Validation;
+using GestionPedidos.Common.Constants;
 using System.Linq;
 
 namespace GestionPedidos.Controllers
@@ -33,7 +34,7 @@ namespace GestionPedidos.Controllers
                 if (products == null)
                 {
                     Logger.Warn("El repositorio devolvió null al solicitar productos");
-                    return (false, "No se pudo obtener la lista de productos.", null);
+                    return (false, AppConstants.NO_SE_ENCONTRARON_REGISTROS, null);
                 }
 
                 var productList = new List<ProductListDto>(products);
@@ -41,7 +42,7 @@ namespace GestionPedidos.Controllers
                 if (productList.Count == 0)
                 {
                     Logger.Info("No se encontraron productos registrados.");
-                    return (true, "No hay productos registrados.", productList);
+                    return (true, AppConstants.NO_SE_ENCONTRARON_REGISTROS, productList);
                 }
 
                 Logger.Info($"Se recuperaron {productList.Count} productos del repositorio");
@@ -66,7 +67,7 @@ namespace GestionPedidos.Controllers
 
                 if (product == null)
                 {
-                    return (false, "Producto no encontrado", null);
+                    return (false, Messages.Productos.PRODUCTO_NO_ENCONTRADO, null);
                 }
 
                 return (true, "Producto encontrado", product);
@@ -105,7 +106,7 @@ namespace GestionPedidos.Controllers
                 if (!GeneralValidator.IsNotEmpty(name))
                 {
                     Logger.Warn("Intento de crear producto sin nombre");
-                    return (false, "El nombre del producto es requerido");
+                    return (false, AppConstants.CAMPO_REQUERIDO);
                 }
 
                 if (stock < 0)
@@ -134,7 +135,7 @@ namespace GestionPedidos.Controllers
                 if (currentUserId <= 0)
                 {
                     Logger.Warn("Intento de crear producto sin sesión de usuario activa");
-                    return (false, "No se pudo identificar al usuario actual. Por favor inicie sesión nuevamente.");
+                    return (false, AppConstants.SESION_EXPIRADA);
                 }
 
                 // Pasamos el ID al repositorio
@@ -143,16 +144,16 @@ namespace GestionPedidos.Controllers
                 if (!created)
                 {
                     Logger.Warn("No se pudo crear el producto: {productName}", product.ProductName);
-                    return (false, "No se pudo crear el producto.");
+                    return (false, AppConstants.ERROR_GUARDAR);
                 }
 
                 Logger.Info("Producto creado exitosamente: {productName}", product.ProductName);
-                return (true, "Producto creado exitosamente.");
+                return (true, Messages.Productos.PRODUCTO_GUARDADO);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, $"Error al crear producto: {name}");
-                return (false, $"Error al crear el producto: {ex.Message}");
+                return (false, $"{AppConstants.ERROR_GUARDAR}: {ex.Message}");
             }
         }
 
@@ -169,7 +170,7 @@ namespace GestionPedidos.Controllers
                 if (!GeneralValidator.IsNotEmpty(name))
                 {
                     Logger.Warn("Intento de actualizar producto sin nombre");
-                    return (false, "El nombre del producto es requerido");
+                    return (false, AppConstants.CAMPO_REQUERIDO);
                 }
 
                 if (stock < 0)
@@ -199,7 +200,7 @@ namespace GestionPedidos.Controllers
                 if (currentUserId <= 0)
                 {
                     Logger.Warn("Intento de actualizar producto sin sesión de usuario activa");
-                    return (false, "No se pudo identificar al usuario actual. Por favor inicie sesión nuevamente.");
+                    return (false, AppConstants.SESION_EXPIRADA);
                 }
 
                 bool updated = _productRepository.Update(product, currentUserId);
@@ -207,16 +208,52 @@ namespace GestionPedidos.Controllers
                 if (!updated)
                 {
                     Logger.Warn("No se pudo actualizar el producto: {productName}", product.ProductName);
-                    return (false, "No se pudo actualizar el producto.");
+                    return (false, AppConstants.ERROR_ACTUALIZAR);
                 }
 
                 Logger.Info("Producto actualizado exitosamente: {productName}", product.ProductName);
-                return (true, "Producto actualizado exitosamente.");
+                return (true, Messages.Productos.PRODUCTO_ACTUALIZADO);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, $"Error al actualizar producto: {name}");
-                return (false, $"Error al actualizar el producto: {ex.Message}");
+                return (false, $"{AppConstants.ERROR_ACTUALIZAR}: {ex.Message}");
+            }
+        }
+
+        public (bool Success, string Message) Delete(int id)
+        {
+            try
+            {
+                if (id <= 0)
+                {
+                    Logger.Warn("Intento de eliminar producto con ID inválido");
+                    return (false, "ID de producto inválido");
+                }
+
+                int currentUserId = SessionManager.UsuarioId;
+
+                if (currentUserId <= 0)
+                {
+                    Logger.Warn("Intento de eliminar producto sin sesión de usuario activa");
+                    return (false, AppConstants.SESION_EXPIRADA);
+                }
+
+                bool deleted = _productRepository.Delete(id, currentUserId);
+
+                if (!deleted)
+                {
+                    Logger.Warn("No se pudo eliminar el producto con ID: {id}", id);
+                    return (false, AppConstants.ERROR_ELIMINAR);
+                }
+
+                Logger.Info("Producto eliminado exitosamente. ID: {id}", id);
+                return (true, Messages.Productos.PRODUCTO_ELIMINADO);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, $"Error al eliminar producto ID: {id}");
+                return (false, $"{AppConstants.ERROR_ELIMINAR}: {ex.Message}");
             }
         }
     }
