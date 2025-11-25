@@ -5,6 +5,7 @@ using GestionPedidos.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using static GestionPedidos.Common.Constants.Messages;
 
 namespace GestionPedidos.DataAccess.Repositories
 {
@@ -201,7 +202,8 @@ namespace GestionPedidos.DataAccess.Repositories
                     conn.Open();
                     string query = @"UPDATE Products 
                                      SET isActive = 0, 
-                                         userModification = @UserId, 
+                                         userModification = @UserId,
+                                         updatedAt = GETDATE(),
                                          deletedAt = GETDATE() 
                                      WHERE idProduct = @Id";
 
@@ -219,6 +221,60 @@ namespace GestionPedidos.DataAccess.Repositories
             {
                 throw new Exception($"Error al eliminar producto: {ex.Message}", ex);
             }
+        }
+
+        public IEnumerable<ProductListDto> SearchProducts(string productName)
+        {
+            var products = new List<ProductListDto>();
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    string query = @"
+                        SELECT
+                            p.idProduct,
+                            p.productName,
+                            p.salePrice,
+                            p.stockQuantity,
+                            p.isActive,
+                            uCreated.userName AS CreatedBy,
+                            uModified.userName AS ModifiedBy
+                        FROM Products AS p
+                        LEFT JOIN Users AS uCreated ON p.userCreation = uCreated.idUser
+                        LEFT JOIN Users AS uModified ON p.userModification = uModified.idUser
+                        WHERE p.productName LIKE @ProductName";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductName", $"%{productName}%");
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var product = new ProductListDto
+                                {
+                                    IdProduct = Convert.ToInt32(reader["idProduct"]),
+                                    ProductName = reader["productName"].ToString(),
+                                    SalePrice = Convert.ToDecimal(reader["salePrice"]),
+                                    StockQuantity = Convert.ToInt32(reader["stockQuantity"]),
+                                    IsActive = Convert.ToBoolean(reader["isActive"]),
+                                    CreatedBy = reader["CreatedBy"] != DBNull.Value ? reader["CreatedBy"].ToString() : null,
+                                    ModifiedBy = reader["ModifiedBy"] != DBNull.Value ? reader["ModifiedBy"].ToString() : null
+                                };
+                                products.Add(product);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al buscar producto por nombre: {ex.Message}", ex);
+            }
+            return products;
         }
     }
 }

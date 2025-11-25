@@ -84,7 +84,7 @@ namespace GestionPedidos.Controllers
             try
             {
                 return Enum.GetValues(typeof(EstadoProducto))
-                        .OfType<EstadoProducto>() // <-- Usa OfType en vez de Cast
+                        .OfType<EstadoProducto>()
                         .Select(e => new
                         {
                             Text = e.ToString(),
@@ -254,6 +254,42 @@ namespace GestionPedidos.Controllers
             {
                 Logger.Error(ex, $"Error al eliminar producto ID: {id}");
                 return (false, $"{AppConstants.ERROR_ELIMINAR}: {ex.Message}");
+            }
+        }
+
+        public (bool Success, string Message, IEnumerable<ProductListDto> Products) SearchByName(string name)
+        {
+            try
+            {
+                Logger.Debug("Buscando productos por nombre: {name}", name);
+                if (!GeneralValidator.IsNotEmpty(name))
+                {
+                    Logger.Warn("Intento de búsqueda de productos con nombre vacío");
+                    return (false, AppConstants.CAMPO_REQUERIDO, null);
+                }
+                var products = _productRepository.SearchProducts(name);
+
+                if (products == null)
+                {
+                    Logger.Warn("El repositorio devolvió null al solicitar productos");
+                    return (false, AppConstants.NO_SE_ENCONTRARON_REGISTROS, null);
+                }
+
+                var productList = new List<ProductListDto>(products);
+
+                if (productList.Count == 0)
+                {
+                    Logger.Info("No se encontraron productos registrados.");
+                    return (true, AppConstants.NO_SE_ENCONTRARON_REGISTROS, productList);
+                }
+
+                Logger.Info($"Se recuperaron {productList.Count} productos del repositorio");
+                return (true, "Productos recuperados correctamente.", productList);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, $"Error al buscar productos por nombre: {name}");
+                return (false, $"Error al buscar productos: {ex.Message}", null);
             }
         }
     }
