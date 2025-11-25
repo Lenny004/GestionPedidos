@@ -91,7 +91,7 @@ CREATE TABLE Products (
     FOREIGN KEY (userModification) REFERENCES Users(idUser)
 );
 
--- Orders Table
+-- Delivery Table
 CREATE TABLE Orders (
     idOrder INT PRIMARY KEY IDENTITY(1,1),
     idCustomer INT NOT NULL,

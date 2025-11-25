@@ -24,7 +24,19 @@ namespace GestionPedidos.Models.Entities
 
         public bool IsActive { get; set; }
 
+        public int IdRole { get; set; }
+
         public Rol Rol { get; set; }
+
+        public TipoRoles? TipoRol
+        {
+            get
+            {
+                return Enum.IsDefined(typeof(TipoRoles), IdRole)
+                    ? (TipoRoles)IdRole
+                    : (TipoRoles?)null;
+            }
+        }
 
         public DateTime CreatedAt { get; set; }
 

@@ -1,0 +1,125 @@
+﻿using GestionPedidos.DataAccess.Configuration;
+using GestionPedidos.DataAccess.Interfaces;
+using GestionPedidos.Models.DTOs;
+using GestionPedidos.Models.Entities; // <--- 1. Agregado este using
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+
+namespace GestionPedidos.DataAccess.Repositories
+{
+    public class ProductsRepository : IProductsRepository
+    {
+        public IEnumerable<ProductListDto> ReadAllProducts()
+        {
+            var products = new List<ProductListDto>();
+
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    string query = @"
+                        SELECT
+                            p.idProduct,
+                            p.productName,
+                            p.salePrice,
+                            p.stockQuantity,
+                            p.isActive,
+                            uCreated.userName AS CreatedBy,
+                            uModified.userName AS ModifiedBy
+                        FROM Products AS p
+                        LEFT JOIN Users AS uCreated ON p.userCreation = uCreated.idUser
+                        LEFT JOIN Users AS uModified ON p.userModification = uModified.idUser";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var product = new ProductListDto
+                                {
+                                    IdProduct = Convert.ToInt32(reader["idProduct"]),
+                                    ProductName = reader["productName"].ToString(),
+                                    SalePrice = Convert.ToDecimal(reader["salePrice"]),
+                                    StockQuantity = Convert.ToInt32(reader["stockQuantity"]),
+                                    IsActive = Convert.ToBoolean(reader["isActive"]),
+                                    CreatedBy = reader["CreatedBy"] != DBNull.Value ? reader["CreatedBy"].ToString() : null,
+                                    ModifiedBy = reader["ModifiedBy"] != DBNull.Value ? reader["ModifiedBy"].ToString() : null
+                                };
+                                products.Add(product);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al leer registros en productos: {ex.Message}", ex);
+            }
+            return products;
+        }
+
+        public Product ReadOne(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    string query = @"SELECT
+                            p.idProduct,
+                            p.productName,
+                            p.description,
+                            p.stockQuantity,
+                            p.salePrice,
+                            p.isActive,
+                            p.createdAt,
+                            p.updatedAt,
+                            p.deletedAt,
+                            uCreated.userName AS CreatedBy,
+                            uModified.userName AS ModifiedBy
+                        FROM Products AS p
+                        LEFT JOIN Users AS uCreated ON p.userCreation = uCreated.idUser
+                        LEFT JOIN Users AS uModified ON p.userModification = uModified.idUser
+                        WHERE p.idProduct = @Id";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", id);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new Product
+                                {
+                                    IdProduct = Convert.ToInt32(reader["idProduct"]),
+                                    ProductName = reader["productName"].ToString(),
+                                    Description = reader["description"] != DBNull.Value ? reader["description"].ToString() : string.Empty,
+                                    SalePrice = Convert.ToDecimal(reader["salePrice"]),
+                                    StockQuantity = Convert.ToInt32(reader["stockQuantity"]),
+                                    UserCreation = reader["CreatedBy"] != DBNull.Value ? reader["CreatedBy"].ToString() : null,
+                                    UserModification = reader["ModifiedBy"] != DBNull.Value ? reader["ModifiedBy"].ToString() : null,
+                                    IsActive = Convert.ToBoolean(reader["isActive"]),
+                                    CreatedAt = Convert.ToDateTime(reader["createdAt"]),
+                                    UpdatedAt = reader["updatedAt"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(reader["updatedAt"]) : null,
+                                    DeletedAt = reader["deletedAt"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(reader["deletedAt"]) : null
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al obtener el producto: {ex.Message}", ex);
+            }
+
+            return null;
+        }
+    }
+}
