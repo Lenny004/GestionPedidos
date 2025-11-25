@@ -24,7 +24,7 @@ namespace GestionPedidos.UI.Forms.Products
             LoadProductsIntoGrid();
         }
 
-        private void LoadProductsIntoGrid()
+        public void LoadProductsIntoGrid()
         {
             try
             {
@@ -102,21 +102,38 @@ namespace GestionPedidos.UI.Forms.Products
         {
             using (var addProductForm = new FrmAddProduct())
             {
-                addProductForm.ShowDialog(this);
+                if (addProductForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    LoadProductsIntoGrid();
+                }
             }
         }
 
         private void btnModifyC_Click(object sender, EventArgs e)
         {
+            if (selectedProductId <= 0)
+            {
+                MessageBox.Show("Por favor, seleccione un producto para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             using (var modifyProductForm = new FrmModifyProduct(selectedProductId))
             {
-                modifyProductForm.ShowDialog(this);
+                if (modifyProductForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    LoadProductsIntoGrid();
+                }
             }
         }
 
         private void btnDeleteC_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            LoadProductsIntoGrid();
         }
     }
 }

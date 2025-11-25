@@ -130,7 +130,6 @@ namespace GestionPedidos.Controllers
 
                 // Obtener ID del usuario logeado
                 int currentUserId = SessionManager.UsuarioId;
-
                 // Validar que haya sesión activa
                 if (currentUserId <= 0)
                 {
