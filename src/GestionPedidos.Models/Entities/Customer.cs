@@ -17,11 +17,11 @@ namespace GestionPedidos.Models.Entities
         // Llaves foráneas
         public int IdDepartment { get; set; }
         public int IdCity { get; set; }
+        public bool IsActive { get; set; }
 
         // Auditoría
         public int? UserCreation { get; set; }
         public int? UserModification { get; set; }
-        public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }

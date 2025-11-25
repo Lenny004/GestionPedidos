@@ -101,11 +101,35 @@
     <Compile Include="Forms\Customers\FrmCustomer.Designer.cs">
       <DependentUpon>FrmCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Delivery\FrmDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Delivery\FrmDelivery.Designer.cs">
+      <DependentUpon>FrmDelivery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Delivery\FrmEdditDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Delivery\FrmEdditDelivery.Designer.cs">
+      <DependentUpon>FrmEdditDelivery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Main\FrmDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Main\FrmDashboard.Designer.cs">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Orders\FrmAddOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Orders\FrmAddOrder.Designer.cs">
+      <DependentUpon>FrmAddOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Orders\FrmOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Orders\FrmOrders.Designer.cs">
+      <DependentUpon>FrmOrders.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Products\FrmProducts.cs">
       <SubType>Form</SubType>
@@ -142,8 +166,20 @@
     <EmbeddedResource Include="Forms\Customers\FrmCustomer.resx">
       <DependentUpon>FrmCustomer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Delivery\FrmDelivery.resx">
+      <DependentUpon>FrmDelivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Delivery\FrmEdditDelivery.resx">
+      <DependentUpon>FrmEdditDelivery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main\FrmDashboard.resx">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Orders\FrmAddOrder.resx">
+      <DependentUpon>FrmAddOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Orders\FrmOrders.resx">
+      <DependentUpon>FrmOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Products\FrmProducts.resx">
       <DependentUpon>FrmProducts.cs</DependentUpon>
@@ -180,6 +216,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Forms\Products\" />
+    <Folder Include="Helpers\" />
     <Folder Include="Forms\Delivery\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
