@@ -1,6 +1,6 @@
 ﻿using GestionPedidos.DataAccess.Configuration;
 using GestionPedidos.DataAccess.Interfaces;
-using GestionPedidos.Models.DTOs;
+using GestionPedidos.Models.DTO;
 using GestionPedidos.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -274,6 +274,48 @@ namespace GestionPedidos.DataAccess.Repositories
             {
                 throw new Exception($"Error al buscar producto por nombre: {ex.Message}", ex);
             }
+            return products;
+        }
+
+        public IEnumerable<ProductSelectDto> ReadProductsForCombo()
+        {
+            var products = new List<ProductSelectDto>();
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+                    string query = @"
+                        SELECT
+                            p.idProduct,
+                            p.productName,
+                            p.salePrice,
+                            p.stockQuantity
+                        FROM Products AS p
+                        WHERE p.isActive = 1 AND p.stockQuantity > 0
+                        ORDER BY p.productName";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            products.Add(new ProductSelectDto
+                            {
+                                IdProduct = Convert.ToInt32(reader["idProduct"]),
+                                ProductName = reader["productName"].ToString(),
+                                SalePrice = Convert.ToDecimal(reader["salePrice"]),
+                                StockQuantity = Convert.ToInt32(reader["stockQuantity"])
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al obtener productos para el combo: {ex.Message}", ex);
+            }
+
             return products;
         }
     }

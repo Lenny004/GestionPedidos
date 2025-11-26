@@ -1,6 +1,6 @@
 ﻿using GestionPedidos.DataAccess.Configuration;
 using GestionPedidos.DataAccess.Interfaces;
-using GestionPedidos.Models.DTOs;
+using GestionPedidos.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

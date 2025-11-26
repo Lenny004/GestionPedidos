@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GestionPedidos.Models.DTOs
+namespace GestionPedidos.Models.DTO
 {
     /// <summary>
     /// Representa los datos mínimos necesarios para listar productos en pantalla.

@@ -4,7 +4,7 @@ using GestionPedidos.DataAccess.Repositories;
 using NLog;
 using System;
 using System.Collections.Generic;
-using GestionPedidos.Models.DTOs;
+using GestionPedidos.Models.DTO;
 using GestionPedidos.Models.Entities;
 using GestionPedidos.Models.Enums;
 using GestionPedidos.Common.Validation;
@@ -290,6 +290,27 @@ namespace GestionPedidos.Controllers
             {
                 Logger.Error(ex, $"Error al buscar productos por nombre: {name}");
                 return (false, $"Error al buscar productos: {ex.Message}", null);
+            }
+        }
+
+        public List<ProductSelectDto> GetProductsForCombo()
+        {
+            try
+            {
+                var products = _productRepository.ReadProductsForCombo();
+
+                if (products == null)
+                {
+                    Logger.Warn("El repositorio devolvió null al solicitar productos para combo");
+                    return new List<ProductSelectDto>();
+                }
+
+                return products.ToList();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error al obtener productos para combo");
+                return new List<ProductSelectDto>();
             }
         }
     }

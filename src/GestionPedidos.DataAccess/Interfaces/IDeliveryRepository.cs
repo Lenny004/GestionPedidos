@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GestionPedidos.Models.DTO;
 
 namespace GestionPedidos.DataAccess.Interfaces
 {
-    public interface ICustomerRepository
+    public interface IDeliveryRepository
     {
-        IEnumerable<CustomerListDto> ReadAllCustomers();
+
     }
 }

@@ -64,9 +64,9 @@
             this.panel1.Controls.Add(this.panelLeft);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1024, 624);
+            this.panel1.Size = new System.Drawing.Size(1365, 768);
             this.panel1.TabIndex = 0;
             // 
             // panelChildForm
@@ -74,10 +74,10 @@
             this.panelChildForm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelChildForm.Location = new System.Drawing.Point(179, 42);
-            this.panelChildForm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelChildForm.Location = new System.Drawing.Point(239, 52);
+            this.panelChildForm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(840, 579);
+            this.panelChildForm.Size = new System.Drawing.Size(1120, 713);
             this.panelChildForm.TabIndex = 1;
             // 
             // panelLeft
@@ -97,9 +97,9 @@
             this.panelLeft.Controls.Add(this.pictureBox1);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(175, 624);
+            this.panelLeft.Size = new System.Drawing.Size(233, 768);
             this.panelLeft.TabIndex = 0;
             // 
             // btnAboutUs
@@ -117,10 +117,10 @@
             this.btnAboutUs.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.user_section_w;
             this.btnAboutUs.Image = global::GestionPedidos.UI.Properties.Resources.information;
             this.btnAboutUs.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAboutUs.Location = new System.Drawing.Point(6, 470);
-            this.btnAboutUs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAboutUs.Location = new System.Drawing.Point(8, 578);
+            this.btnAboutUs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAboutUs.Name = "btnAboutUs";
-            this.btnAboutUs.Size = new System.Drawing.Size(164, 37);
+            this.btnAboutUs.Size = new System.Drawing.Size(219, 46);
             this.btnAboutUs.TabIndex = 12;
             this.btnAboutUs.Text = "About Us";
             this.btnAboutUs.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -141,10 +141,10 @@
             this.btnUsers.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.user_section_w;
             this.btnUsers.Image = global::GestionPedidos.UI.Properties.Resources.user_section;
             this.btnUsers.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnUsers.Location = new System.Drawing.Point(6, 428);
-            this.btnUsers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUsers.Location = new System.Drawing.Point(8, 527);
+            this.btnUsers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUsers.Name = "btnUsers";
-            this.btnUsers.Size = new System.Drawing.Size(164, 37);
+            this.btnUsers.Size = new System.Drawing.Size(219, 46);
             this.btnUsers.TabIndex = 11;
             this.btnUsers.Text = "Users";
             this.btnUsers.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -155,10 +155,9 @@
             this.lblPurchase.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lblPurchase.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPurchase.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(147)))), ((int)(((byte)(159)))));
-            this.lblPurchase.Location = new System.Drawing.Point(4, 288);
-            this.lblPurchase.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPurchase.Location = new System.Drawing.Point(5, 354);
             this.lblPurchase.Name = "lblPurchase";
-            this.lblPurchase.Size = new System.Drawing.Size(59, 13);
+            this.lblPurchase.Size = new System.Drawing.Size(67, 15);
             this.lblPurchase.TabIndex = 10;
             this.lblPurchase.Text = "Purchase";
             // 
@@ -168,10 +167,9 @@
             this.label1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(147)))), ((int)(((byte)(159)))));
-            this.label1.Location = new System.Drawing.Point(4, 403);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(5, 496);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.Size = new System.Drawing.Size(40, 15);
             this.label1.TabIndex = 9;
             this.label1.Text = "Extra";
             // 
@@ -181,10 +179,9 @@
             this.lblConfig.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lblConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConfig.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(147)))), ((int)(((byte)(159)))));
-            this.lblConfig.Location = new System.Drawing.Point(4, 164);
-            this.lblConfig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblConfig.Location = new System.Drawing.Point(5, 202);
             this.lblConfig.Name = "lblConfig";
-            this.lblConfig.Size = new System.Drawing.Size(56, 13);
+            this.lblConfig.Size = new System.Drawing.Size(63, 15);
             this.lblConfig.TabIndex = 8;
             this.lblConfig.Text = "Features";
             // 
@@ -194,10 +191,9 @@
             this.lblHome.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lblHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(147)))), ((int)(((byte)(159)))));
-            this.lblHome.Location = new System.Drawing.Point(4, 102);
-            this.lblHome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHome.Location = new System.Drawing.Point(5, 126);
             this.lblHome.Name = "lblHome";
-            this.lblHome.Size = new System.Drawing.Size(38, 13);
+            this.lblHome.Size = new System.Drawing.Size(45, 15);
             this.lblHome.TabIndex = 7;
             this.lblHome.Text = "Home";
             // 
@@ -216,10 +212,10 @@
             this.btnOrders.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.order_w;
             this.btnOrders.Image = global::GestionPedidos.UI.Properties.Resources.order;
             this.btnOrders.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnOrders.Location = new System.Drawing.Point(6, 356);
-            this.btnOrders.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOrders.Location = new System.Drawing.Point(8, 438);
+            this.btnOrders.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOrders.Name = "btnOrders";
-            this.btnOrders.Size = new System.Drawing.Size(164, 37);
+            this.btnOrders.Size = new System.Drawing.Size(219, 46);
             this.btnOrders.TabIndex = 6;
             this.btnOrders.Text = "Orders";
             this.btnOrders.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -239,13 +235,14 @@
             this.btnDelivery.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.delivery_w;
             this.btnDelivery.Image = global::GestionPedidos.UI.Properties.Resources.delivery;
             this.btnDelivery.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnDelivery.Location = new System.Drawing.Point(6, 314);
-            this.btnDelivery.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelivery.Location = new System.Drawing.Point(8, 386);
+            this.btnDelivery.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelivery.Name = "btnDelivery";
-            this.btnDelivery.Size = new System.Drawing.Size(164, 37);
+            this.btnDelivery.Size = new System.Drawing.Size(219, 46);
             this.btnDelivery.TabIndex = 5;
             this.btnDelivery.Text = "Delivery";
             this.btnDelivery.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnDelivery.Click += new System.EventHandler(this.btnDelivery_Click);
             // 
             // btnProducts
             // 
@@ -262,10 +259,10 @@
             this.btnProducts.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.products_w;
             this.btnProducts.Image = global::GestionPedidos.UI.Properties.Resources.products;
             this.btnProducts.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnProducts.Location = new System.Drawing.Point(6, 234);
-            this.btnProducts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnProducts.Location = new System.Drawing.Point(8, 288);
+            this.btnProducts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnProducts.Name = "btnProducts";
-            this.btnProducts.Size = new System.Drawing.Size(164, 37);
+            this.btnProducts.Size = new System.Drawing.Size(219, 46);
             this.btnProducts.TabIndex = 4;
             this.btnProducts.Text = "Products";
             this.btnProducts.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -286,10 +283,10 @@
             this.btnCustomer.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.customer_w;
             this.btnCustomer.Image = global::GestionPedidos.UI.Properties.Resources.customer;
             this.btnCustomer.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCustomer.Location = new System.Drawing.Point(6, 193);
-            this.btnCustomer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCustomer.Location = new System.Drawing.Point(8, 238);
+            this.btnCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCustomer.Name = "btnCustomer";
-            this.btnCustomer.Size = new System.Drawing.Size(164, 37);
+            this.btnCustomer.Size = new System.Drawing.Size(219, 46);
             this.btnCustomer.TabIndex = 3;
             this.btnCustomer.Text = "Customers";
             this.btnCustomer.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -311,10 +308,10 @@
             this.btnDashboard.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.dashboard_w;
             this.btnDashboard.Image = global::GestionPedidos.UI.Properties.Resources.dashboard;
             this.btnDashboard.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnDashboard.Location = new System.Drawing.Point(6, 117);
-            this.btnDashboard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDashboard.Location = new System.Drawing.Point(8, 144);
+            this.btnDashboard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(164, 37);
+            this.btnDashboard.Size = new System.Drawing.Size(219, 46);
             this.btnDashboard.TabIndex = 2;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -322,10 +319,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GestionPedidos.UI.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(25, 50);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(33, 62);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(116, 42);
+            this.pictureBox1.Size = new System.Drawing.Size(155, 52);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -338,9 +335,9 @@
             this.panelSuperior.Controls.Add(this.guna2ControlBox1);
             this.panelSuperior.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSuperior.Location = new System.Drawing.Point(0, 0);
-            this.panelSuperior.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelSuperior.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelSuperior.Name = "panelSuperior";
-            this.panelSuperior.Size = new System.Drawing.Size(1024, 37);
+            this.panelSuperior.Size = new System.Drawing.Size(1365, 46);
             this.panelSuperior.TabIndex = 1;
             // 
             // guna2ControlBox3
@@ -351,10 +348,10 @@
             this.guna2ControlBox3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.guna2ControlBox3.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
             this.guna2ControlBox3.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox3.Location = new System.Drawing.Point(909, 6);
-            this.guna2ControlBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2ControlBox3.Location = new System.Drawing.Point(1212, 7);
+            this.guna2ControlBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2ControlBox3.Name = "guna2ControlBox3";
-            this.guna2ControlBox3.Size = new System.Drawing.Size(34, 24);
+            this.guna2ControlBox3.Size = new System.Drawing.Size(45, 30);
             this.guna2ControlBox3.TabIndex = 2;
             // 
             // guna2ControlBox2
@@ -365,10 +362,10 @@
             this.guna2ControlBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.guna2ControlBox2.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
             this.guna2ControlBox2.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox2.Location = new System.Drawing.Point(947, 6);
-            this.guna2ControlBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2ControlBox2.Location = new System.Drawing.Point(1263, 7);
+            this.guna2ControlBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2ControlBox2.Name = "guna2ControlBox2";
-            this.guna2ControlBox2.Size = new System.Drawing.Size(34, 24);
+            this.guna2ControlBox2.Size = new System.Drawing.Size(45, 30);
             this.guna2ControlBox2.TabIndex = 1;
             // 
             // guna2ControlBox1
@@ -378,10 +375,10 @@
             this.guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
             this.guna2ControlBox1.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox1.Location = new System.Drawing.Point(986, 6);
-            this.guna2ControlBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2ControlBox1.Location = new System.Drawing.Point(1315, 7);
+            this.guna2ControlBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2ControlBox1.Name = "guna2ControlBox1";
-            this.guna2ControlBox1.Size = new System.Drawing.Size(34, 24);
+            this.guna2ControlBox1.Size = new System.Drawing.Size(45, 30);
             this.guna2ControlBox1.TabIndex = 0;
             // 
             // guna2DragControl1
@@ -405,13 +402,13 @@
             // 
             // FrmDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1024, 624);
+            this.ClientSize = new System.Drawing.Size(1365, 768);
             this.Controls.Add(this.panelSuperior);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmDashboard";

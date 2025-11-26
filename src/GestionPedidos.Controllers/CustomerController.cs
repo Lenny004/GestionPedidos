@@ -4,7 +4,7 @@ using System.Linq;
 using GestionPedidos.DataAccess.Interfaces;
 using GestionPedidos.DataAccess.Repositories;
 using GestionPedidos.Models.Entities;
-using GestionPedidos.Models.DTOs;
+using GestionPedidos.Models.DTO;
 
 namespace GestionPedidos.Controllers
 {
@@ -46,6 +46,24 @@ namespace GestionPedidos.Controllers
             {
                 return (false, $"Error al leer clientes: {ex.Message}", null);
             }
+        }
+
+        public List<CustomerSelectDto> GetCustomersForCombo()
+        {
+            // Aquí idealmente llamarías a un método específico del repositorio: _customerRepository.GetActiveCustomers()
+            // Por ahora, simulamos usando el ReadAll y filtrando
+            var result = ReadAll();
+            if (result.Success)
+            {
+                return result.Customers
+                    .Where(c => c.IsActive)
+                    .Select(c => new CustomerSelectDto
+                    {
+                        IdCustomer = c.IdCustomer,
+                        FullName = c.FullName
+                    }).ToList();
+            }
+            return new List<CustomerSelectDto>();
         }
     }
 }

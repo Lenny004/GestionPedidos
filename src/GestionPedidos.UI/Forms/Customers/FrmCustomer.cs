@@ -1,5 +1,5 @@
 ﻿using GestionPedidos.Controllers;
-using GestionPedidos.Models.DTOs;
+using GestionPedidos.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

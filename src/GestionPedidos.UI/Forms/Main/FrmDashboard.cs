@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using GestionPedidos.UI.Forms.About;
 using GestionPedidos.UI.Forms.Customers;
 using GestionPedidos.UI.Forms.Products;
+using GestionPedidos.UI.Forms.Delivery;
 
 namespace GestionPedidos.UI.Forms.Main
 {
@@ -75,6 +76,11 @@ namespace GestionPedidos.UI.Forms.Main
         private void btnAboutUs_Click(object sender, EventArgs e)
         {
             openChildForm(new FrmAbout());
+        }
+
+        private void btnDelivery_Click(object sender, EventArgs e)
+        {
+            openChildForm(new FrmDelivery());
         }
     }
 }

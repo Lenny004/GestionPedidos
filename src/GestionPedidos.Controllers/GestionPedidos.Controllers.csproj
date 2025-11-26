@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="AuthController.cs" />
     <Compile Include="CustomerController.cs" />
+    <Compile Include="DeliveryController.cs" />
     <Compile Include="ProductController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

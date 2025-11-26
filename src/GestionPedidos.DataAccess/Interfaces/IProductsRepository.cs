@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using GestionPedidos.Models.DTOs;
+using GestionPedidos.Models.DTO;
 using GestionPedidos.Models.Entities;
 
 namespace GestionPedidos.DataAccess.Interfaces
@@ -12,7 +12,7 @@ namespace GestionPedidos.DataAccess.Interfaces
         bool Create(Product product, int id);
         bool Update(Product product, int id);
         bool Delete(int id, int userId);
-
+        IEnumerable<ProductSelectDto> ReadProductsForCombo();
         IEnumerable<ProductListDto> SearchProducts(string productName);
     }
 }

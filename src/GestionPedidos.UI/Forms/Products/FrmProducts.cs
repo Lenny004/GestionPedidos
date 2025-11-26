@@ -1,5 +1,5 @@
 ﻿using GestionPedidos.Controllers;
-using GestionPedidos.Models.DTOs;
+using GestionPedidos.Models.DTO;
 using GestionPedidos.UI.Helpers.Products;
 using Guna.UI2.WinForms;
 using System;

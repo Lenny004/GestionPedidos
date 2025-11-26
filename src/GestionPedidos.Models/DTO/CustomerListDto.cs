@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace GestionPedidos.Models.DTOs
+namespace GestionPedidos.Models.DTO
 {
     public class CustomerListDto
     {
