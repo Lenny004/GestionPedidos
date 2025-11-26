@@ -46,6 +46,7 @@
             this.cmbStatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
+            this.guna2DragControl2 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.panelSuperior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStockQuantity)).BeginInit();
             this.SuspendLayout();
@@ -235,7 +236,7 @@
             this.btnModifyC.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btnModifyC.ForeColor = System.Drawing.Color.White;
             this.btnModifyC.Location = new System.Drawing.Point(611, 412);
-            this.btnModifyC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnModifyC.Margin = new System.Windows.Forms.Padding(4);
             this.btnModifyC.Name = "btnModifyC";
             this.btnModifyC.Size = new System.Drawing.Size(133, 48);
             this.btnModifyC.TabIndex = 47;
@@ -291,6 +292,12 @@
             this.guna2DragControl1.TargetControl = this;
             this.guna2DragControl1.UseTransparentDrag = true;
             // 
+            // guna2DragControl2
+            // 
+            this.guna2DragControl2.DockIndicatorTransparencyValue = 0.6D;
+            this.guna2DragControl2.TargetControl = this.panelSuperior;
+            this.guna2DragControl2.UseTransparentDrag = true;
+            // 
             // FrmModifyProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -341,5 +348,6 @@
         private Guna.UI2.WinForms.Guna2ComboBox cmbStatus;
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
+        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl2;
     }
 }

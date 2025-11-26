@@ -10,9 +10,9 @@ namespace GestionPedidos.Models.DTO
         public string Phone { get; set; }
         public string Address { get; set; }
         public string City { get; set; }       
-        public string Department { get; set; } // Nombre del departamento (JOIN)
+        public string Department { get; set; } // Nombre del departamento
         public bool IsActive { get; set; }
-        public string CreatedBy { get; set; }  // Nombre de usuario (JOIN)
+        public string CreatedBy { get; set; }  // Nombre de usuario
     }
 }
 

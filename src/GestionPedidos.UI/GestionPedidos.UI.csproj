@@ -101,6 +101,12 @@
     <Compile Include="Forms\Delivery\FrmDelivery.Designer.cs">
       <DependentUpon>FrmDelivery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\History\FrmHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\History\FrmHistory.Designer.cs">
+      <DependentUpon>FrmHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Main\FrmDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,18 @@
     </Compile>
     <Compile Include="Forms\Products\FrmProducts.Designer.cs">
       <DependentUpon>FrmProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Costumers\FrmAddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpers\Costumers\FrmAddCustomer.Designer.cs">
+      <DependentUpon>FrmAddCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Costumers\FrmModifyCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpers\Costumers\FrmModifyCustomer.Designer.cs">
+      <DependentUpon>FrmModifyCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Products\FrmAddProduct.cs">
       <SubType>Form</SubType>
@@ -145,11 +163,20 @@
     <EmbeddedResource Include="Forms\Delivery\FrmDelivery.resx">
       <DependentUpon>FrmDelivery.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\History\FrmHistory.resx">
+      <DependentUpon>FrmHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main\FrmDashboard.resx">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Products\FrmProducts.resx">
       <DependentUpon>FrmProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpers\Costumers\FrmAddCustomer.resx">
+      <DependentUpon>FrmAddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpers\Costumers\FrmModifyCustomer.resx">
+      <DependentUpon>FrmModifyCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helpers\Products\FrmAddProduct.resx">
       <DependentUpon>FrmAddProduct.cs</DependentUpon>
@@ -280,6 +307,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sparkle_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bitacora.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bitacora_w.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
