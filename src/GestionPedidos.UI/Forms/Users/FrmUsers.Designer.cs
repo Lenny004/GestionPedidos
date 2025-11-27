@@ -256,9 +256,9 @@
             this.lblRole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.lblRole.Location = new System.Drawing.Point(262, 120);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(113, 20);
+            this.lblRole.Size = new System.Drawing.Size(48, 20);
             this.lblRole.TabIndex = 38;
-            this.lblRole.Text = "Administrador";
+            this.lblRole.Text = "Role:";
             // 
             // lblEmail
             // 
@@ -267,9 +267,9 @@
             this.lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.lblEmail.Location = new System.Drawing.Point(262, 84);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(270, 20);
+            this.lblEmail.Size = new System.Drawing.Size(56, 20);
             this.lblEmail.TabIndex = 37;
-            this.lblEmail.Text = "Email: mauroalfaro654@gmail.com";
+            this.lblEmail.Text = "Email:";
             // 
             // pictureBox1
             // 
@@ -289,7 +289,7 @@
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(167, 43);
             this.lblFullName.TabIndex = 34;
-            this.lblFullName.Text = "Mauro Alfaro";
+            this.lblFullName.Text = "Fullname:";
             // 
             // lblUserName
             // 
@@ -298,9 +298,9 @@
             this.lblUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.lblUserName.Location = new System.Drawing.Point(84, 84);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(65, 20);
+            this.lblUserName.Size = new System.Drawing.Size(50, 20);
             this.lblUserName.TabIndex = 33;
-            this.lblUserName.Text = "Pepito1";
+            this.lblUserName.Text = "User:";
             // 
             // lblID
             // 
@@ -309,9 +309,9 @@
             this.lblID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
             this.lblID.Location = new System.Drawing.Point(18, 61);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(36, 20);
+            this.lblID.Size = new System.Drawing.Size(18, 20);
             this.lblID.TabIndex = 32;
-            this.lblID.Text = "#12";
+            this.lblID.Text = "#";
             // 
             // btnReload
             // 

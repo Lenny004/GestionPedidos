@@ -14,5 +14,16 @@ namespace GestionPedidos.DataAccess.Interfaces
         bool Delete(int id, int userId);
         IEnumerable<ProductSelectDto> ReadProductsForCombo();
         IEnumerable<ProductListDto> SearchProducts(string productName);
+        
+        /// <summary>
+        /// Reduce el stock de un producto
+        /// </summary>
+        bool ReduceStock(int productId, int quantity);
+
+        /// <summary>
+        /// Incrementa el stock de un producto
+        /// </summary>
+        bool IncreaseStock(int productId, int quantity);
     }
 }
+

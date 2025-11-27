@@ -100,7 +100,7 @@ namespace GestionPedidos.Common.Validation
             if (string.IsNullOrWhiteSpace(value))
                 return false;
 
-            string pattern = @"^[a-zA-Z������������\s]+$";
+            string pattern = @"^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$";
             return Regex.IsMatch(value, pattern);
         }
 
@@ -274,7 +274,7 @@ namespace GestionPedidos.Common.Validation
             if (string.IsNullOrWhiteSpace(value))
                 return false;
 
-            return Regex.IsMatch(value, @"^[a-zA-Z0-9\s]+$");
+            return Regex.IsMatch(value, @"^[a-zA-Z0-9áéíóúÁÉÍÓÚüÜñÑ\s]+$");
         }
 
         /// <summary>

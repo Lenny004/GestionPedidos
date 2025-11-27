@@ -1,4 +1,9 @@
-﻿using System;
+﻿using GestionPedidos.Common.Constants;
+using GestionPedidos.Common.Services;
+using GestionPedidos.Controllers;
+using GestionPedidos.Models.DTO;
+using GestionPedidos.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GestionPedidos.Controllers;
-using GestionPedidos.Models.DTO;
 
 namespace GestionPedidos.UI.Forms.Delivery
 {
@@ -16,6 +19,7 @@ namespace GestionPedidos.UI.Forms.Delivery
     {
         private readonly ProductController _productController;
         private readonly CustomerController _customerController;
+        private readonly DeliveryController _deliveryController;
         private List<ProductSelectDto> _productOptions = new List<ProductSelectDto>();
         private List<CustomerSelectDto> _customerOptions = new List<CustomerSelectDto>();
         private List<CustomerSelectDto> _allCustomers = new List<CustomerSelectDto>();
@@ -28,12 +32,22 @@ namespace GestionPedidos.UI.Forms.Delivery
             InitializeComponent();
             _productController = new ProductController();
             _customerController = new CustomerController();
-
-            cmbProduct.SelectedIndexChanged += cmbProduct_SelectedIndexChanged;
-            txtStockQuantity.ValueChanged += txtStockQuantity_ValueChanged;
+            _deliveryController = new DeliveryController();
             
             // Configurar el DataGridView para mostrar los productos del pedido
             ConfigureOrderItemsGrid();
+        }
+
+        /// <summary>
+        /// Metodo que se ejecuta al cargar el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FrmDelivery_Load(object sender, EventArgs e)
+        {
+            // Cargar clientes y productos
+            LoadCustomers();
+            LoadProducts();
         }
 
         /// <summary>
@@ -50,17 +64,14 @@ namespace GestionPedidos.UI.Forms.Delivery
             {
                 DataPropertyName = nameof(OrderDetailItem.ProductName),
                 HeaderText = "Product",
-                Name = "colProduct",
-                ReadOnly = true
+                Name = "colProduct"
             });
 
             dgvOrderItems.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = nameof(OrderDetailItem.Quantity),
                 HeaderText = "Quantity",
-                Name = "colQuantity",
-                Width = 100,
-                ReadOnly = true
+                Name = "colQuantity"
             });
 
             dgvOrderItems.Columns.Add(new DataGridViewTextBoxColumn
@@ -68,9 +79,7 @@ namespace GestionPedidos.UI.Forms.Delivery
                 DataPropertyName = nameof(OrderDetailItem.UnitPrice),
                 HeaderText = "Unit Price",
                 Name = "colUnitPrice",
-                Width = 120,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2" },
-                ReadOnly = true
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2" }
             });
 
             dgvOrderItems.Columns.Add(new DataGridViewTextBoxColumn
@@ -78,42 +87,19 @@ namespace GestionPedidos.UI.Forms.Delivery
                 DataPropertyName = nameof(OrderDetailItem.Subtotal),
                 HeaderText = "Subtotal",
                 Name = "colSubtotal",
-                Width = 120,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2" },
-                ReadOnly = true
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "C2" }
             });
         }
 
+        /// <summary>
+        /// Carga los productos disponibles en el combo box
+        /// </summary>
         private void LoadProducts()
         {
             try
             {
                 _productOptions = _productController.GetProductsForCombo() ?? new List<ProductSelectDto>();
-
-                cmbProduct.DataSource = null;
-                cmbProduct.Items.Clear();
-                
-                if (_productOptions.Count == 0)
-                {
-                    cmbProduct.Enabled = false;
-                    ResetProductDetails();
-                    return;
-                }
-                cmbProduct.Enabled = true;
-
-                _productOptions.Insert(0, new ProductSelectDto
-                {
-                    IdProduct = 0,
-                    ProductName = "Seleccione un producto",
-                    SalePrice = 0m,
-                    StockQuantity = 0
-                });
-
-                cmbProduct.DataSource = _productOptions;
-                cmbProduct.DisplayMember = nameof(ProductSelectDto.ProductName);
-                cmbProduct.ValueMember = nameof(ProductSelectDto.IdProduct);
-                cmbProduct.SelectedIndex = 0;
-                ResetProductDetails();
+                BindProductCombo(_productOptions);
             }
             catch (Exception ex)
             {
@@ -123,9 +109,11 @@ namespace GestionPedidos.UI.Forms.Delivery
                 ResetProductDetails();
                 MessageBox.Show($"Error al cargar los productos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
+        /// <summary>
+        /// Cargar los clientes disponibles en el combo box
+        /// </summary>
         private void LoadCustomers()
         {
             try
@@ -142,6 +130,10 @@ namespace GestionPedidos.UI.Forms.Delivery
             }
         }
 
+        /// <summary>
+        /// Metodo para enlazar la lista de clientes al combo box
+        /// </summary>
+        /// <param name="customers"></param>
         private void BindCustomerCombo(IEnumerable<CustomerSelectDto> customers)
         {
             var customerList = customers?.ToList() ?? new List<CustomerSelectDto>();
@@ -169,56 +161,6 @@ namespace GestionPedidos.UI.Forms.Delivery
             cmbCustomers.SelectedIndex = 0;
         }
 
-        private void FrmDelivery_Load(object sender, EventArgs e)
-        {
-            LoadCustomers();
-            LoadProducts();
-        }
-
-        private void cmbProduct_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbProduct.SelectedItem is ProductSelectDto selectedProduct)
-            {
-                if (selectedProduct.IdProduct == 0)
-                {
-                    ResetProductDetails();
-                    return;
-                }
-
-                txtSalePrice.Text = selectedProduct.SalePrice.ToString("F2");
-
-                if (selectedProduct.StockQuantity <= 0)
-                {
-                    txtStockQuantity.Enabled = false;
-                    lblSubtotal.Text = "Total: $0.00";
-                    return;
-                }
-
-                txtStockQuantity.Enabled = true;
-                txtStockQuantity.Minimum = 1;
-                txtStockQuantity.Maximum = selectedProduct.StockQuantity;
-                txtStockQuantity.Value = 1;
-                UpdateSubtotal(selectedProduct);
-            }
-            else
-            {
-                ResetProductDetails();
-            }
-        }
-
-        private void txtStockQuantity_ValueChanged(object sender, EventArgs e)
-        {
-            var selectedProduct = cmbProduct.SelectedItem as ProductSelectDto;
-            if (selectedProduct != null && selectedProduct.IdProduct != 0 && txtStockQuantity.Enabled && txtStockQuantity.Value > 0)
-            {
-                UpdateSubtotal(selectedProduct);
-            }
-            else
-            {
-                lblSubtotal.Text = "Total: $0.00";
-            }
-        }
-
         private void UpdateSubtotal(ProductSelectDto product)
         {
             var quantity = (int)txtStockQuantity.Value;
@@ -236,6 +178,11 @@ namespace GestionPedidos.UI.Forms.Delivery
             lblSubtotal.Text = "Total: $0.00";
         }
 
+        /// <summary>
+        /// Maneja la búsqueda de clientes por nombre (solo activos)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>        
         private void btnSearch_Click(object sender, EventArgs e)
         {
             var searchText = txtSearch.Text?.Trim();
@@ -246,24 +193,47 @@ namespace GestionPedidos.UI.Forms.Delivery
                 return;
             }
 
-            var filteredCustomers = _allCustomers
-                .Where(c => c.FullName.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
-                .ToList();
+            var (success, message, customers) = _customerController.SearchByName(searchText);
 
-            if (filteredCustomers.Count == 0)
+            if (!success)
             {
-                MessageBox.Show("No se encontraron clientes que coincidan con la búsqueda.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                NotificationService.NotifyValidationError(message ?? AppConstants.NO_SE_ENCONTRARON_REGISTROS);
                 return;
             }
 
-            BindCustomerCombo(filteredCustomers);
-            
-            if (filteredCustomers.Count > 0)
+            // Si el controller no devolvió nada, usamos lista vacía
+            var foundCustomers = customers ?? new List<CustomerListDto>();
+
+            // Convertimos a DTOs y filtramos solo activos
+            var customerOptions = foundCustomers
+                .Where(c => c.IsActive)
+                .Select(c => new CustomerSelectDto
+                {
+                    IdCustomer = c.IdCustomer,
+                    FullName = c.FullName
+                })
+                .ToList();
+
+            if (customerOptions.Count == 0)
+            {
+                NotificationService.ShowInfo(AppConstants.NO_SE_ENCONTRARON_REGISTROS, "Sin resultados");
+                BindCustomerCombo(customerOptions);
+                return;
+            }
+
+            BindCustomerCombo(customerOptions);
+
+            if (cmbCustomers.Items.Count > 1)
             {
                 cmbCustomers.SelectedIndex = 1;
             }
         }
 
+        /// <summary>
+        /// Recarga la lista completa de clientes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReload_Click(object sender, EventArgs e)
         {
             LoadCustomers();
@@ -323,7 +293,7 @@ namespace GestionPedidos.UI.Forms.Delivery
                         quantity,
                         selectedProduct.SalePrice
                     );
-                    
+                    cmbCustomers.Enabled = false; // Deshabilitar selección de cliente al agregar productos
                     _orderItems.Add(newItem);
                 }
 
@@ -402,9 +372,6 @@ namespace GestionPedidos.UI.Forms.Delivery
                     return;
                 }
 
-                // TODO: Aquí se debe implementar la lógica para guardar el pedido en la base de datos
-                // Por ahora solo mostramos un mensaje de confirmación
-                
                 var result = MessageBox.Show(
                     $"¿Confirmar pedido para {selectedCustomer.FullName}?\n" +
                     $"Total de productos: {_orderItems.Count}\n" +
@@ -416,14 +383,27 @@ namespace GestionPedidos.UI.Forms.Delivery
 
                 if (result == DialogResult.Yes)
                 {
-                    // TODO: Llamar al controlador para guardar el pedido
-                    // orderController.CreateOrder(customerId, deliveryDate, comments, _orderItems);
-                    
-                    MessageBox.Show("Pedido creado exitosamente.\n\nNOTA: Pendiente implementar el guardado en base de datos.", 
-                        "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                    // Limpiar el formulario
-                    ClearOrderForm();
+                    // Llamar al controlador para guardar el pedido
+                    var (success, message, orderId) = _deliveryController.CreateOrder(
+                        selectedCustomer.IdCustomer,
+                        dtpDelivery.Value,
+                        txtComment.Text,
+                        new List<OrderDetailItem>(_orderItems)
+                    );
+
+                    if (success)
+                    {
+                        MessageBox.Show($"Pedido #{orderId} creado exitosamente.", 
+                            "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                        // Limpiar el formulario
+                        ClearOrderForm();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Error al crear el pedido: {message}", 
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception ex)
@@ -443,6 +423,161 @@ namespace GestionPedidos.UI.Forms.Delivery
             txtComment.Text = string.Empty;
             dtpDelivery.Value = DateTime.Now;
             UpdateOrderTotal();
+            ResetProductDetails();
+        }
+
+        /// <summary>
+        /// Maneja el cambio de selección en el combo de productos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmbProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbProduct.SelectedItem is ProductSelectDto selectedProduct)
+            {
+                if (selectedProduct.IdProduct == 0)
+                {
+                    ResetProductDetails();
+                    return;
+                }
+
+                txtSalePrice.Text = selectedProduct.SalePrice.ToString("F2");
+
+                if (selectedProduct.StockQuantity <= 0)
+                {
+                    txtStockQuantity.Enabled = false;
+                    lblSubtotal.Text = "Total: $0.00";
+                    return;
+                }
+
+                txtStockQuantity.Enabled = true;
+                txtStockQuantity.Minimum = 1;
+                txtStockQuantity.Maximum = selectedProduct.StockQuantity;
+                txtStockQuantity.Value = 1;
+                UpdateSubtotal(selectedProduct);
+            }
+            else
+            {
+                ResetProductDetails();
+            }
+        }
+
+        private void txtStockQuantity_ValueChanged(object sender, EventArgs e)
+        {
+            var selectedProduct = cmbProduct.SelectedItem as ProductSelectDto;
+            if (selectedProduct != null && selectedProduct.IdProduct != 0 && txtStockQuantity.Enabled && txtStockQuantity.Value > 0)
+            {
+                UpdateSubtotal(selectedProduct);
+            }
+            else
+            {
+                lblSubtotal.Text = "Total: $0.00";
+            }
+        }
+
+        /// <summary>
+        /// Maneja la búsqueda de productos por nombre (solo activos)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSearchProduct_Click(object sender, EventArgs e)
+        {
+            var searchText = txtSearchProduct.Text?.Trim();
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                LoadProducts();
+                return;
+            }
+
+            try
+            {
+                var (success, message, products) = _productController.SearchByName(searchText);
+
+                if (!success)
+                {
+                    NotificationService.NotifyValidationError(message ?? AppConstants.NO_SE_ENCONTRARON_REGISTROS);
+                    return;
+                }
+
+                // Si el controller no devolvió nada, usamos lista vacía
+                var foundProducts = products ?? new List<ProductListDto>();
+
+                // Convertimos a DTOs y filtramos solo activos
+                var productOptions = foundProducts
+                    .Where(p => p.IsActive)
+                    .Select(p => new ProductSelectDto
+                    {
+                        IdProduct = p.IdProduct,
+                        ProductName = p.ProductName,
+                        SalePrice = p.SalePrice,
+                        StockQuantity = p.StockQuantity
+                    })
+                    .ToList();
+
+                if (productOptions.Count == 0)
+                {
+                    NotificationService.ShowInfo(AppConstants.NO_SE_ENCONTRARON_REGISTROS, "Sin resultados");
+                    BindProductCombo(productOptions);
+                    return;
+                }
+
+                BindProductCombo(productOptions);
+
+                if (cmbProduct.Items.Count > 1)
+                {
+                    cmbProduct.SelectedIndex = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al buscar productos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Recarga la lista completa de productos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnReloadProduct_Click(object sender, EventArgs e)
+        {
+            LoadProducts();
+            txtSearchProduct.Text = string.Empty;
+        }
+
+        /// <summary>
+        /// Metodo para enlazar la lista de productos al combo box
+        /// </summary>
+        /// <param name="products"></param>
+        private void BindProductCombo(IEnumerable<ProductSelectDto> products)
+        {
+            var productList = products?.ToList() ?? new List<ProductSelectDto>();
+
+            cmbProduct.DataSource = null;
+            cmbProduct.Items.Clear();
+
+            if (productList.Count == 0)
+            {
+                cmbProduct.Enabled = false;
+                ResetProductDetails();
+                return;
+            }
+
+            cmbProduct.Enabled = true;
+
+            productList.Insert(0, new ProductSelectDto
+            {
+                IdProduct = 0,
+                ProductName = "Seleccione un producto",
+                SalePrice = 0m,
+                StockQuantity = 0
+            });
+
+            cmbProduct.DataSource = productList;
+            cmbProduct.DisplayMember = nameof(ProductSelectDto.ProductName);
+            cmbProduct.ValueMember = nameof(ProductSelectDto.IdProduct);
+            cmbProduct.SelectedIndex = 0;
             ResetProductDetails();
         }
     }

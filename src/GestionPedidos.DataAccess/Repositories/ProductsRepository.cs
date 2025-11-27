@@ -318,5 +318,69 @@ namespace GestionPedidos.DataAccess.Repositories
 
             return products;
         }
+
+        /// <summary>
+        /// Reduce el stock de un producto
+        /// </summary>
+        public bool ReduceStock(int productId, int quantity)
+        {
+            string query = @"
+                UPDATE Products
+                SET stockQuantity = stockQuantity - @Quantity
+                WHERE idProduct = @ProductId AND stockQuantity >= @Quantity";
+
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductId", productId);
+                        cmd.Parameters.AddWithValue("@Quantity", quantity);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al reducir stock del producto {productId}: {ex.Message}", ex);
+            }
+        }
+
+        /// <summary>
+        /// Incrementa el stock de un producto
+        /// </summary>
+        public bool IncreaseStock(int productId, int quantity)
+        {
+            string query = @"
+                UPDATE Products
+                SET stockQuantity = stockQuantity + @Quantity
+                WHERE idProduct = @ProductId";
+
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductId", productId);
+                        cmd.Parameters.AddWithValue("@Quantity", quantity);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al incrementar stock del producto {productId}: {ex.Message}", ex);
+            }
+        }
     }
 }

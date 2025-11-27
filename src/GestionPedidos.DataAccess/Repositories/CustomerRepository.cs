@@ -205,20 +205,24 @@ namespace GestionPedidos.DataAccess.Repositories
 
             // Consulta SQL Corregida (El JOIN de Departamento ahora apunta a CIUDAD)
             string query = @"
-        SELECT 
-            c.idCustomer, 
-            c.firstName + ' ' + c.lastName AS FullName,
-            c.phone, 
-            c.address, 
-            c.isActive,
-            ci.cityName AS City, 
-            d.departmentName AS Department,
-            uCreated.userName AS CreatedBy
-        FROM Customers c
-        LEFT JOIN Cities ci ON c.idCity = ci.idCity
-        LEFT JOIN Departments d ON ci.idDepartment = d.idDepartment -- <--- CORRECCIÓN CLAVE
-        LEFT JOIN Users uCreated ON c.userCreation = uCreated.idUser
-        WHERE (c.firstName + ' ' + c.lastName LIKE @Val OR c.firstName LIKE @Val OR c.lastName LIKE @Val)";
+                SELECT 
+                    c.idCustomer, 
+                    c.firstName + ' ' + c.lastName AS FullName,
+                    c.phone, 
+                    c.address, 
+                    c.isActive,
+                    ci.cityName AS City, 
+                    d.departmentName AS Department,
+                    uCreated.userName AS CreatedBy
+                FROM Customers c
+                LEFT JOIN Cities ci ON c.idCity = ci.idCity
+                LEFT JOIN Departments d ON ci.idDepartment = d.idDepartment -- <--- CORRECCIÓN CLAVE
+                LEFT JOIN Users uCreated ON c.userCreation = uCreated.idUser
+                WHERE (c.firstName + ' ' + c.lastName LIKE @Val 
+                       OR c.firstName LIKE @Val 
+                       OR c.lastName LIKE @Val 
+                       OR ci.cityName LIKE @Val 
+                       OR d.departmentName LIKE @Val)";
 
             try
             {

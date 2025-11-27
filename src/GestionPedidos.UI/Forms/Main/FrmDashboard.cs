@@ -117,6 +117,11 @@ namespace GestionPedidos.UI.Forms.Main
             openChildForm(new FrmHistory());
         }
 
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+            openChildForm(new FrmDetailOrder());
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             // Confirmar cierre de sesión
@@ -134,6 +139,11 @@ namespace GestionPedidos.UI.Forms.Main
                 // Cerrar el dashboard (esto regresará al login automáticamente)
                 this.Close();
             }
+        }
+
+        private void guna2ControlBox1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

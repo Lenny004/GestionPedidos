@@ -301,6 +301,7 @@
             this.btnOrders.TabIndex = 6;
             this.btnOrders.Text = "Orders";
             this.btnOrders.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnOrders.Click += new System.EventHandler(this.btnOrders_Click);
             // 
             // label1
             // 
@@ -451,6 +452,7 @@
             this.guna2ControlBox1.Name = "guna2ControlBox1";
             this.guna2ControlBox1.Size = new System.Drawing.Size(45, 30);
             this.guna2ControlBox1.TabIndex = 0;
+            this.guna2ControlBox1.Click += new System.EventHandler(this.guna2ControlBox1_Click);
             // 
             // guna2DragControl1
             // 
