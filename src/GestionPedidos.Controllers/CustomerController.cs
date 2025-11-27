@@ -1,6 +1,7 @@
 ﻿using GestionPedidos.Common.Constants;
 using GestionPedidos.Common.Security;
 using GestionPedidos.Common.Validation;
+using GestionPedidos.Common.Services;
 using GestionPedidos.DataAccess.Interfaces;
 using GestionPedidos.DataAccess.Repositories;
 using GestionPedidos.Models.DTO;
@@ -78,29 +79,67 @@ namespace GestionPedidos.Controllers
         {
             try
             {
-                if (!GeneralValidator.IsNotEmpty(fname) || !GeneralValidator.IsNotEmpty(lname))
-                    return (false, "Nombre y Apellido son requeridos.");
+                // Validar nombres (máximo 50 caracteres según estándares)
+                var fnameValidation = GeneralValidator.ValidateLengthRange(fname, 2, 50, "Nombre");
+                if (!fnameValidation.IsValid)
+                    return (false, fnameValidation.ErrorMessage);
 
-                if (idCity <= 0) return (false, "Seleccione una ciudad válida.");
+                var lnameValidation = GeneralValidator.ValidateLengthRange(lname, 2, 50, "Apellido");
+                if (!lnameValidation.IsValid)
+                    return (false, lnameValidation.ErrorMessage);
+
+                // Validar que solo contengan letras
+                if (!GeneralValidator.ValidateOnlyLetters(fname))
+                    return (false, "El nombre debe contener solo letras.");
+
+                if (!GeneralValidator.ValidateOnlyLetters(lname))
+                    return (false, "El apellido debe contener solo letras.");
+
+                // Validar teléfono (opcional, pero si se proporciona debe ser válido)
+                if (!string.IsNullOrWhiteSpace(phone))
+                {
+                    if (!GeneralValidator.ValidatePhoneNumber(phone))
+                        return (false, AppConstants.TELEFONO_INVALIDO);
+
+                    if (phone.Length > 20)
+                        return (false, "El teléfono no puede exceder 20 caracteres.");
+                }
+
+                // Validar dirección (máximo 255 caracteres)
+                if (!string.IsNullOrWhiteSpace(address))
+                {
+                    if (address.Length > 255)
+                        return (false, "La dirección no puede exceder 255 caracteres.");
+                }
+
+                // Validar ciudad
+                if (idCity <= 0)
+                    return (false, "Seleccione una ciudad válida.");
 
                 var customer = new Customer
                 {
-                    FirstName = fname,
-                    LastName = lname,
-                    Phone = phone,
-                    Address = address,
+                    FirstName = fname.Trim(),
+                    LastName = lname.Trim(),
+                    Phone = phone?.Trim(),
+                    Address = address?.Trim(),
                     IdCity = idCity
                 };
 
                 // Usamos el ID del usuario logueado para la auditoría
                 bool result = _customerRepository.Create(customer, SessionManager.UsuarioId);
 
-                return result ? (true, Messages.Clientes.CLIENTE_GUARDADO) : (false, AppConstants.ERROR_GUARDAR);
+                if (result)
+                {
+                    Logger.Info($"Cliente creado: {fname} {lname}");
+                    return (true, Messages.Clientes.CLIENTE_GUARDADO);
+                }
+                
+                return (false, AppConstants.ERROR_GUARDAR);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Error creando cliente");
-                return (false, ex.Message);
+                return (false, $"{AppConstants.ERROR_GUARDAR}: {ex.Message}");
             }
         }
 
@@ -109,29 +148,72 @@ namespace GestionPedidos.Controllers
         {
             try
             {
-                if (id <= 0) return (false, "ID inválido");
+                // Validar ID
+                if (id <= 0)
+                    return (false, "ID inválido.");
 
-                if (!GeneralValidator.IsNotEmpty(fname) || !GeneralValidator.IsNotEmpty(lname))
-                    return (false, "Nombre y Apellido son requeridos.");
+                // Validar nombres (máximo 50 caracteres según estándares)
+                var fnameValidation = GeneralValidator.ValidateLengthRange(fname, 2, 50, "Nombre");
+                if (!fnameValidation.IsValid)
+                    return (false, fnameValidation.ErrorMessage);
+
+                var lnameValidation = GeneralValidator.ValidateLengthRange(lname, 2, 50, "Apellido");
+                if (!lnameValidation.IsValid)
+                    return (false, lnameValidation.ErrorMessage);
+
+                // Validar que solo contengan letras
+                if (!GeneralValidator.ValidateOnlyLetters(fname))
+                    return (false, "El nombre debe contener solo letras.");
+
+                if (!GeneralValidator.ValidateOnlyLetters(lname))
+                    return (false, "El apellido debe contener solo letras.");
+
+                // Validar teléfono (opcional, pero si se proporciona debe ser válido)
+                if (!string.IsNullOrWhiteSpace(phone))
+                {
+                    if (!GeneralValidator.ValidatePhoneNumber(phone))
+                        return (false, AppConstants.TELEFONO_INVALIDO);
+
+                    if (phone.Length > 20)
+                        return (false, "El teléfono no puede exceder 20 caracteres.");
+                }
+
+                // Validar dirección (máximo 255 caracteres)
+                if (!string.IsNullOrWhiteSpace(address))
+                {
+                    if (address.Length > 255)
+                        return (false, "La dirección no puede exceder 255 caracteres.");
+                }
+
+                // Validar ciudad
+                if (idCity <= 0)
+                    return (false, "Seleccione una ciudad válida.");
 
                 var customer = new Customer
                 {
                     IdCustomer = id,
-                    FirstName = fname,
-                    LastName = lname,
-                    Phone = phone,
-                    Address = address,
+                    FirstName = fname.Trim(),
+                    LastName = lname.Trim(),
+                    Phone = phone?.Trim(),
+                    Address = address?.Trim(),
                     IdCity = idCity,
                     IsActive = isActive
                 };
 
                 bool result = _customerRepository.Update(customer, SessionManager.UsuarioId);
-                return result ? (true, Messages.Clientes.CLIENTE_ACTUALIZADO) : (false, AppConstants.ERROR_ACTUALIZAR);
+                
+                if (result)
+                {
+                    Logger.Info($"Cliente actualizado ID: {id}");
+                    return (true, Messages.Clientes.CLIENTE_ACTUALIZADO);
+                }
+                
+                return (false, AppConstants.ERROR_ACTUALIZAR);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Error actualizando cliente");
-                return (false, ex.Message);
+                return (false, $"{AppConstants.ERROR_ACTUALIZAR}: {ex.Message}");
             }
         }
 
@@ -140,13 +222,23 @@ namespace GestionPedidos.Controllers
         {
             try
             {
+                if (id <= 0)
+                    return (false, "ID inválido.");
+
                 bool result = _customerRepository.Delete(id, SessionManager.UsuarioId);
-                return result ? (true, Messages.Clientes.CLIENTE_ELIMINADO) : (false, AppConstants.ERROR_ELIMINAR);
+                
+                if (result)
+                {
+                    Logger.Info($"Cliente eliminado ID: {id}");
+                    return (true, Messages.Clientes.CLIENTE_ELIMINADO);
+                }
+                
+                return (false, AppConstants.ERROR_ELIMINAR);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error eliminando cliente");
-                return (false, ex.Message);
+                Logger.Error(ex, $"Error eliminando cliente ID: {id}");
+                return (false, $"{AppConstants.ERROR_ELIMINAR}: {ex.Message}");
             }
         }
 
@@ -154,27 +246,31 @@ namespace GestionPedidos.Controllers
         {
             try
             {
+                // Validar que se haya ingresado un término de búsqueda
                 if (string.IsNullOrWhiteSpace(name))
-                {
                     return (false, "Ingrese un nombre para buscar.", null);
-                }
+
+                // Validar longitud mínima
+                if (name.Trim().Length < 2)
+                    return (false, "El término de búsqueda debe tener al menos 2 caracteres.", null);
 
                 var customers = _customerRepository.SearchCustomers(name);
 
                 if (customers == null)
-                    return (false, "Error al realizar la búsqueda.", null);
+                    return (false, AppConstants.ERROR_GUARDAR, null);
 
                 var customerList = new List<CustomerListDto>(customers);
 
                 if (customerList.Count == 0)
-                    return (true, "No se encontraron coincidencias.", customerList);
+                    return (true, AppConstants.NO_SE_ENCONTRARON_REGISTROS, customerList);
 
-                return (true, "Búsqueda exitosa.", customerList);
+                Logger.Info($"Búsqueda de clientes por '{name}': {customerList.Count} resultados");
+                return (true, $"Se encontraron {customerList.Count} cliente(s).", customerList);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, $"Error buscando clientes: {name}");
-                return (false, ex.Message, null);
+                return (false, $"Error al realizar la búsqueda: {ex.Message}", null);
             }
         }
 

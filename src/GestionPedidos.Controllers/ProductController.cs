@@ -1,4 +1,5 @@
 ﻿using GestionPedidos.Common.Security;
+using GestionPedidos.Common.Services;
 using GestionPedidos.DataAccess.Interfaces;
 using GestionPedidos.DataAccess.Repositories;
 using NLog;
@@ -103,28 +104,46 @@ namespace GestionPedidos.Controllers
         {
             try
             {
-                if (!GeneralValidator.IsNotEmpty(name))
+                // Validar nombre del producto (máximo 100 caracteres)
+                var nameValidation = GeneralValidator.ValidateLengthRange(name, 2, 100, "Nombre del producto");
+                if (!nameValidation.IsValid)
                 {
-                    Logger.Warn("Intento de crear producto sin nombre");
-                    return (false, AppConstants.CAMPO_REQUERIDO);
+                    Logger.Warn($"Validación fallida en nombre: {nameValidation.ErrorMessage}");
+                    return (false, nameValidation.ErrorMessage);
                 }
 
-                if (stock < 0)
+                // Validar descripción (máximo 500 caracteres, opcional)
+                if (!string.IsNullOrWhiteSpace(description) && description.Length > 500)
                 {
-                    Logger.Warn("Intento de crear producto con stock negativo");
-                    return (false, "El stock no puede ser negativo");
+                    Logger.Warn("Descripción excede 500 caracteres");
+                    return (false, "La descripción no puede exceder 500 caracteres.");
                 }
 
-                if (price < 0)
+                // Validar stock (debe ser no negativo)
+                if (!GeneralValidator.ValidateNonNegativeInt(stock))
                 {
-                    Logger.Warn("Intento de crear producto con precio negativo");
-                    return (false, "El precio no puede ser negativo");
+                    Logger.Warn($"Intento de crear producto con stock negativo: {stock}");
+                    return (false, "El stock no puede ser negativo.");
+                }
+
+                // Validar precio (debe ser positivo y con formato decimal correcto)
+                if (!GeneralValidator.ValidatePositiveDecimal(price))
+                {
+                    Logger.Warn($"Intento de crear producto con precio no válido: {price}");
+                    return (false, "El precio debe ser mayor a cero.");
+                }
+
+                // Validar que el precio no exceda el límite (99,999,999.99)
+                if (!GeneralValidator.ValidateRange(price, 0.01m, 99999999.99m))
+                {
+                    Logger.Warn($"Precio fuera de rango válido: {price}");
+                    return (false, "El precio debe estar entre $0.01 y $99,999,999.99");
                 }
 
                 var product = new Product
                 {
-                    ProductName = name,
-                    Description = description,
+                    ProductName = name.Trim(),
+                    Description = description?.Trim(),
                     StockQuantity = stock,
                     SalePrice = price
                 };
@@ -148,6 +167,13 @@ namespace GestionPedidos.Controllers
                 }
 
                 Logger.Info("Producto creado exitosamente: {productName}", product.ProductName);
+                
+                // Notificar si el stock es bajo al momento de crear
+                if (stock <= 10 && stock > 0)
+                {
+                    Logger.Info($"Producto creado con stock bajo: {name} ({stock} unidades)");
+                }
+
                 return (true, Messages.Productos.PRODUCTO_GUARDADO);
             }
             catch (Exception ex)
@@ -161,35 +187,54 @@ namespace GestionPedidos.Controllers
         {
             try
             {
+                // Validar ID
                 if (id <= 0)
                 {
                     Logger.Warn("Intento de actualizar producto con ID inválido");
                     return (false, "ID de producto inválido");
                 }
 
-                if (!GeneralValidator.IsNotEmpty(name))
+                // Validar nombre del producto (máximo 100 caracteres)
+                var nameValidation = GeneralValidator.ValidateLengthRange(name, 2, 100, "Nombre del producto");
+                if (!nameValidation.IsValid)
                 {
-                    Logger.Warn("Intento de actualizar producto sin nombre");
-                    return (false, AppConstants.CAMPO_REQUERIDO);
+                    Logger.Warn($"Validación fallida en nombre: {nameValidation.ErrorMessage}");
+                    return (false, nameValidation.ErrorMessage);
                 }
 
-                if (stock < 0)
+                // Validar descripción (máximo 500 caracteres, opcional)
+                if (!string.IsNullOrWhiteSpace(description) && description.Length > 500)
                 {
-                    Logger.Warn("Intento de actualizar producto con stock negativo");
-                    return (false, "El stock no puede ser negativo");
+                    Logger.Warn("Descripción excede 500 caracteres");
+                    return (false, "La descripción no puede exceder 500 caracteres.");
                 }
 
-                if (price < 0)
+                // Validar stock (debe ser no negativo)
+                if (!GeneralValidator.ValidateNonNegativeInt(stock))
                 {
-                    Logger.Warn("Intento de actualizar producto con precio negativo");
-                    return (false, "El precio no puede ser negativo");
+                    Logger.Warn($"Intento de actualizar producto con stock negativo: {stock}");
+                    return (false, "El stock no puede ser negativo.");
+                }
+
+                // Validar precio (debe ser positivo)
+                if (!GeneralValidator.ValidatePositiveDecimal(price))
+                {
+                    Logger.Warn($"Intento de actualizar producto con precio no válido: {price}");
+                    return (false, "El precio debe ser mayor a cero.");
+                }
+
+                // Validar que el precio no exceda el límite (99,999,999.99)
+                if (!GeneralValidator.ValidateRange(price, 0.01m, 99999999.99m))
+                {
+                    Logger.Warn($"Precio fuera de rango válido: {price}");
+                    return (false, "El precio debe estar entre $0.01 y $99,999,999.99");
                 }
 
                 var product = new Product
                 {
                     IdProduct = id,
-                    ProductName = name,
-                    Description = description,
+                    ProductName = name.Trim(),
+                    Description = description?.Trim(),
                     StockQuantity = stock,
                     SalePrice = price,
                     Status = (EstadoProducto)status // Convertir byte a enum
@@ -212,6 +257,13 @@ namespace GestionPedidos.Controllers
                 }
 
                 Logger.Info("Producto actualizado exitosamente: {productName}", product.ProductName);
+                
+                // Notificar si el stock es bajo
+                if (stock <= 10 && stock > 0)
+                {
+                    Logger.Info($"Producto actualizado con stock bajo: {name} ({stock} unidades)");
+                }
+
                 return (true, Messages.Productos.PRODUCTO_ACTUALIZADO);
             }
             catch (Exception ex)
@@ -262,11 +314,18 @@ namespace GestionPedidos.Controllers
             try
             {
                 Logger.Debug("Buscando productos por nombre: {name}", name);
+                
+                // Validar que se haya ingresado un término de búsqueda
                 if (!GeneralValidator.IsNotEmpty(name))
                 {
                     Logger.Warn("Intento de búsqueda de productos con nombre vacío");
-                    return (false, AppConstants.CAMPO_REQUERIDO, null);
+                    return (false, "Ingrese un nombre para buscar.", null);
                 }
+
+                // Validar longitud mínima
+                if (name.Trim().Length < 2)
+                    return (false, "El término de búsqueda debe tener al menos 2 caracteres.", null);
+
                 var products = _productRepository.SearchProducts(name);
 
                 if (products == null)
@@ -279,12 +338,12 @@ namespace GestionPedidos.Controllers
 
                 if (productList.Count == 0)
                 {
-                    Logger.Info("No se encontraron productos registrados.");
+                    Logger.Info("No se encontraron productos con el término de búsqueda.");
                     return (true, AppConstants.NO_SE_ENCONTRARON_REGISTROS, productList);
                 }
 
                 Logger.Info($"Se recuperaron {productList.Count} productos del repositorio");
-                return (true, "Productos recuperados correctamente.", productList);
+                return (true, $"Se encontraron {productList.Count} producto(s).", productList);
             }
             catch (Exception ex)
             {

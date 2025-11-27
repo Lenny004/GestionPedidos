@@ -1,5 +1,6 @@
 ﻿using GestionPedidos.Common.Constants;
 using GestionPedidos.Common.Security;
+using GestionPedidos.Common.Services;
 using GestionPedidos.Common.Validation;
 using GestionPedidos.DataAccess.Interfaces;
 using GestionPedidos.DataAccess.Repositories;
@@ -92,36 +93,51 @@ namespace GestionPedidos.Controllers
                     return (false, AppConstants.SESION_EXPIRADA);
                 }
 
-                // Validaciones de campos requeridos
-                if (!GeneralValidator.IsNotEmpty(userName))
+                // Validar nombre de usuario (máximo 50 caracteres según estándares)
+                var userNameValidation = GeneralValidator.ValidateLengthRange(userName, 3, 50, "Nombre de usuario");
+                if (!userNameValidation.IsValid)
                 {
-                    Logger.Warn("Intento de crear usuario sin nombre de usuario");
-                    return (false, "El nombre de usuario es requerido");
+                    Logger.Warn($"Validación fallida en nombre de usuario: {userNameValidation.ErrorMessage}");
+                    return (false, userNameValidation.ErrorMessage);
                 }
 
+                // Validar que el username no tenga espacios
+                if (userName.Trim().Contains(" "))
+                {
+                    Logger.Warn($"Intento de crear usuario con espacios: {userName}");
+                    return (false, "El nombre de usuario no puede contener espacios.");
+                }
+
+                // Validar contraseña
                 if (!GeneralValidator.IsNotEmpty(password))
                 {
                     Logger.Warn($"Intento de crear usuario sin contraseña para usuario: {userName}");
                     return (false, "La contraseña es requerida");
                 }
 
-                if (!GeneralValidator.IsNotEmpty(fullName))
+                // Validar nombre completo (máximo 100 caracteres según estándares)
+                var fullNameValidation = GeneralValidator.ValidateLengthRange(fullName, 3, 100, "Nombre completo");
+                if (!fullNameValidation.IsValid)
                 {
-                    Logger.Warn($"Intento de crear usuario sin nombre completo para usuario: {userName}");
-                    return (false, "El nombre completo es requerido");
+                    Logger.Warn($"Validación fallida en nombre completo: {fullNameValidation.ErrorMessage}");
+                    return (false, fullNameValidation.ErrorMessage);
                 }
 
+                // Validar rol
                 if (idRole <= 0)
                 {
                     Logger.Warn($"Intento de crear usuario sin rol válido para usuario: {userName}");
                     return (false, "Debe seleccionar un rol válido");
                 }
 
-                // Validar formato de correo solo si se proporciona
-                if (!string.IsNullOrWhiteSpace(email) && !GeneralValidator.ValidateEmail(email))
+                // Validar formato de correo según RFC 5321 (máximo 254 caracteres)
+                if (!string.IsNullOrWhiteSpace(email))
                 {
-                    Logger.Warn($"Intento de crear usuario con email inválido: {email}");
-                    return (false, AppConstants.CORREO_INVALIDO);
+                    if (!GeneralValidator.ValidateEmailRFC(email, 254))
+                    {
+                        Logger.Warn($"Intento de crear usuario con email inválido: {email}");
+                        return (false, "El formato del correo electrónico es inválido o excede 254 caracteres.");
+                    }
                 }
 
                 // Validar fortaleza de contraseña
@@ -174,37 +190,43 @@ namespace GestionPedidos.Controllers
         {
             try
             {
-                // Validaciones
+                // Validar ID
                 if (id <= 0)
                 {
                     Logger.Warn("Intento de actualizar usuario con ID inválido");
                     return (false, "ID de usuario inválido");
                 }
 
-                if (!GeneralValidator.IsNotEmpty(fullName))
+                // Validar nombre completo (máximo 100 caracteres según estándares)
+                var fullNameValidation = GeneralValidator.ValidateLengthRange(fullName, 3, 100, "Nombre completo");
+                if (!fullNameValidation.IsValid)
                 {
-                    Logger.Warn("Intento de actualizar usuario sin nombre completo");
-                    return (false, "El nombre completo es requerido");
+                    Logger.Warn($"Validación fallida en nombre completo: {fullNameValidation.ErrorMessage}");
+                    return (false, fullNameValidation.ErrorMessage);
                 }
 
+                // Validar rol
                 if (idRole <= 0)
                 {
                     Logger.Warn("Intento de actualizar usuario sin rol válido");
                     return (false, "Debe seleccionar un rol válido");
                 }
 
-                // Validar email si se proporciona
-                if (!string.IsNullOrEmpty(email) && !GeneralValidator.ValidateEmail(email))
+                // Validar email según RFC 5321 (máximo 254 caracteres)
+                if (!string.IsNullOrWhiteSpace(email))
                 {
-                    Logger.Warn("Intento de actualizar usuario con email inválido");
-                    return (false, "El formato del email no es válido");
+                    if (!GeneralValidator.ValidateEmailRFC(email, 254))
+                    {
+                        Logger.Warn($"Intento de actualizar usuario con email inválido: {email}");
+                        return (false, "El formato del correo electrónico es inválido o excede 254 caracteres.");
+                    }
                 }
 
                 var user = new User
                 {
                     IdUser = id,
-                    FullName = fullName,
-                    Email = email,
+                    FullName = fullName.Trim(),
+                    Email = email?.Trim(),
                     IdRole = idRole,
                     IsActive = isActive
                 };
@@ -213,11 +235,11 @@ namespace GestionPedidos.Controllers
 
                 if (!updated)
                 {
-                    Logger.Warn("No se pudo actualizar el usuario", user.Username);
+                    Logger.Warn($"No se pudo actualizar el usuario ID: {id}");
                     return (false, AppConstants.ERROR_ACTUALIZAR);
                 }
 
-                Logger.Info("Usuario actualizado exitosamente", user.Username);
+                Logger.Info($"Usuario actualizado exitosamente ID: {id}");
                 return (true, Messages.Usuarios.USUARIO_ACTUALIZADO);
             }
             catch (Exception ex)

@@ -126,6 +126,140 @@ namespace GestionPedidos.Common.Constants
         public const int MIN_PASSWORD_LENGTH = 6;
         #endregion
 
+        #region Longitudes de Campos según Estándares
+        // Usuarios
+        /// <summary>
+        /// Longitud máxima del nombre de usuario (50 según estándares corporativos)
+        /// </summary>
+        public const int MAX_USERNAME_LENGTH = 50;
+
+        /// <summary>
+        /// Longitud mínima del nombre de usuario
+        /// </summary>
+        public const int MIN_USERNAME_LENGTH = 3;
+
+        /// <summary>
+        /// Longitud máxima del nombre completo (100 caracteres)
+        /// </summary>
+        public const int MAX_FULLNAME_LENGTH = 100;
+
+        /// <summary>
+        /// Longitud máxima del email según RFC 5321 (254 caracteres)
+        /// </summary>
+        public const int MAX_EMAIL_LENGTH = 254;
+
+        /// <summary>
+        /// Longitud máxima del hash de contraseña (255 para SHA-256 con sal)
+        /// </summary>
+        public const int MAX_PASSWORD_HASH_LENGTH = 255;
+
+        // Clientes
+        /// <summary>
+        /// Longitud máxima del nombre del cliente (50 caracteres)
+        /// </summary>
+        public const int MAX_CUSTOMER_FIRSTNAME_LENGTH = 50;
+
+        /// <summary>
+        /// Longitud máxima del apellido del cliente (50 caracteres)
+        /// </summary>
+        public const int MAX_CUSTOMER_LASTNAME_LENGTH = 50;
+
+        /// <summary>
+        /// Longitud máxima del teléfono según ITU-T (20 caracteres)
+        /// </summary>
+        public const int MAX_PHONE_LENGTH = 20;
+
+        /// <summary>
+        /// Longitud mínima del teléfono (8 dígitos)
+        /// </summary>
+        public const int MIN_PHONE_LENGTH = 8;
+
+        /// <summary>
+        /// Longitud máxima de la dirección (255 caracteres)
+        /// </summary>
+        public const int MAX_ADDRESS_LENGTH = 255;
+
+        // Productos
+        /// <summary>
+        /// Longitud máxima del nombre del producto (100 caracteres)
+        /// </summary>
+        public const int MAX_PRODUCT_NAME_LENGTH = 100;
+
+        /// <summary>
+        /// Longitud máxima de la descripción del producto (500 caracteres)
+        /// </summary>
+        public const int MAX_PRODUCT_DESCRIPTION_LENGTH = 500;
+
+        /// <summary>
+        /// Precio máximo permitido (DECIMAL(10,2) = 99,999,999.99)
+        /// </summary>
+        public const decimal MAX_PRICE = 99999999.99m;
+
+        /// <summary>
+        /// Precio mínimo permitido
+        /// </summary>
+        public const decimal MIN_PRICE = 0.01m;
+
+        // Pedidos
+        /// <summary>
+        /// Longitud máxima de los comentarios del pedido (500 caracteres)
+        /// </summary>
+        public const int MAX_ORDER_COMMENTS_LENGTH = 500;
+
+        /// <summary>
+        /// Longitud máxima del estado del pedido (20 caracteres)
+        /// </summary>
+        public const int MAX_ORDER_STATUS_LENGTH = 20;
+
+        // Catálogos
+        /// <summary>
+        /// Longitud máxima del nombre de rol (50 caracteres)
+        /// </summary>
+        public const int MAX_ROLE_NAME_LENGTH = 50;
+
+        /// <summary>
+        /// Longitud máxima de la descripción de rol (200 caracteres)
+        /// </summary>
+        public const int MAX_ROLE_DESCRIPTION_LENGTH = 200;
+
+        /// <summary>
+        /// Longitud máxima del nombre de departamento (100 caracteres)
+        /// </summary>
+        public const int MAX_DEPARTMENT_NAME_LENGTH = 100;
+
+        /// <summary>
+        /// Longitud máxima del nombre de ciudad (100 caracteres)
+        /// </summary>
+        public const int MAX_CITY_NAME_LENGTH = 100;
+
+        // Historial
+        /// <summary>
+        /// Longitud máxima del nombre de tabla afectada (50 caracteres)
+        /// </summary>
+        public const int MAX_HISTORY_TABLE_LENGTH = 50;
+
+        /// <summary>
+        /// Longitud máxima del tipo de acción (20 caracteres)
+        /// </summary>
+        public const int MAX_HISTORY_ACTION_LENGTH = 20;
+
+        /// <summary>
+        /// Longitud máxima de la descripción del historial (500 caracteres)
+        /// </summary>
+        public const int MAX_HISTORY_DESCRIPTION_LENGTH = 500;
+
+        // Umbrales de Stock
+        /// <summary>
+        /// Umbral de stock bajo (10 unidades)
+        /// </summary>
+        public const int LOW_STOCK_THRESHOLD = 10;
+
+        /// <summary>
+        /// Umbral de stock crítico (5 unidades)
+        /// </summary>
+        public const int CRITICAL_STOCK_THRESHOLD = 5;
+        #endregion
+
         #region Formato de Fechas
         /// <summary>
         /// Formato de fecha corto (dd/MM/yyyy)

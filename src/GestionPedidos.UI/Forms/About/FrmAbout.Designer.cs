@@ -165,10 +165,10 @@
             this.lblNames.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
             this.lblNames.Location = new System.Drawing.Point(51, 542);
             this.lblNames.Name = "lblNames";
-            this.lblNames.Size = new System.Drawing.Size(303, 75);
+            this.lblNames.Size = new System.Drawing.Size(430, 75);
             this.lblNames.TabIndex = 34;
-            this.lblNames.Text = "- Mauro José Alfaro Amaya\r\n- Jonathan Adonay Alas Giron\r\n- Lenny Adrián Elías Sán" +
-    "chez";
+            this.lblNames.Text = "- Mauro José Alfaro Amaya      | AA100424\r\n- Jonathan Adonay Alas Giron  | AG1001" +
+    "24\r\n- Lenny Adrián Elías Sánchez   | ES100124";
             // 
             // pictureBox1
             // 

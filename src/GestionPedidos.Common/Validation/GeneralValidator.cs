@@ -11,7 +11,7 @@ namespace GestionPedidos.Common.Validation
     public static class GeneralValidator
     { 
         /// <summary>
-        /// Valida si una cadena no es nula, vacía o solo contiene espacios.
+        /// Valida si una cadena no es nula, vacï¿½a o solo contiene espacios.
         /// </summary>
         public static bool IsNotEmpty(string value)
         {
@@ -19,7 +19,7 @@ namespace GestionPedidos.Common.Validation
         }
 
         /// <summary>
-        /// Valida si una cadena cumple con la longitud mínima y máxima.
+        /// Valida si una cadena cumple con la longitud mï¿½nima y mï¿½xima.
         /// </summary>
         public static bool ValidateLength(string value, int minLength, int maxLength)
         {
@@ -30,66 +30,66 @@ namespace GestionPedidos.Common.Validation
         }
 
         /// <summary>
-        /// Valida si el formato del correo electrónico es correcto.
+        /// Valida si el formato del correo electrï¿½nico es correcto.
         /// </summary>
         public static bool ValidateEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
                 return false;
 
-            // Regex básico para validar formato de email
+            // Regex bï¿½sico para validar formato de email
             string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             return Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase);
         }
 
         /// <summary>
-        /// Valida la fortaleza de una contraseña (mínimo 8 caracteres, mayúsculas, minúsculas, número y símbolo).
+        /// Valida la fortaleza de una contraseï¿½a (mï¿½nimo 8 caracteres, mayï¿½sculas, minï¿½sculas, nï¿½mero y sï¿½mbolo).
         /// </summary>
         public static string ValidatePasswordStrength(string password)
         {
             var errors = new List<string>();
 
-            // Definición de caracteres especiales
-            // Esta expresión incluye caracteres que no son letras ni dígitos
+            // Definiciï¿½n de caracteres especiales
+            // Esta expresiï¿½n incluye caracteres que no son letras ni dï¿½gitos
             var specialChars = new char[] { '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '{', '}', '[', ']', ':', ';', '"', '\'', '<', '>', ',', '.', '?', '/' };
 
-            // 1. Regla: Mínimo 6 caracteres
+            // 1. Regla: Mï¿½nimo 6 caracteres
             if (password.Length < 6)
             {
                 errors.Add("Debe tener al menos 6 caracteres.");
             }
 
-            // 2. Regla: Al menos una letra mayúscula
+            // 2. Regla: Al menos una letra mayï¿½scula
             if (!password.Any(char.IsUpper))
             {
-                errors.Add("Debe contener al menos una letra mayúscula.");
+                errors.Add("Debe contener al menos una letra mayï¿½scula.");
             }
 
-            // 3. Regla: Al menos una letra minúscula
+            // 3. Regla: Al menos una letra minï¿½scula
             if (!password.Any(char.IsLower))
             {
-                errors.Add("Debe contener al menos una letra minúscula.");
+                errors.Add("Debe contener al menos una letra minï¿½scula.");
             }
 
-            // 4. Regla: Al menos un dígito (número)
+            // 4. Regla: Al menos un dï¿½gito (nï¿½mero)
             if (!password.Any(char.IsDigit))
             {
-                errors.Add("Debe contener al menos un número.");
+                errors.Add("Debe contener al menos un nï¿½mero.");
             }
 
-            // 5. Regla: Al menos un símbolo o carácter especial
+            // 5. Regla: Al menos un sï¿½mbolo o carï¿½cter especial
             if (!password.Any(c => !char.IsLetterOrDigit(c)))
             {
-                errors.Add("Debe contener al menos un símbolo o carácter especial.");
+                errors.Add("Debe contener al menos un sï¿½mbolo o carï¿½cter especial.");
             }
 
             // Unir todos los errores
             if (errors.Count > 0)
             {
-                return "La contraseña no cumple con los requisitos:\n- " + string.Join("\n- ", errors);
+                return "La contraseï¿½a no cumple con los requisitos:\n- " + string.Join("\n- ", errors);
             }
 
-            return string.Empty; // Devuelve cadena vacía si es válida
+            return string.Empty; // Devuelve cadena vacï¿½a si es vï¿½lida
         }
 
         /// <summary>
@@ -100,12 +100,12 @@ namespace GestionPedidos.Common.Validation
             if (string.IsNullOrWhiteSpace(value))
                 return false;
 
-            string pattern = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$";
+            string pattern = @"^[a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\s]+$";
             return Regex.IsMatch(value, pattern);
         }
 
         /// <summary>
-        /// Valida si el campo de texto solo contiene dígitos numéricos.
+        /// Valida si el campo de texto solo contiene dÃ­gitos numÃ©ricos.
         /// </summary>
         public static bool ValidateOnlyNumbers(string value)
         {
@@ -114,5 +114,193 @@ namespace GestionPedidos.Common.Validation
 
             return Regex.IsMatch(value, @"^\d+$");
         }
+
+        #region Validaciones Adicionales SegÃºn EstÃ¡ndares
+
+        /// <summary>
+        /// Valida el formato y longitud de un nÃºmero de telÃ©fono (8-20 dÃ­gitos segÃºn ITU-T)
+        /// </summary>
+        /// <param name="phone">NÃºmero de telÃ©fono a validar</param>
+        /// <returns>True si es vÃ¡lido, False en caso contrario</returns>
+        public static bool ValidatePhoneNumber(string phone)
+        {
+            if (string.IsNullOrWhiteSpace(phone))
+                return false;
+
+            // Remover espacios, guiones y parÃ©ntesis para validar solo dÃ­gitos
+            string cleanPhone = Regex.Replace(phone, @"[\s\-\(\)\+]", "");
+
+            // Validar que solo contenga dÃ­gitos y tenga entre 8 y 20 caracteres
+            return Regex.IsMatch(cleanPhone, @"^\d{8,20}$");
+        }
+
+        /// <summary>
+        /// Valida que un nÃºmero decimal sea positivo
+        /// </summary>
+        /// <param name="value">Valor a validar</param>
+        /// <returns>True si es mayor que cero</returns>
+        public static bool ValidatePositiveDecimal(decimal value)
+        {
+            return value > 0;
+        }
+
+        /// <summary>
+        /// Valida que un nÃºmero entero sea positivo
+        /// </summary>
+        /// <param name="value">Valor a validar</param>
+        /// <returns>True si es mayor que cero</returns>
+        public static bool ValidatePositiveInt(int value)
+        {
+            return value > 0;
+        }
+
+        /// <summary>
+        /// Valida que un nÃºmero entero no sea negativo (puede ser cero)
+        /// </summary>
+        /// <param name="value">Valor a validar</param>
+        /// <returns>True si es mayor o igual a cero</returns>
+        public static bool ValidateNonNegativeInt(int value)
+        {
+            return value >= 0;
+        }
+
+        /// <summary>
+        /// Valida que un nÃºmero decimal no sea negativo (puede ser cero)
+        /// </summary>
+        /// <param name="value">Valor a validar</param>
+        /// <returns>True si es mayor o igual a cero</returns>
+        public static bool ValidateNonNegativeDecimal(decimal value)
+        {
+            return value >= 0;
+        }
+
+        /// <summary>
+        /// Valida el formato de un nÃºmero decimal con precisiÃ³n especÃ­fica
+        /// </summary>
+        /// <param name="value">Valor como cadena</param>
+        /// <param name="maxDecimals">MÃ¡ximo de decimales permitidos (por defecto 2)</param>
+        /// <returns>True si el formato es vÃ¡lido</returns>
+        public static bool ValidateDecimalFormat(string value, int maxDecimals = 2)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return false;
+
+            // PatrÃ³n para validar decimales: permite nÃºmeros con hasta maxDecimals decimales
+            string pattern = $@"^\d+(\.\d{{1,{maxDecimals}}})?$";
+            return Regex.IsMatch(value, pattern);
+        }
+
+        /// <summary>
+        /// Valida que una fecha sea futura
+        /// </summary>
+        /// <param name="date">Fecha a validar</param>
+        /// <returns>True si la fecha es posterior a hoy</returns>
+        public static bool ValidateFutureDate(DateTime date)
+        {
+            return date.Date > DateTime.Now.Date;
+        }
+
+        /// <summary>
+        /// Valida que una fecha sea pasada
+        /// </summary>
+        /// <param name="date">Fecha a validar</param>
+        /// <returns>True si la fecha es anterior a hoy</returns>
+        public static bool ValidatePastDate(DateTime date)
+        {
+            return date.Date < DateTime.Now.Date;
+        }
+
+        /// <summary>
+        /// Valida que un rango de fechas sea vÃ¡lido (inicio antes de fin)
+        /// </summary>
+        /// <param name="startDate">Fecha de inicio</param>
+        /// <param name="endDate">Fecha de fin</param>
+        /// <returns>True si el rango es vÃ¡lido</returns>
+        public static bool ValidateDateRange(DateTime startDate, DateTime endDate)
+        {
+            return startDate <= endDate;
+        }
+
+        /// <summary>
+        /// Valida el formato de email segÃºn RFC 5321 (mÃ¡ximo 254 caracteres)
+        /// </summary>
+        /// <param name="email">Email a validar</param>
+        /// <param name="maxLength">Longitud mÃ¡xima (por defecto 254 segÃºn RFC 5321)</param>
+        /// <returns>True si es vÃ¡lido</returns>
+        public static bool ValidateEmailRFC(string email, int maxLength = 254)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            if (email.Length > maxLength)
+                return false;
+
+            // Regex mejorado para validar email segÃºn RFC 5321
+            string pattern = @"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
+            return Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase);
+        }
+
+        /// <summary>
+        /// Valida que la longitud de una cadena estÃ© dentro de un rango especÃ­fico
+        /// </summary>
+        /// <param name="value">Cadena a validar</param>
+        /// <param name="minLength">Longitud mÃ­nima</param>
+        /// <param name="maxLength">Longitud mÃ¡xima</param>
+        /// <param name="fieldName">Nombre del campo (para mensajes de error)</param>
+        /// <returns>Tupla con (IsValid, ErrorMessage)</returns>
+        public static (bool IsValid, string ErrorMessage) ValidateLengthRange(string value, int minLength, int maxLength, string fieldName = "Campo")
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return (false, $"{fieldName} es requerido.");
+
+            int length = value.Trim().Length;
+
+            if (length < minLength)
+                return (false, $"{fieldName} debe tener al menos {minLength} caracteres.");
+
+            if (length > maxLength)
+                return (false, $"{fieldName} no puede exceder {maxLength} caracteres.");
+
+            return (true, string.Empty);
+        }
+
+        /// <summary>
+        /// Valida que una cadena solo contenga letras, nÃºmeros y espacios
+        /// </summary>
+        /// <param name="value">Valor a validar</param>
+        /// <returns>True si solo contiene caracteres alfanumÃ©ricos y espacios</returns>
+        public static bool ValidateAlphanumeric(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return false;
+
+            return Regex.IsMatch(value, @"^[a-zA-Z0-9\s]+$");
+        }
+
+        /// <summary>
+        /// Valida que un valor numÃ©rico estÃ© dentro de un rango
+        /// </summary>
+        /// <param name="value">Valor a validar</param>
+        /// <param name="min">Valor mÃ­nimo</param>
+        /// <param name="max">Valor mÃ¡ximo</param>
+        /// <returns>True si estÃ¡ dentro del rango</returns>
+        public static bool ValidateRange(decimal value, decimal min, decimal max)
+        {
+            return value >= min && value <= max;
+        }
+
+        /// <summary>
+        /// Valida que un valor entero estÃ© dentro de un rango
+        /// </summary>
+        /// <param name="value">Valor a validar</param>
+        /// <param name="min">Valor mÃ­nimo</param>
+        /// <param name="max">Valor mÃ¡ximo</param>
+        /// <returns>True si estÃ¡ dentro del rango</returns>
+        public static bool ValidateRange(int value, int min, int max)
+        {
+            return value >= min && value <= max;
+        }
+
+        #endregion
     }
 }
