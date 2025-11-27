@@ -50,6 +50,7 @@
     <Compile Include="DeliveryController.cs" />
     <Compile Include="ProductController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsersController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GestionPedidos.Common\GestionPedidos.Common.csproj">

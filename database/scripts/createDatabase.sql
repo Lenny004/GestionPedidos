@@ -132,8 +132,6 @@ CREATE TABLE History (
     recordId INT NOT NULL,
     description VARCHAR(500),
     idUser INT NOT NULL,
-    createdAt DATETIME DEFAULT GETDATE(),
-    updatedAt DATETIME NULL,
-    deletedAt DATETIME NULL,
+    createdAt DATETIME DEFAULT GETDATE()
     FOREIGN KEY (idUser) REFERENCES Users(idUser)
 );

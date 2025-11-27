@@ -11,6 +11,7 @@ using GestionPedidos.UI.Forms.About;
 using GestionPedidos.UI.Forms.Customers;
 using GestionPedidos.UI.Forms.Products;
 using GestionPedidos.UI.Forms.Delivery;
+using GestionPedidos.UI.Forms.Users;
 
 namespace GestionPedidos.UI.Forms.Main
 {
@@ -81,6 +82,11 @@ namespace GestionPedidos.UI.Forms.Main
         private void btnDelivery_Click(object sender, EventArgs e)
         {
             openChildForm(new FrmDelivery());
+        }
+
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            openChildForm(new FrmUsers());
         }
     }
 }

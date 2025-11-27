@@ -5,7 +5,6 @@ AFTER INSERT
 AS
 BEGIN
     SET NOCOUNT ON;
-    
     INSERT INTO History (affectedTable, actionType, recordId, description, idUser)
     SELECT 
         'Customers',

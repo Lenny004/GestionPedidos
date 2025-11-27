@@ -247,5 +247,100 @@ namespace GestionPedidos.Controllers
         }
 
         public bool IsUserLoggedIn() => SessionManager.IsLoggedIn;
+
+        /// <summary>
+        /// Verifica si es el primer uso del sistema (no hay usuarios registrados)
+        /// </summary>
+        public bool IsFirstUse()
+        {
+            try
+            {
+                return _usuarioRepository.HasAnyUser();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error al verificar primer uso del sistema");
+                return false; // Por seguridad, asumimos que no es primer uso
+            }
+        }
+
+        /// <summary>
+        /// Registra el primer usuario administrador del sistema
+        /// </summary>
+        public (bool Success, string Message) RegistrarPrimerAdmin(string nombreUsuario, string contraseña,
+            string nombreCompleto, string correo)
+        {
+            try
+            {
+                Logger.Debug($"Intento de registro de primer administrador: {nombreUsuario}");
+
+                // Verificar que realmente sea primer uso
+                if (!IsFirstUse())
+                {
+                    Logger.Warn("Intento de registro de primer admin cuando ya existen usuarios");
+                    return (false, "Ya existen usuarios en el sistema. Use el proceso de registro normal.");
+                }
+
+                // Validaciones completas
+                if (!GeneralValidator.IsNotEmpty(nombreUsuario))
+                {
+                    return (false, "El nombre de usuario es requerido");
+                }
+
+                if (!GeneralValidator.IsNotEmpty(contraseña))
+                {
+                    return (false, "La contraseña es requerida");
+                }
+
+                if (!GeneralValidator.IsNotEmpty(nombreCompleto))
+                {
+                    return (false, "El nombre completo es requerido");
+                }
+
+                // Validar formato de correo si se proporciona
+                if (!string.IsNullOrWhiteSpace(correo) && !GeneralValidator.ValidateEmail(correo))
+                {
+                    return (false, AppConstants.CORREO_INVALIDO);
+                }
+
+                // Validar fortaleza de contraseña
+                string passwordValidationMessage = GeneralValidator.ValidatePasswordStrength(contraseña);
+                if (!string.IsNullOrEmpty(passwordValidationMessage))
+                {
+                    return (false, passwordValidationMessage);
+                }
+
+                // Crear primer administrador con idRole = 1
+                User primerAdmin = new User
+                {
+                    Username = nombreUsuario.Trim(),
+                    PasswordHash = PasswordHelper.HashPassword(contraseña),
+                    FullName = nombreCompleto.Trim(),
+                    Email = correo?.Trim(),
+                    IdRole = 1, // Administrador
+                    Rol = new Rol { IdRole = 1 },
+                    IsActive = true,
+                    CreatedAt = DateTime.Now
+                };
+
+                bool resultado = _usuarioRepository.CrearUsuario(primerAdmin);
+
+                if (resultado)
+                {
+                    Logger.Info($"Primer administrador registrado exitosamente: {nombreUsuario} ({nombreCompleto})");
+                    return (true, "Primer administrador creado exitosamente. Ahora puede iniciar sesión.");
+                }
+                else
+                {
+                    Logger.Error($"No se pudo crear el primer administrador: {nombreUsuario}");
+                    return (false, "No se pudo crear el administrador");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, $"Error inesperado al registrar primer admin: {nombreUsuario}");
+                return (false, "Error al registrar administrador. Intente nuevamente.");
+            }
+        }
     }
 }

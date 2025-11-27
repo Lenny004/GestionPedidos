@@ -1,7 +1,9 @@
 ﻿using GestionPedidos.DataAccess.Configuration;
 using GestionPedidos.DataAccess.Interfaces;
+using GestionPedidos.Models.DTO;
 using GestionPedidos.Models.Entities;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace GestionPedidos.DataAccess.Repositories
@@ -172,6 +174,32 @@ namespace GestionPedidos.DataAccess.Repositories
             }
         }
 
+        /// <summary>
+        /// Verifica si existe al menos un usuario en el sistema
+        /// </summary>
+        public bool HasAnyUser()
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM Users";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        int count = (int)cmd.ExecuteScalar();
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // En caso de error, asumimos que hay usuarios para evitar bypass de seguridad
+                return true;
+            }
+        }
+
         public bool UpdatePasswordByEmail(string email, string newPasswordHash)
         {
             // Esta consulta actualiza el hash en la tabla Users
@@ -207,6 +235,237 @@ namespace GestionPedidos.DataAccess.Repositories
                     return false;
                 }
             }
+        }
+
+        public IEnumerable<UsersListDto> ReadAllUsers()
+        {
+            var users = new List<UsersListDto>();
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    string query = @"
+                        SELECT
+                            u.idUser,
+                            u.userName,
+                            u.fullName,
+                            u.email,
+                            u.isActive,
+                            r.roleName,
+                            u.createdAt
+                        FROM Users AS u
+                        INNER JOIN Roles AS r ON u.idRole = r.idRole";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var user = new UsersListDto
+                                {
+                                    IdUser = Convert.ToInt32(reader["idUser"]),
+                                    Username = reader["userName"].ToString(),
+                                    FullName = reader["fullName"].ToString(),
+                                    Email = reader["email"] != DBNull.Value ? reader["email"].ToString() : null,
+                                    IsActive = Convert.ToBoolean(reader["isActive"]),
+                                    RoleName = reader["roleName"].ToString(),
+                                    CreatedAt = Convert.ToDateTime(reader["createdAt"])
+                                };
+                                users.Add(user);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al leer registros en usuarios: {ex.Message}", ex);
+            }
+            return users;
+        }
+
+        public User ReadOne(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    string query = @"
+                        SELECT
+                            u.idUser,
+                            u.userName,
+                            u.passwordHash,
+                            u.fullName,
+                            u.email,
+                            u.idRole,
+                            u.isActive,
+                            u.createdAt,
+                            u.updatedAt,
+                            u.deletedAt,
+                            r.roleName
+                        FROM Users AS u
+                        INNER JOIN Roles AS r ON u.idRole = r.idRole
+                        WHERE u.idUser = @Id";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", id);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new User
+                                {
+                                    IdUser = Convert.ToInt32(reader["idUser"]),
+                                    Username = reader["userName"].ToString(),
+                                    PasswordHash = reader["passwordHash"].ToString(),
+                                    FullName = reader["fullName"].ToString(),
+                                    Email = reader["email"] != DBNull.Value ? reader["email"].ToString() : null,
+                                    IdRole = Convert.ToInt32(reader["idRole"]),
+                                    Rol = new Rol { RoleName = reader["roleName"].ToString() },
+                                    IsActive = Convert.ToBoolean(reader["isActive"]),
+                                    CreatedAt = Convert.ToDateTime(reader["createdAt"]),
+                                    UpdatedAt = reader["updatedAt"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(reader["updatedAt"]) : null,
+                                    DeletedAt = reader["deletedAt"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(reader["deletedAt"]) : null
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al obtener el usuario: {ex.Message}", ex);
+            }
+
+            return null;
+        }
+
+        public bool Update(User user, int modifierUserId)
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    string query = @"
+                        UPDATE Users
+                        SET userName = @UserName,
+                            fullName = @FullName,
+                            email = @Email,
+                            idRole = @IdRole,
+                            isActive = @IsActive,
+                            updatedAt = GETDATE()
+                        WHERE idUser = @IdUser";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@IdUser", user.IdUser);
+                        cmd.Parameters.AddWithValue("@UserName", user.Username);
+                        cmd.Parameters.AddWithValue("@FullName", user.FullName);
+                        cmd.Parameters.AddWithValue("@Email", (object)user.Email ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@IdRole", user.IdRole);
+                        cmd.Parameters.AddWithValue("@IsActive", user.IsActive);
+
+                        int rows = cmd.ExecuteNonQuery();
+                        return rows > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al actualizar usuario: {ex.Message}", ex);
+            }
+        }
+
+        public bool Delete(int id, int modifierUserId)
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    string query = @"
+                        UPDATE Users 
+                        SET isActive = 0,
+                            updatedAt = GETDATE(),
+                            deletedAt = GETDATE() 
+                        WHERE idUser = @Id";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", id);
+
+                        int rows = cmd.ExecuteNonQuery();
+                        return rows > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al eliminar usuario: {ex.Message}", ex);
+            }
+        }
+
+        public IEnumerable<UsersListDto> SearchUsers(string userName)
+        {
+            var users = new List<UsersListDto>();
+            try
+            {
+                using (SqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    string query = @"
+                        SELECT
+                            u.idUser,
+                            u.userName,
+                            u.fullName,
+                            u.email,
+                            u.isActive,
+                            r.roleName,
+                            u.createdAt
+                        FROM Users AS u
+                        INNER JOIN Roles AS r ON u.idRole = r.idRole
+                        WHERE u.userName LIKE @UserName OR u.fullName LIKE @UserName";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UserName", $"%{userName}%");
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var user = new UsersListDto
+                                {
+                                    IdUser = Convert.ToInt32(reader["idUser"]),
+                                    Username = reader["userName"].ToString(),
+                                    FullName = reader["fullName"].ToString(),
+                                    Email = reader["email"] != DBNull.Value ? reader["email"].ToString() : null,
+                                    IsActive = Convert.ToBoolean(reader["isActive"]),
+                                    RoleName = reader["roleName"].ToString(),
+                                    CreatedAt = Convert.ToDateTime(reader["createdAt"])
+                                };
+                                users.Add(user);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al buscar usuario por nombre: {ex.Message}", ex);
+            }
+            return users;
         }
     }
 }

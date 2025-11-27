@@ -69,21 +69,51 @@ namespace GestionPedidos.UI
                 }
             }
 
-            //Mostrar Login primero
+            // Verificar si es el primer uso del sistema
+            var authController = new Controllers.AuthController();
+            bool isFirstUse = authController.IsFirstUse();
+
+            if (false)
+            {
+                // Mostrar mensaje de bienvenida
+                MessageBox.Show(
+                    "¡Bienvenido al Sistema de Gestión de Pedidos!\n\n" +
+                    "Es la primera vez que se ejecuta la aplicación.\n" +
+                    "Por favor, registre el usuario administrador principal.",
+                    "Configuración Inicial",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                // Mostrar formulario de primer uso (registro de admin)
+                //using (var firstUseForm = new FrmRegister(isFirstUse: true))
+                //{
+                //    if (firstUseForm.ShowDialog() != DialogResult.OK)
+                //    {
+                //        MessageBox.Show(
+                //            "Debe crear un usuario administrador para usar el sistema.",
+                //            "Configuración Requerida",
+                //            MessageBoxButtons.OK,
+                //            MessageBoxIcon.Warning);
+                //        return; // Salir si no completa el registro
+                //    }
+                //}
+
+                // Después de crear el admin, mostrar login
+                MessageBox.Show(
+                    "Administrador creado exitosamente.\n\n" +
+                    "Ahora puede iniciar sesión con sus credenciales.",
+                    "Configuración Completa",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            // Mostrar Login
             using (var login = new FrmLogin())
             {
                 if (login.ShowDialog() != DialogResult.OK)
-                    return; // Canceló o fallo login
+                    return; // Canceló o falló login
             }
 
-            //using (var dashbord = new FrmDashboard())
-            //{
-            //    if (dashbord.ShowDialog() != DialogResult.OK)
-            //        return; // Canceló o fallo login
-            //}
-
-            // Iniciar la aplicación principal
-            Application.Run(new FrmLogin());
+            // Ya no es necesario Application.Run porque ShowDialog ya maneja el loop
         }
     }
 }

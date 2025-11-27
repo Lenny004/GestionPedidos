@@ -35,46 +35,79 @@ namespace GestionPedidos.UI.Forms.Products
                     MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                // Convertimos a lista y asignamos
                 var data = products != null ? new List<ProductListDto>(products) : new List<ProductListDto>();
+
+                if (data.Count == 0)
+                {
+                    MessageBox.Show("La consulta se ejecutó correctamente pero no devolvió registros. Verifique que existan datos en la tabla Products.", "Sin datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
                 DataGridProduct.AutoGenerateColumns = true;
                 DataGridProduct.DataSource = data;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error inesperado: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show($"Error inesperado: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void LoadProduct(ProductListDto product)
+        private void LoadProductDetail(int idProduct)
         {
-            // Ir a la base de datos a traer TODOS los datos (incluida descripción)
-            var (success, message, fullProduct) = _productController.ReadOne(product.IdProduct);
+            var (success, message, fullProduct) = _productController.ReadOne(idProduct);
+
             if (success && fullProduct != null)
             {
+                // --- DATOS BÁSICOS ---
                 lblID.Text = "#" + fullProduct.IdProduct.ToString();
                 lblName.Text = fullProduct.ProductName;
                 lblDescription.Text = fullProduct.Description;
                 lblStock.Text = "Stock: " + fullProduct.StockQuantity.ToString();
                 lblPrice.Text = "Price: " + fullProduct.SalePrice.ToString("C2");
-                btnStatus.Text = fullProduct.IsActive ? "Activo" : "Inactivo";
-                lblCreationDate.Text = "Creation: " + (fullProduct.CreatedAt.ToString("g"));
-                lblAdded.Text = "Added by: " +  fullProduct.UserCreation;
-                // Fechas
+
+                if (btnStatus != null)
+                    btnStatus.Text = fullProduct.IsActive ? "Activo" : "Inactivo";
+
+                // Fecha de creación
+                lblCreationDate.Text = $"Creation Date: {fullProduct.CreatedAt:g}";
+
+                // SECCIÓN DE Fechas
                 bool hasUpdated = fullProduct.UpdatedAt.HasValue;
-                lblModifyDate.Visible = hasUpdated;
-                lblModifyDate.Text = "Modify: " + (hasUpdated ? fullProduct.UpdatedAt.Value.ToString("g") : "N/A");
-
                 bool hasDeleted = fullProduct.DeletedAt.HasValue;
-                lblDeletedDate.Visible = hasDeleted;
-                lblDeletedDate.Text = "Deleted: " + (hasDeleted ? fullProduct.DeletedAt.Value.ToString("g") : "N/A");
 
-                // Usuario que modificó
-                bool hasModifier = !string.IsNullOrEmpty(fullProduct.UserModification);
-                lblModify.Visible = hasModifier;
-                lblModify.Text = "Modified by: " + (hasModifier ? fullProduct.UserModification : "N/A")  ;
+                // Fecha de Modificación
+                if (lblModifyDate != null)
+                {
+                    lblModifyDate.Visible = hasUpdated;
+                    lblModifyDate.Text = hasUpdated ? $"Modify Date: {fullProduct.UpdatedAt.Value:g}" : "";
+                }
+
+                // Fecha de Eliminación
+                if (lblDeletedDate != null)
+                {
+                    lblDeletedDate.Visible = hasDeleted;
+                    lblDeletedDate.Text = hasDeleted ? $"Deleted Date: {fullProduct.DeletedAt.Value:g}" : "";
+                }
+
+                // Usuario Creador
+                if (lblAdded != null)
+                {
+                    lblAdded.Visible = true;
+                    lblAdded.Text = $"Added by: {fullProduct.UserCreation}";
+                }
+
+                // Usuario Modificador
+                if (lblModify != null)
+                {
+                    lblModify.Visible = hasUpdated;
+
+                    if (hasUpdated)
+                    {
+                        string modifier = !string.IsNullOrEmpty(fullProduct.UserModification) ? fullProduct.UserModification : "N/A";
+                        lblModify.Text = $"Modify by: {modifier}";
+                    }
+                }
             }
             else
             {
@@ -93,9 +126,9 @@ namespace GestionPedidos.UI.Forms.Products
             // Obtener el objeto enlazado a la fila 
             var selectedRow = DataGridProduct.SelectedRows[0];
             var selectedProduct = (ProductListDto)selectedRow.DataBoundItem;
-            // Mandamos el objeto a otra función para cargar los datos
-            LoadProduct(selectedProduct);
+
             selectedProductId = selectedProduct.IdProduct;
+            LoadProductDetail(selectedProductId); // Cargar detalle lateral
         }
 
         private void btnAddProduct_Click(object sender, EventArgs e)
@@ -122,6 +155,7 @@ namespace GestionPedidos.UI.Forms.Products
                 if (modifyProductForm.ShowDialog(this) == DialogResult.OK)
                 {
                     LoadProductsIntoGrid();
+                    LoadProductDetail(selectedProductId); // Refrescar detalle lateral también
                 }
             }
         }
@@ -141,6 +175,7 @@ namespace GestionPedidos.UI.Forms.Products
                 {
                     MessageBox.Show("Producto eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadProductsIntoGrid();
+                    LoadProductDetail(selectedProductId); // Refrescar detalle lateral también
                 }
                 else
                 {
@@ -151,6 +186,7 @@ namespace GestionPedidos.UI.Forms.Products
 
         private void btnReload_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
             LoadProductsIntoGrid();
         }
 
@@ -158,23 +194,21 @@ namespace GestionPedidos.UI.Forms.Products
         {
             try
             {
-                var (success, message, products) = _productController.SearchByName(txtSearch.Text);
+                var (success, message, products) = _productController.SearchByName(txtSearch.Text.Trim());
 
                 if (!success)
                 {
-                    MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
                 var data = products != null ? new List<ProductListDto>(products) : new List<ProductListDto>();
-                DataGridProduct.AutoGenerateColumns = true;
+
                 DataGridProduct.DataSource = data;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error inesperado: {ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show($"Error inesperado: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

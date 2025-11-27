@@ -1,4 +1,5 @@
-﻿using GestionPedidos.Models.Entities;
+﻿using GestionPedidos.Models.DTO;
+using GestionPedidos.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,5 +35,17 @@ namespace GestionPedidos.DataAccess.Interfaces
         bool UpdatePasswordByEmail(string email, string newPasswordHash);
 
         bool VerifyPassword(string email, string newPasswordHash);
+
+        /// <summary>
+        /// Verifica si existe al menos un usuario en el sistema
+        /// </summary>
+        /// <returns>True si hay usuarios, False si la BD está vacía</returns>
+        bool HasAnyUser();
+
+        IEnumerable<UsersListDto> ReadAllUsers();
+        User ReadOne(int id);
+        bool Update(User user, int modifierUserId);
+        bool Delete(int id, int modifierUserId);
+        IEnumerable<UsersListDto> SearchUsers(string userName);
     }
 }

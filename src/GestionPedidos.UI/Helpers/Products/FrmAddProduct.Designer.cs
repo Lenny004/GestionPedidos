@@ -57,7 +57,7 @@
             this.panelSuperior.Location = new System.Drawing.Point(0, 0);
             this.panelSuperior.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelSuperior.Name = "panelSuperior";
-            this.panelSuperior.Size = new System.Drawing.Size(749, 46);
+            this.panelSuperior.Size = new System.Drawing.Size(750, 46);
             this.panelSuperior.TabIndex = 2;
             // 
             // guna2ControlBox3
@@ -68,7 +68,7 @@
             this.guna2ControlBox3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.guna2ControlBox3.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
             this.guna2ControlBox3.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox3.Location = new System.Drawing.Point(647, 7);
+            this.guna2ControlBox3.Location = new System.Drawing.Point(648, 7);
             this.guna2ControlBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2ControlBox3.Name = "guna2ControlBox3";
             this.guna2ControlBox3.Size = new System.Drawing.Size(45, 30);
@@ -81,7 +81,7 @@
             this.guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
             this.guna2ControlBox1.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox1.Location = new System.Drawing.Point(699, 7);
+            this.guna2ControlBox1.Location = new System.Drawing.Point(700, 7);
             this.guna2ControlBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2ControlBox1.Name = "guna2ControlBox1";
             this.guna2ControlBox1.Size = new System.Drawing.Size(45, 30);
@@ -212,10 +212,10 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
-            this.panel1.Location = new System.Drawing.Point(3, 377);
+            this.panel1.Location = new System.Drawing.Point(3, 376);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(740, 2);
+            this.panel1.Size = new System.Drawing.Size(741, 2);
             this.panel1.TabIndex = 37;
             // 
             // btnAddC
@@ -232,7 +232,7 @@
             this.btnAddC.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btnAddC.ForeColor = System.Drawing.Color.White;
             this.btnAddC.Location = new System.Drawing.Point(611, 386);
-            this.btnAddC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddC.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddC.Name = "btnAddC";
             this.btnAddC.Size = new System.Drawing.Size(133, 48);
             this.btnAddC.TabIndex = 5;
@@ -255,7 +255,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(749, 446);
+            this.ClientSize = new System.Drawing.Size(750, 445);
             this.Controls.Add(this.btnAddC);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
