@@ -44,7 +44,7 @@ namespace GestionPedidos.DataAccess.Interfaces
 
         IEnumerable<UsersListDto> ReadAllUsers();
         User ReadOne(int id);
-        bool Update(User user, int modifierUserId);
+        bool Update(User user);
         bool Delete(int id, int modifierUserId);
         IEnumerable<UsersListDto> SearchUsers(string userName);
     }

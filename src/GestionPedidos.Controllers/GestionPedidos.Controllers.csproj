@@ -48,8 +48,10 @@
     <Compile Include="AuthController.cs" />
     <Compile Include="CustomerController.cs" />
     <Compile Include="DeliveryController.cs" />
+    <Compile Include="HistoryController.cs" />
     <Compile Include="ProductController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleController.cs" />
     <Compile Include="UsersController.cs" />
   </ItemGroup>
   <ItemGroup>

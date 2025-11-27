@@ -1,4 +1,4 @@
-using GestionPedidos.DataAccess.Interfaces;
+﻿using GestionPedidos.DataAccess.Interfaces;
 using GestionPedidos.DataAccess.Repositories;
 using GestionPedidos.Models.Entities;
 using NLog;
@@ -25,7 +25,6 @@ namespace GestionPedidos.Controllers
             try
             {
                 Logger.Debug("Solicitando listado de roles");
-
                 var roles = _roleRepository.ReadAllRoles();
 
                 if (roles == null)

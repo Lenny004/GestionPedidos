@@ -255,7 +255,7 @@ namespace GestionPedidos.Controllers
         {
             try
             {
-                return _usuarioRepository.HasAnyUser();
+                return !_usuarioRepository.HasAnyUser();
             }
             catch (Exception ex)
             {

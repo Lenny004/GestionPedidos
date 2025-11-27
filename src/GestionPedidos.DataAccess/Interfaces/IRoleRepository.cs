@@ -1,4 +1,4 @@
-using GestionPedidos.Models.Entities;
+﻿using GestionPedidos.Models.Entities;
 using System.Collections.Generic;
 
 namespace GestionPedidos.DataAccess.Interfaces

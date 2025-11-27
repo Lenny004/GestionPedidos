@@ -73,7 +73,7 @@ namespace GestionPedidos.UI
             var authController = new Controllers.AuthController();
             bool isFirstUse = authController.IsFirstUse();
 
-            if (false)
+            if (isFirstUse)
             {
                 // Mostrar mensaje de bienvenida
                 MessageBox.Show(
@@ -85,18 +85,18 @@ namespace GestionPedidos.UI
                     MessageBoxIcon.Information);
 
                 // Mostrar formulario de primer uso (registro de admin)
-                //using (var firstUseForm = new FrmRegister(isFirstUse: true))
-                //{
-                //    if (firstUseForm.ShowDialog() != DialogResult.OK)
-                //    {
-                //        MessageBox.Show(
-                //            "Debe crear un usuario administrador para usar el sistema.",
-                //            "Configuración Requerida",
-                //            MessageBoxButtons.OK,
-                //            MessageBoxIcon.Warning);
-                //        return; // Salir si no completa el registro
-                //    }
-                //}
+                using (var firstUseForm = new FrmRegister(isFirstUse: true))
+                {
+                    if (firstUseForm.ShowDialog() != DialogResult.OK)
+                    {
+                        MessageBox.Show(
+                            "Debe crear un usuario administrador para usar el sistema.",
+                            "Configuración Requerida",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        return; // Salir si no completa el registro
+                    }
+                }
 
                 // Después de crear el admin, mostrar login
                 MessageBox.Show(
@@ -112,8 +112,6 @@ namespace GestionPedidos.UI
                 if (login.ShowDialog() != DialogResult.OK)
                     return; // Canceló o falló login
             }
-
-            // Ya no es necesario Application.Run porque ShowDialog ya maneja el loop
         }
     }
 }

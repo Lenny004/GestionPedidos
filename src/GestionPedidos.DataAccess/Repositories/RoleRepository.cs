@@ -1,4 +1,4 @@
-using GestionPedidos.DataAccess.Configuration;
+﻿using GestionPedidos.DataAccess.Configuration;
 using GestionPedidos.DataAccess.Interfaces;
 using GestionPedidos.Models.Entities;
 using System;
@@ -61,7 +61,6 @@ namespace GestionPedidos.DataAccess.Repositories
             {
                 throw new Exception($"Error al leer roles: {ex.Message}", ex);
             }
-
             return roles;
         }
     }

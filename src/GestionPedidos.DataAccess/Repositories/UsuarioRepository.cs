@@ -347,7 +347,7 @@ namespace GestionPedidos.DataAccess.Repositories
             return null;
         }
 
-        public bool Update(User user, int modifierUserId)
+        public bool Update(User user)
         {
             try
             {
@@ -357,8 +357,7 @@ namespace GestionPedidos.DataAccess.Repositories
 
                     string query = @"
                         UPDATE Users
-                        SET userName = @UserName,
-                            fullName = @FullName,
+                        SET fullName = @FullName,
                             email = @Email,
                             idRole = @IdRole,
                             isActive = @IsActive,
@@ -368,7 +367,6 @@ namespace GestionPedidos.DataAccess.Repositories
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@IdUser", user.IdUser);
-                        cmd.Parameters.AddWithValue("@UserName", user.Username);
                         cmd.Parameters.AddWithValue("@FullName", user.FullName);
                         cmd.Parameters.AddWithValue("@Email", (object)user.Email ?? DBNull.Value);
                         cmd.Parameters.AddWithValue("@IdRole", user.IdRole);
@@ -397,7 +395,7 @@ namespace GestionPedidos.DataAccess.Repositories
                         UPDATE Users 
                         SET isActive = 0,
                             updatedAt = GETDATE(),
-                            deletedAt = GETDATE() 
+                            deletedAt = GETDATE()
                         WHERE idUser = @Id";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))

@@ -75,11 +75,11 @@
             this.txtNewPassword.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtNewPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtNewPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtNewPassword.IconLeft = global::GestionPedidos.UI.Properties.Resources.user;
+            this.txtNewPassword.IconLeft = global::GestionPedidos.UI.Properties.Resources.password;
             this.txtNewPassword.Location = new System.Drawing.Point(24, 178);
             this.txtNewPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNewPassword.Name = "txtNewPassword";
-            this.txtNewPassword.PasswordChar = '\0';
+            this.txtNewPassword.PasswordChar = '●';
             this.txtNewPassword.PlaceholderText = "New password";
             this.txtNewPassword.SelectedText = "";
             this.txtNewPassword.Size = new System.Drawing.Size(372, 48);

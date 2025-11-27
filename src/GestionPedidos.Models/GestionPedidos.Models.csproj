@@ -47,11 +47,13 @@
   <ItemGroup>
     <Compile Include="DTO\CustomerListDto.cs" />
     <Compile Include="DTO\CustomerSelectDto.cs" />
+    <Compile Include="DTO\HistoryListDto.cs" />
     <Compile Include="DTO\OrderDetailItem.cs" />
     <Compile Include="DTO\ProductListDto.cs" />
     <Compile Include="DTO\ProductSelectDto.cs" />
     <Compile Include="DTO\UsersListDto.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\History.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Rol.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="Enums\EstadoPedido.cs" />
     <Compile Include="Enums\EstadoProducto.cs" />
     <Compile Include="Enums\EstadoRegistro.cs" />
+    <Compile Include="Enums\EstadoUsuario.cs" />
     <Compile Include="Enums\TipoRoles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

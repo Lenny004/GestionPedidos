@@ -1,13 +1,14 @@
-﻿using GestionPedidos.Common.Security;
+﻿using GestionPedidos.Common.Constants;
+using GestionPedidos.Common.Security;
+using GestionPedidos.Common.Validation;
 using GestionPedidos.DataAccess.Interfaces;
 using GestionPedidos.DataAccess.Repositories;
+using GestionPedidos.Models.DTO;
+using GestionPedidos.Models.Entities;
+using GestionPedidos.Models.Enums;
 using NLog;
 using System;
 using System.Collections.Generic;
-using GestionPedidos.Models.DTO;
-using GestionPedidos.Models.Entities;
-using GestionPedidos.Common.Validation;
-using GestionPedidos.Common.Constants;
 using System.Linq;
 
 namespace GestionPedidos.Controllers
@@ -169,7 +170,7 @@ namespace GestionPedidos.Controllers
             }
         }
 
-        public (bool Success, string Message) Update(int id, string userName, string fullName, string email, int idRole, bool isActive)
+        public (bool Success, string Message) Update(int id, string fullName, string email, int idRole, bool isActive)
         {
             try
             {
@@ -178,12 +179,6 @@ namespace GestionPedidos.Controllers
                 {
                     Logger.Warn("Intento de actualizar usuario con ID inválido");
                     return (false, "ID de usuario inválido");
-                }
-
-                if (!GeneralValidator.IsNotEmpty(userName))
-                {
-                    Logger.Warn("Intento de actualizar usuario sin nombre de usuario");
-                    return (false, "El nombre de usuario es requerido");
                 }
 
                 if (!GeneralValidator.IsNotEmpty(fullName))
@@ -208,35 +203,26 @@ namespace GestionPedidos.Controllers
                 var user = new User
                 {
                     IdUser = id,
-                    Username = userName,
                     FullName = fullName,
                     Email = email,
                     IdRole = idRole,
                     IsActive = isActive
                 };
 
-                int currentUserId = SessionManager.UsuarioId;
-
-                if (currentUserId <= 0)
-                {
-                    Logger.Warn("Intento de actualizar usuario sin sesión de usuario activa");
-                    return (false, AppConstants.SESION_EXPIRADA);
-                }
-
-                bool updated = _userRepository.Update(user, currentUserId);
+                bool updated = _userRepository.Update(user);
 
                 if (!updated)
                 {
-                    Logger.Warn("No se pudo actualizar el usuario: {userName}", user.Username);
+                    Logger.Warn("No se pudo actualizar el usuario", user.Username);
                     return (false, AppConstants.ERROR_ACTUALIZAR);
                 }
 
-                Logger.Info("Usuario actualizado exitosamente: {userName}", user.Username);
+                Logger.Info("Usuario actualizado exitosamente", user.Username);
                 return (true, Messages.Usuarios.USUARIO_ACTUALIZADO);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, $"Error al actualizar usuario: {userName}");
+                Logger.Error(ex, "Error al actualizar usuario");
                 return (false, $"{AppConstants.ERROR_ACTUALIZAR}: {ex.Message}");
             }
         }
@@ -319,6 +305,26 @@ namespace GestionPedidos.Controllers
             {
                 Logger.Error(ex, $"Error al buscar usuarios por nombre: {name}");
                 return (false, $"Error al buscar usuarios: {ex.Message}", null);
+            }
+        }
+
+        public List<object> GetUserStatuses()
+        {
+            try
+            {
+                return Enum.GetValues(typeof(EstadoUsuario))
+                        .OfType<EstadoUsuario>()
+                        .Select(e => new
+                        {
+                            Text = e.ToString(),
+                            Value = (byte)e
+                        })
+                        .ToList<object>();
+            }
+            catch (Exception ex)
+            {
+                // Puedes loguear el error aquí si tienes un sistema de logging
+                throw new Exception($"Error al obtener los estados del producto: {ex.Message}", ex);
             }
         }
     }

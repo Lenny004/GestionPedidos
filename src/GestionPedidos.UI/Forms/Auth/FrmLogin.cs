@@ -21,7 +21,6 @@ namespace GestionPedidos.UI.Forms.Auth
             btnLogin.Click += BtnLogin_Click;
             txtContraseña.KeyPress += TxtContraseña_KeyPress;
             tggMostrarContraseña.CheckedChanged += ChkMostrarContraseña_CheckedChanged;
-            btnSignUp.Click += BtnRegistrar_Click;
         }
 
         private void TxtContraseña_KeyPress(object sender, KeyPressEventArgs e)
@@ -47,7 +46,6 @@ namespace GestionPedidos.UI.Forms.Auth
         {
             // Deshabilitar botón mientras procesa
             string originalText = btnLogin.Text;
-            bool closingAfterDashboard = false;
             btnLogin.Enabled = false;
             btnLogin.Text = "Loading...";
             this.Cursor = Cursors.WaitCursor;
@@ -61,14 +59,20 @@ namespace GestionPedidos.UI.Forms.Auth
                 {
                     MessageBox.Show(message, "Login Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    // Limpiar campos
+                    txtUsuario.Clear();
+                    txtContraseña.Clear();
+
+                    // Ocultar login y abrir dashboard
                     this.Hide();
                     using (var dashboard = new FrmDashboard())
                     {
                         dashboard.ShowDialog(this);
                     }
-                    closingAfterDashboard = true;
-                    this.Close();
-                    return;
+                    
+                    // Cuando el dashboard se cierra, volver a mostrar el login
+                    this.Show();
+                    txtUsuario.Focus();
                 }
                 else
                 {
@@ -90,21 +94,10 @@ namespace GestionPedidos.UI.Forms.Auth
             }
             finally
             {
-                if (!closingAfterDashboard)
-                {
-                    btnLogin.Enabled = true;
-                    btnLogin.Text = originalText;
-                    this.Cursor = Cursors.Default;
-                }
+                btnLogin.Enabled = true;
+                btnLogin.Text = originalText;
+                this.Cursor = Cursors.Default;
             }
-        }
-
-        private void BtnRegistrar_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Funcionalidad de registro aún no implementada.",
-                "Registro",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
         }
 
         private void lblForgot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -113,7 +106,6 @@ namespace GestionPedidos.UI.Forms.Auth
             FrmForgotPassword frmForgotPassword = new FrmForgotPassword();
             frmForgotPassword.ShowDialog();
             this.Show();
-
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
@@ -124,7 +116,7 @@ namespace GestionPedidos.UI.Forms.Auth
                 this.Hide();
 
                 // 2. Crear una nueva instancia del formulario de Registro
-                FrmRegister registerForm = new FrmRegister();
+                FrmRegister registerForm = new FrmRegister(isFirstUse:false);
 
                 // 3. Mostrar el formulario de Registro en modo Modal
                 // El modo ShowDialog() mantiene la aplicación enfocada en el nuevo formulario

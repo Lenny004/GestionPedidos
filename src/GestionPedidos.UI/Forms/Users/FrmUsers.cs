@@ -60,10 +60,9 @@ namespace GestionPedidos.UI.Forms.Users
             }
         }
 
-        private void LoadUserDetail(UsersListDto user)
+        private void LoadUserDetail(int idUser)
         {
-            // Ir a la base de datos a traer TODOS los datos
-            var (success, message, fullUser) = _usersController.ReadOne(user.IdUser);
+            var (success, message, fullUser) = _usersController.ReadOne(idUser);
 
             if (success && fullUser != null)
             {
@@ -120,9 +119,9 @@ namespace GestionPedidos.UI.Forms.Users
             // Obtener el objeto enlazado a la fila 
             var selectedRow = DataGridUser.SelectedRows[0];
             var selectedUser = (UsersListDto)selectedRow.DataBoundItem;
-            // Mandamos el objeto a otra función para cargar los datos
-            LoadUserDetail(selectedUser);
+
             selectedUserId = selectedUser.IdUser;
+            LoadUserDetail(selectedUserId); // Cargar detalle lateral
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -149,6 +148,7 @@ namespace GestionPedidos.UI.Forms.Users
                 if (modifyUserForm.ShowDialog(this) == DialogResult.OK)
                 {
                     LoadUsersIntoGrid();
+                    LoadUserDetail(selectedUserId); // Refrescar detalle lateral también
                 }
             }
         }
@@ -168,6 +168,7 @@ namespace GestionPedidos.UI.Forms.Users
                 {
                     MessageBox.Show("Usuario eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadUsersIntoGrid();
+                    LoadUserDetail(selectedUserId); // Refrescar detalle lateral también
                 }
                 else
                 {

@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.lblDeletedDate = new System.Windows.Forms.Label();
             this.lblModifyDate = new System.Windows.Forms.Label();
             this.lblModifiedBy = new System.Windows.Forms.Label();
             this.lblCreatedBy = new System.Windows.Forms.Label();
@@ -42,20 +43,19 @@
             this.btnStatus = new Guna.UI2.WinForms.Guna2GradientButton();
             this.btnDeleteC = new Guna.UI2.WinForms.Guna2GradientButton();
             this.btnModifyC = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblCity = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
             this.lblPhone = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblName = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
+            this.btnReload = new Guna.UI2.WinForms.Guna2ImageButton();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAddC = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnReload = new Guna.UI2.WinForms.Guna2ImageButton();
             this.btnSearch = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.lblDeletedDate = new System.Windows.Forms.Label();
+            this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2ShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -71,6 +71,9 @@
             // 
             // guna2ShadowPanel1
             // 
+            this.guna2ShadowPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2ShadowPanel1.Controls.Add(this.lblDeletedDate);
             this.guna2ShadowPanel1.Controls.Add(this.lblModifyDate);
@@ -102,6 +105,17 @@
             this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel1.Size = new System.Drawing.Size(1096, 689);
             this.guna2ShadowPanel1.TabIndex = 8;
+            // 
+            // lblDeletedDate
+            // 
+            this.lblDeletedDate.AutoSize = true;
+            this.lblDeletedDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeletedDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
+            this.lblDeletedDate.Location = new System.Drawing.Point(663, 83);
+            this.lblDeletedDate.Name = "lblDeletedDate";
+            this.lblDeletedDate.Size = new System.Drawing.Size(113, 20);
+            this.lblDeletedDate.TabIndex = 54;
+            this.lblDeletedDate.Text = "Deleted Date:";
             // 
             // lblModifyDate
             // 
@@ -266,6 +280,17 @@
             this.btnModifyC.Text = "Modify";
             this.btnModifyC.Click += new System.EventHandler(this.btnModifyC_Click);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::GestionPedidos.UI.Properties.Resources.address;
+            this.pictureBox2.Location = new System.Drawing.Point(356, 100);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(59, 57);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 41;
+            this.pictureBox2.TabStop = false;
+            // 
             // lblCity
             // 
             this.lblCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -297,6 +322,17 @@
             this.lblPhone.TabIndex = 37;
             this.lblPhone.Text = "Phone:                           ";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::GestionPedidos.UI.Properties.Resources.user1;
+            this.pictureBox1.Location = new System.Drawing.Point(21, 100);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(59, 57);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 35;
+            this.pictureBox1.TabStop = false;
+            // 
             // lblName
             // 
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -317,6 +353,22 @@
             this.lblID.Size = new System.Drawing.Size(46, 20);
             this.lblID.TabIndex = 32;
             this.lblID.Text = "#N/A";
+            // 
+            // btnReload
+            // 
+            this.btnReload.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
+            this.btnReload.HoverState.ImageSize = new System.Drawing.Size(35, 35);
+            this.btnReload.Image = global::GestionPedidos.UI.Properties.Resources.reload;
+            this.btnReload.ImageOffset = new System.Drawing.Point(0, 0);
+            this.btnReload.ImageRotate = 0F;
+            this.btnReload.ImageSize = new System.Drawing.Size(33, 33);
+            this.btnReload.Location = new System.Drawing.Point(313, 193);
+            this.btnReload.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.PressedState.ImageSize = new System.Drawing.Size(33, 33);
+            this.btnReload.Size = new System.Drawing.Size(51, 48);
+            this.btnReload.TabIndex = 31;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // lblTitulo
             // 
@@ -360,6 +412,22 @@
             this.btnAddC.Text = "Add";
             this.btnAddC.Click += new System.EventHandler(this.btnAddC_Click);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
+            this.btnSearch.HoverState.ImageSize = new System.Drawing.Size(32, 32);
+            this.btnSearch.Image = global::GestionPedidos.UI.Properties.Resources.search1;
+            this.btnSearch.ImageOffset = new System.Drawing.Point(0, 0);
+            this.btnSearch.ImageRotate = 0F;
+            this.btnSearch.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnSearch.Location = new System.Drawing.Point(257, 193);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.PressedState.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnSearch.Size = new System.Drawing.Size(51, 48);
+            this.btnSearch.TabIndex = 3;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // txtSearch
             // 
             this.txtSearch.BorderRadius = 8;
@@ -380,71 +448,6 @@
             this.txtSearch.SelectedText = "";
             this.txtSearch.Size = new System.Drawing.Size(229, 48);
             this.txtSearch.TabIndex = 2;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::GestionPedidos.UI.Properties.Resources.address;
-            this.pictureBox2.Location = new System.Drawing.Point(356, 100);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(59, 57);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 41;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::GestionPedidos.UI.Properties.Resources.user1;
-            this.pictureBox1.Location = new System.Drawing.Point(21, 100);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(59, 57);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 35;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnReload
-            // 
-            this.btnReload.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btnReload.HoverState.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnReload.Image = global::GestionPedidos.UI.Properties.Resources.reload;
-            this.btnReload.ImageOffset = new System.Drawing.Point(0, 0);
-            this.btnReload.ImageRotate = 0F;
-            this.btnReload.ImageSize = new System.Drawing.Size(33, 33);
-            this.btnReload.Location = new System.Drawing.Point(313, 193);
-            this.btnReload.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.PressedState.ImageSize = new System.Drawing.Size(33, 33);
-            this.btnReload.Size = new System.Drawing.Size(51, 48);
-            this.btnReload.TabIndex = 31;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.btnSearch.HoverState.ImageSize = new System.Drawing.Size(32, 32);
-            this.btnSearch.Image = global::GestionPedidos.UI.Properties.Resources.search1;
-            this.btnSearch.ImageOffset = new System.Drawing.Point(0, 0);
-            this.btnSearch.ImageRotate = 0F;
-            this.btnSearch.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnSearch.Location = new System.Drawing.Point(257, 193);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.PressedState.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnSearch.Size = new System.Drawing.Size(51, 48);
-            this.btnSearch.TabIndex = 3;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // lblDeletedDate
-            // 
-            this.lblDeletedDate.AutoSize = true;
-            this.lblDeletedDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDeletedDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
-            this.lblDeletedDate.Location = new System.Drawing.Point(663, 83);
-            this.lblDeletedDate.Name = "lblDeletedDate";
-            this.lblDeletedDate.Size = new System.Drawing.Size(113, 20);
-            this.lblDeletedDate.TabIndex = 54;
-            this.lblDeletedDate.Text = "Deleted Date:";
             // 
             // FrmCustomer
             // 

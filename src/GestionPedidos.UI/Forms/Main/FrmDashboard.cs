@@ -12,6 +12,9 @@ using GestionPedidos.UI.Forms.Customers;
 using GestionPedidos.UI.Forms.Products;
 using GestionPedidos.UI.Forms.Delivery;
 using GestionPedidos.UI.Forms.Users;
+using GestionPedidos.UI.Forms.History;
+using GestionPedidos.Common.Security;
+using GestionPedidos.Models.Enums;
 
 namespace GestionPedidos.UI.Forms.Main
 {
@@ -21,6 +24,25 @@ namespace GestionPedidos.UI.Forms.Main
         {
             InitializeComponent();
             ConfigureButtons();
+            ApplySecurityPermissions();
+        }
+
+        private void ApplySecurityPermissions()
+        {
+            // Verificamos si el usuario actual es un Operador (Rol = 2)
+            if (SessionManager.Rol == TipoRoles.Operador)
+            {
+                // OCULTAR BOTONES RESTRINGIDOS
+
+                // 1. Productos
+                if (btnProducts != null) btnProducts.Visible = false;
+
+                // 2. Usuarios
+                if (btnUsers != null) btnUsers.Visible = false;
+
+                // 3. Historial (Ahora sí lo ocultamos porque ya existe el botón)
+                if (btnHistory != null) btnHistory.Visible = false;
+            }
         }
 
         private void ConfigureButtons()
@@ -32,6 +54,7 @@ namespace GestionPedidos.UI.Forms.Main
             SetupButton(btnOrders);
             SetupButton(btnUsers);
             SetupButton(btnAboutUs);
+            SetupButton(btnHistory);
 
             // Marcar dashboard como activo por defecto
             btnDashboard.Checked = true;
@@ -87,6 +110,30 @@ namespace GestionPedidos.UI.Forms.Main
         private void btnUsers_Click(object sender, EventArgs e)
         {
             openChildForm(new FrmUsers());
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            openChildForm(new FrmHistory());
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            // Confirmar cierre de sesión
+            var result = MessageBox.Show(
+                "¿Está seguro que desea cerrar sesión?",
+                "Cerrar Sesión",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Cerrar la sesión actual
+                SessionManager.Logout();
+                
+                // Cerrar el dashboard (esto regresará al login automáticamente)
+                this.Close();
+            }
         }
     }
 }

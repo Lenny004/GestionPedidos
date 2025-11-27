@@ -23,6 +23,7 @@ namespace GestionPedidos.UI.Forms.Auth
         private void tggMostrarContraseña_CheckedChanged(object sender, EventArgs e)
         {
             txtConfirmPassword.PasswordChar = tggMostrarContraseña.Checked ? '\0' : '●';
+            txtNewPassword.PasswordChar = tggMostrarContraseña.Checked ? '\0' : '●';
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)

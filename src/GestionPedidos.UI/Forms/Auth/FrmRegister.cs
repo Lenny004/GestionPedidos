@@ -14,10 +14,18 @@ namespace GestionPedidos.UI.Forms.Auth
     public partial class FrmRegister : Form
     {
         private readonly AuthController _authController = new AuthController();
+        private readonly bool _isFirstUse; // Guardar el valor en una variable de clase
 
-        public FrmRegister()
+        public FrmRegister(Boolean isFirstUse)
         {
             InitializeComponent();
+            _isFirstUse = isFirstUse; // Almacenar el valor
+
+            if (_isFirstUse)
+            {
+                // Ocultamos el lbl de "Do you have a account" 
+                lblreturn.Visible = false;
+            }
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -33,20 +41,24 @@ namespace GestionPedidos.UI.Forms.Auth
                 string username = txtUsername.Text.Trim();
                 string email = txtEmail.Text.Trim();
                 string password = txtPassword.Text; // Contraseña en texto plano
+                // Determinar el rol basado en si es primer uso
+                int idRol = _isFirstUse ? 1 : 2; // 1 = Admin, 2 = Operador
 
                 var resultado = _authController.Registrar(
                     username,
                     password,
                     fullName,
                     email,
-                    idRol: 2
+                    idRol
                 );
 
                 if (resultado.Success)
                 {
+                    string mensajeAdicional = _isFirstUse ? " como Administrador" : "";
+
                     MessageBox.Show(resultado.Message, "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK; 
-                    this.Close(); 
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {
@@ -76,6 +88,11 @@ namespace GestionPedidos.UI.Forms.Auth
             this.Close();
             FrmLogin frmLogin = new FrmLogin();
             frmLogin.Show();
+        }
+
+        private void tggMostrarContraseña_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPassword.PasswordChar = tggMostrarContraseña.Checked ? '\0' : '●';
         }
     }
 }
