@@ -134,6 +134,34 @@ namespace GestionPedidos.Controllers
         }
 
         /// <summary>
+        /// Obtiene los detalles de todas las órdenes con información relacionada
+        /// </summary>
+        public (bool Success, string Message, IEnumerable<OrderDetailListDto> OrderDetails) GetAllOrderDetails()
+        {
+            try
+            {
+                var orderDetails = _deliveryRepository.ReadAllDetailOrders();
+                if (orderDetails == null)
+                {
+                    return (false, AppConstants.NO_SE_ENCONTRARON_REGISTROS, null);
+                }
+
+                var detailList = new List<OrderDetailListDto>(orderDetails);
+                if (detailList.Count == 0)
+                {
+                    return (false, AppConstants.NO_SE_ENCONTRARON_REGISTROS, detailList);
+                }
+
+                return (true, "Detalles de órdenes recuperados correctamente", detailList);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error al obtener detalles de órdenes");
+                return (false, $"Error al obtener detalles de órdenes: {ex.Message}", null);
+            }
+        }
+
+        /// <summary>
         /// Obtiene una orden específica
         /// </summary>
         public (bool Success, string Message, Order Order) GetOrderById(int orderId)
@@ -241,6 +269,87 @@ namespace GestionPedidos.Controllers
             {
                 Logger.Error(ex, $"Error al cancelar orden {orderId}");
                 return (false, $"Error al cancelar orden: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Busca detalles de órdenes por cliente, producto, precio o estado
+        /// </summary>
+        public (bool Success, string Message, IEnumerable<OrderDetailListDto> OrderDetails) SearchOrderDetails(string searchTerm)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(searchTerm))
+                {
+                    return (false, "El término de búsqueda no puede estar vacío", null);
+                }
+
+                var orderDetails = _deliveryRepository.SearchDetailOrders(searchTerm);
+                if (orderDetails == null)
+                {
+                    return (false, AppConstants.NO_SE_ENCONTRARON_REGISTROS, null);
+                }
+
+                var detailList = new List<OrderDetailListDto>(orderDetails);
+                if (detailList.Count == 0)
+                {
+                    return (false, "No se encontraron resultados para la búsqueda", detailList);
+                }
+
+                return (true, $"Se encontraron {detailList.Count} resultados", detailList);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error al buscar detalles de órdenes");
+                return (false, $"Error en la búsqueda: {ex.Message}", null);
+            }
+        }
+
+        /// <summary>
+        /// Actualiza el estado de una orden y maneja la devolución de stock si se cancela
+        /// </summary>
+        public (bool Success, string Message) UpdateOrderStatus(int orderId, string newStatus)
+        {
+            try
+            {
+                // Obtener la orden actual para verificar el estado anterior
+                var currentOrder = _deliveryRepository.ReadOneOrder(orderId);
+                if (currentOrder == null)
+                {
+                    return (false, "Orden no encontrada");
+                }
+
+                // Si se cambia a Cancelled, restaurar el stock
+                if (newStatus.ToLower() == "cancelled" && currentOrder.OrderStatus.ToLower() != "cancelled")
+                {
+                    // Obtener detalles de la orden
+                    var orderDetails = _deliveryRepository.GetOrderDetails(orderId);
+                    
+                    // Restaurar stock para cada producto
+                    foreach (var (productId, quantity) in orderDetails)
+                    {
+                        var increased = _productsRepository.IncreaseStock(productId, quantity);
+                        if (!increased)
+                        {
+                            return (false, $"No se pudo restaurar stock del producto {productId}");
+                        }
+                    }
+                }
+
+                // Actualizar estado
+                var updated = _deliveryRepository.UpdateOrderStatus(orderId, newStatus);
+                if (!updated)
+                {
+                    return (false, "No se pudo actualizar el estado de la orden");
+                }
+
+                Logger.Info($"Estado de orden {orderId} actualizado a {newStatus}");
+                return (true, $"Estado actualizado a {newStatus} correctamente");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, $"Error al actualizar estado de orden {orderId}");
+                return (false, $"Error al actualizar estado: {ex.Message}");
             }
         }
     }

@@ -55,11 +55,14 @@
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.guna2DragControl2 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.panel1.SuspendLayout();
+            this.panelChildForm.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelSuperior.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -69,9 +72,9 @@
             this.panel1.Controls.Add(this.panelLeft);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1365, 768);
+            this.panel1.Size = new System.Drawing.Size(1024, 624);
             this.panel1.TabIndex = 0;
             // 
             // panelChildForm
@@ -79,10 +82,11 @@
             this.panelChildForm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelChildForm.Location = new System.Drawing.Point(239, 52);
-            this.panelChildForm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelChildForm.Controls.Add(this.guna2PictureBox1);
+            this.panelChildForm.Location = new System.Drawing.Point(179, 42);
+            this.panelChildForm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(1120, 713);
+            this.panelChildForm.Size = new System.Drawing.Size(840, 579);
             this.panelChildForm.TabIndex = 1;
             // 
             // panelLeft
@@ -93,9 +97,9 @@
             this.panelLeft.Controls.Add(this.pictureBox1);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(233, 768);
+            this.panelLeft.Size = new System.Drawing.Size(175, 624);
             this.panelLeft.TabIndex = 0;
             // 
             // btnExit
@@ -112,10 +116,10 @@
             this.btnExit.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.btnExit.HoverState.ForeColor = System.Drawing.Color.White;
             this.btnExit.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnExit.Location = new System.Drawing.Point(0, 722);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExit.Location = new System.Drawing.Point(0, 587);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(233, 46);
+            this.btnExit.Size = new System.Drawing.Size(175, 37);
             this.btnExit.TabIndex = 13;
             this.btnExit.Text = "Exit";
             this.btnExit.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -138,9 +142,10 @@
             this.flowLayoutPanel1.Controls.Add(this.btnHistory);
             this.flowLayoutPanel1.Controls.Add(this.btnAboutUs);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 119);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 97);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(230, 594);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(172, 483);
             this.flowLayoutPanel1.TabIndex = 2;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -150,10 +155,10 @@
             this.lblHome.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lblHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(147)))), ((int)(((byte)(159)))));
-            this.lblHome.Location = new System.Drawing.Point(10, 10);
-            this.lblHome.Margin = new System.Windows.Forms.Padding(10);
+            this.lblHome.Location = new System.Drawing.Point(8, 8);
+            this.lblHome.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.lblHome.Name = "lblHome";
-            this.lblHome.Size = new System.Drawing.Size(45, 15);
+            this.lblHome.Size = new System.Drawing.Size(38, 13);
             this.lblHome.TabIndex = 7;
             this.lblHome.Text = "Home";
             // 
@@ -173,10 +178,10 @@
             this.btnDashboard.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.dashboard_w;
             this.btnDashboard.Image = global::GestionPedidos.UI.Properties.Resources.dashboard;
             this.btnDashboard.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnDashboard.Location = new System.Drawing.Point(3, 37);
-            this.btnDashboard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDashboard.Location = new System.Drawing.Point(2, 31);
+            this.btnDashboard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(219, 46);
+            this.btnDashboard.Size = new System.Drawing.Size(164, 37);
             this.btnDashboard.TabIndex = 2;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -187,10 +192,10 @@
             this.lblConfig.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lblConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConfig.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(147)))), ((int)(((byte)(159)))));
-            this.lblConfig.Location = new System.Drawing.Point(10, 95);
-            this.lblConfig.Margin = new System.Windows.Forms.Padding(10);
+            this.lblConfig.Location = new System.Drawing.Point(8, 78);
+            this.lblConfig.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.lblConfig.Name = "lblConfig";
-            this.lblConfig.Size = new System.Drawing.Size(63, 15);
+            this.lblConfig.Size = new System.Drawing.Size(56, 13);
             this.lblConfig.TabIndex = 8;
             this.lblConfig.Text = "Features";
             // 
@@ -209,10 +214,10 @@
             this.btnCustomer.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.customer_w;
             this.btnCustomer.Image = global::GestionPedidos.UI.Properties.Resources.customer;
             this.btnCustomer.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCustomer.Location = new System.Drawing.Point(3, 122);
-            this.btnCustomer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCustomer.Location = new System.Drawing.Point(2, 101);
+            this.btnCustomer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCustomer.Name = "btnCustomer";
-            this.btnCustomer.Size = new System.Drawing.Size(219, 46);
+            this.btnCustomer.Size = new System.Drawing.Size(164, 37);
             this.btnCustomer.TabIndex = 3;
             this.btnCustomer.Text = "Customers";
             this.btnCustomer.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -233,10 +238,10 @@
             this.btnProducts.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.products_w;
             this.btnProducts.Image = global::GestionPedidos.UI.Properties.Resources.products;
             this.btnProducts.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnProducts.Location = new System.Drawing.Point(3, 172);
-            this.btnProducts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnProducts.Location = new System.Drawing.Point(2, 142);
+            this.btnProducts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnProducts.Name = "btnProducts";
-            this.btnProducts.Size = new System.Drawing.Size(219, 46);
+            this.btnProducts.Size = new System.Drawing.Size(164, 37);
             this.btnProducts.TabIndex = 4;
             this.btnProducts.Text = "Products";
             this.btnProducts.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -248,10 +253,10 @@
             this.lblPurchase.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lblPurchase.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPurchase.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(147)))), ((int)(((byte)(159)))));
-            this.lblPurchase.Location = new System.Drawing.Point(10, 230);
-            this.lblPurchase.Margin = new System.Windows.Forms.Padding(10);
+            this.lblPurchase.Location = new System.Drawing.Point(8, 189);
+            this.lblPurchase.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.lblPurchase.Name = "lblPurchase";
-            this.lblPurchase.Size = new System.Drawing.Size(67, 15);
+            this.lblPurchase.Size = new System.Drawing.Size(59, 13);
             this.lblPurchase.TabIndex = 10;
             this.lblPurchase.Text = "Purchase";
             // 
@@ -270,10 +275,10 @@
             this.btnDelivery.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.delivery_w;
             this.btnDelivery.Image = global::GestionPedidos.UI.Properties.Resources.delivery;
             this.btnDelivery.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnDelivery.Location = new System.Drawing.Point(3, 257);
-            this.btnDelivery.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDelivery.Location = new System.Drawing.Point(2, 212);
+            this.btnDelivery.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelivery.Name = "btnDelivery";
-            this.btnDelivery.Size = new System.Drawing.Size(219, 46);
+            this.btnDelivery.Size = new System.Drawing.Size(164, 37);
             this.btnDelivery.TabIndex = 5;
             this.btnDelivery.Text = "Delivery";
             this.btnDelivery.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -294,10 +299,10 @@
             this.btnOrders.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.order_w;
             this.btnOrders.Image = global::GestionPedidos.UI.Properties.Resources.order;
             this.btnOrders.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnOrders.Location = new System.Drawing.Point(3, 307);
-            this.btnOrders.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnOrders.Location = new System.Drawing.Point(2, 253);
+            this.btnOrders.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnOrders.Name = "btnOrders";
-            this.btnOrders.Size = new System.Drawing.Size(219, 46);
+            this.btnOrders.Size = new System.Drawing.Size(164, 37);
             this.btnOrders.TabIndex = 6;
             this.btnOrders.Text = "Orders";
             this.btnOrders.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -309,10 +314,10 @@
             this.label1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(147)))), ((int)(((byte)(159)))));
-            this.label1.Location = new System.Drawing.Point(10, 365);
-            this.label1.Margin = new System.Windows.Forms.Padding(10);
+            this.label1.Location = new System.Drawing.Point(8, 300);
+            this.label1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 15);
+            this.label1.Size = new System.Drawing.Size(36, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Extra";
             // 
@@ -331,10 +336,10 @@
             this.btnUsers.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.user_section_w;
             this.btnUsers.Image = global::GestionPedidos.UI.Properties.Resources.user_section;
             this.btnUsers.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnUsers.Location = new System.Drawing.Point(3, 392);
-            this.btnUsers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnUsers.Location = new System.Drawing.Point(2, 323);
+            this.btnUsers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnUsers.Name = "btnUsers";
-            this.btnUsers.Size = new System.Drawing.Size(219, 46);
+            this.btnUsers.Size = new System.Drawing.Size(164, 37);
             this.btnUsers.TabIndex = 11;
             this.btnUsers.Text = "Users";
             this.btnUsers.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -355,10 +360,10 @@
             this.btnHistory.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.bitacora_w;
             this.btnHistory.Image = global::GestionPedidos.UI.Properties.Resources.bitacora;
             this.btnHistory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnHistory.Location = new System.Drawing.Point(3, 442);
-            this.btnHistory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHistory.Location = new System.Drawing.Point(2, 364);
+            this.btnHistory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnHistory.Name = "btnHistory";
-            this.btnHistory.Size = new System.Drawing.Size(219, 46);
+            this.btnHistory.Size = new System.Drawing.Size(164, 37);
             this.btnHistory.TabIndex = 13;
             this.btnHistory.Text = "History";
             this.btnHistory.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -379,10 +384,10 @@
             this.btnAboutUs.HoverState.Image = global::GestionPedidos.UI.Properties.Resources.user_section_w;
             this.btnAboutUs.Image = global::GestionPedidos.UI.Properties.Resources.information;
             this.btnAboutUs.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAboutUs.Location = new System.Drawing.Point(3, 492);
-            this.btnAboutUs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAboutUs.Location = new System.Drawing.Point(2, 405);
+            this.btnAboutUs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAboutUs.Name = "btnAboutUs";
-            this.btnAboutUs.Size = new System.Drawing.Size(219, 46);
+            this.btnAboutUs.Size = new System.Drawing.Size(164, 37);
             this.btnAboutUs.TabIndex = 12;
             this.btnAboutUs.Text = "About Us";
             this.btnAboutUs.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -391,10 +396,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GestionPedidos.UI.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(33, 62);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(25, 50);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(155, 52);
+            this.pictureBox1.Size = new System.Drawing.Size(116, 42);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -407,9 +412,9 @@
             this.panelSuperior.Controls.Add(this.guna2ControlBox1);
             this.panelSuperior.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSuperior.Location = new System.Drawing.Point(0, 0);
-            this.panelSuperior.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelSuperior.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelSuperior.Name = "panelSuperior";
-            this.panelSuperior.Size = new System.Drawing.Size(1365, 46);
+            this.panelSuperior.Size = new System.Drawing.Size(1024, 37);
             this.panelSuperior.TabIndex = 1;
             // 
             // guna2ControlBox3
@@ -420,10 +425,10 @@
             this.guna2ControlBox3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.guna2ControlBox3.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
             this.guna2ControlBox3.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox3.Location = new System.Drawing.Point(1212, 7);
-            this.guna2ControlBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2ControlBox3.Location = new System.Drawing.Point(909, 6);
+            this.guna2ControlBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2ControlBox3.Name = "guna2ControlBox3";
-            this.guna2ControlBox3.Size = new System.Drawing.Size(45, 30);
+            this.guna2ControlBox3.Size = new System.Drawing.Size(34, 24);
             this.guna2ControlBox3.TabIndex = 2;
             // 
             // guna2ControlBox2
@@ -434,10 +439,10 @@
             this.guna2ControlBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.guna2ControlBox2.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
             this.guna2ControlBox2.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox2.Location = new System.Drawing.Point(1263, 7);
-            this.guna2ControlBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2ControlBox2.Location = new System.Drawing.Point(947, 6);
+            this.guna2ControlBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2ControlBox2.Name = "guna2ControlBox2";
-            this.guna2ControlBox2.Size = new System.Drawing.Size(45, 30);
+            this.guna2ControlBox2.Size = new System.Drawing.Size(34, 24);
             this.guna2ControlBox2.TabIndex = 1;
             // 
             // guna2ControlBox1
@@ -447,10 +452,10 @@
             this.guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(1)))), ((int)(((byte)(70)))));
             this.guna2ControlBox1.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox1.Location = new System.Drawing.Point(1315, 7);
-            this.guna2ControlBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guna2ControlBox1.Location = new System.Drawing.Point(986, 6);
+            this.guna2ControlBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2ControlBox1.Name = "guna2ControlBox1";
-            this.guna2ControlBox1.Size = new System.Drawing.Size(45, 30);
+            this.guna2ControlBox1.Size = new System.Drawing.Size(34, 24);
             this.guna2ControlBox1.TabIndex = 0;
             this.guna2ControlBox1.Click += new System.EventHandler(this.guna2ControlBox1_Click);
             // 
@@ -473,25 +478,39 @@
             this.guna2DragControl2.TargetControl = this.panelSuperior;
             this.guna2DragControl2.UseTransparentDrag = true;
             // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.FillColor = System.Drawing.Color.Empty;
+            this.guna2PictureBox1.Image = global::GestionPedidos.UI.Properties.Resources.logo;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(129, 200);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(589, 235);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.guna2PictureBox1.TabIndex = 0;
+            this.guna2PictureBox1.TabStop = false;
+            // 
             // FrmDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1365, 768);
+            this.ClientSize = new System.Drawing.Size(1024, 624);
             this.Controls.Add(this.panelSuperior);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FrmDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmDashboard";
             this.panel1.ResumeLayout(false);
+            this.panelChildForm.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelSuperior.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -523,5 +542,6 @@
         private Guna.UI2.WinForms.Guna2Button btnHistory;
         private Guna.UI2.WinForms.Guna2Button btnAboutUs;
         private Guna.UI2.WinForms.Guna2Button btnExit;
+        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
     }
 }

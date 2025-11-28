@@ -49,6 +49,7 @@
     <Compile Include="DTO\CustomerSelectDto.cs" />
     <Compile Include="DTO\HistoryListDto.cs" />
     <Compile Include="DTO\OrderDetailItem.cs" />
+    <Compile Include="DTO\OrderDetailListDto.cs" />
     <Compile Include="DTO\ProductListDto.cs" />
     <Compile Include="DTO\ProductSelectDto.cs" />
     <Compile Include="DTO\UsersListDto.cs" />

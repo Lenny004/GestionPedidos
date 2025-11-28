@@ -1,4 +1,5 @@
-﻿using GestionPedidos.Models.Entities;
+﻿using GestionPedidos.Models.DTO;
+using GestionPedidos.Models.Entities;
 using System.Collections.Generic;
 
 namespace GestionPedidos.DataAccess.Interfaces
@@ -21,6 +22,11 @@ namespace GestionPedidos.DataAccess.Interfaces
         IEnumerable<Order> ReadAllOrders();
 
         /// <summary>
+        /// Obtiene los detalles de todas las órdenes con información relacionada
+        /// </summary>
+        IEnumerable<OrderDetailListDto> ReadAllDetailOrders();
+
+        /// <summary>
         /// Obtiene una orden específica por ID
         /// </summary>
         Order ReadOneOrder(int orderId);
@@ -39,5 +45,15 @@ namespace GestionPedidos.DataAccess.Interfaces
         /// Obtiene los detalles de una orden (productos, cantidades, precios)
         /// </summary>
         IEnumerable<(int ProductId, int Quantity)> GetOrderDetails(int orderId);
+
+        /// <summary>
+        /// Busca detalles de órdenes por cliente, producto, precio o estado
+        /// </summary>
+        IEnumerable<OrderDetailListDto> SearchDetailOrders(string searchTerm);
+
+        /// <summary>
+        /// Actualiza el estado de una orden
+        /// </summary>
+        bool UpdateOrderStatus(int orderId, string newStatus);
     }
 }
