@@ -89,7 +89,7 @@
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '●';
-            this.txtPassword.PlaceholderText = "Password";
+            this.txtPassword.PlaceholderText = "Password*";
             this.txtPassword.SelectedText = "";
             this.txtPassword.Size = new System.Drawing.Size(372, 48);
             this.txtPassword.TabIndex = 32;
@@ -141,7 +141,7 @@
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.PasswordChar = '\0';
-            this.txtEmail.PlaceholderText = "Email";
+            this.txtEmail.PlaceholderText = "Email*";
             this.txtEmail.SelectedText = "";
             this.txtEmail.Size = new System.Drawing.Size(372, 48);
             this.txtEmail.TabIndex = 4;
@@ -165,7 +165,7 @@
             this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.PasswordChar = '\0';
-            this.txtUsername.PlaceholderText = "Username";
+            this.txtUsername.PlaceholderText = "Username*";
             this.txtUsername.SelectedText = "";
             this.txtUsername.Size = new System.Drawing.Size(372, 48);
             this.txtUsername.TabIndex = 2;
@@ -245,7 +245,7 @@
             this.txtFullName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.PasswordChar = '\0';
-            this.txtFullName.PlaceholderText = "Full Name";
+            this.txtFullName.PlaceholderText = "Full Name*";
             this.txtFullName.SelectedText = "";
             this.txtFullName.Size = new System.Drawing.Size(372, 48);
             this.txtFullName.TabIndex = 1;

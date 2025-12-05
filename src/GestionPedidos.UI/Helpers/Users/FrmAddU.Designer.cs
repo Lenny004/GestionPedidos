@@ -46,6 +46,8 @@
             this.cmbRole = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.guna2DragControl2 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.tggMostrarContraseña = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.panelSuperior.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,7 +107,7 @@
             this.btnAddU.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddU.Name = "btnAddU";
             this.btnAddU.Size = new System.Drawing.Size(133, 48);
-            this.btnAddU.TabIndex = 38;
+            this.btnAddU.TabIndex = 6;
             this.btnAddU.Text = "Add";
             this.btnAddU.Click += new System.EventHandler(this.btnAddU_Click);
             // 
@@ -126,9 +128,9 @@
             this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.lblName.Location = new System.Drawing.Point(12, 69);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(79, 18);
+            this.lblName.Size = new System.Drawing.Size(89, 18);
             this.lblName.TabIndex = 41;
-            this.lblName.Text = "Full Name:";
+            this.lblName.Text = "Full Name *:";
             // 
             // txtName
             // 
@@ -175,7 +177,7 @@
             this.txtPassword.PlaceholderText = "Password";
             this.txtPassword.SelectedText = "";
             this.txtPassword.Size = new System.Drawing.Size(330, 48);
-            this.txtPassword.TabIndex = 2;
+            this.txtPassword.TabIndex = 3;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // lblPass
@@ -185,9 +187,9 @@
             this.lblPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.lblPass.Location = new System.Drawing.Point(12, 255);
             this.lblPass.Name = "lblPass";
-            this.lblPass.Size = new System.Drawing.Size(79, 18);
+            this.lblPass.Size = new System.Drawing.Size(89, 18);
             this.lblPass.TabIndex = 43;
-            this.lblPass.Text = "Password:";
+            this.lblPass.Text = "Password *:";
             // 
             // txtUsername
             // 
@@ -211,7 +213,7 @@
             this.txtUsername.PlaceholderText = "Username";
             this.txtUsername.SelectedText = "";
             this.txtUsername.Size = new System.Drawing.Size(330, 48);
-            this.txtUsername.TabIndex = 3;
+            this.txtUsername.TabIndex = 2;
             // 
             // lblusername
             // 
@@ -220,9 +222,9 @@
             this.lblusername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.lblusername.Location = new System.Drawing.Point(12, 160);
             this.lblusername.Name = "lblusername";
-            this.lblusername.Size = new System.Drawing.Size(81, 18);
+            this.lblusername.Size = new System.Drawing.Size(91, 18);
             this.lblusername.TabIndex = 45;
-            this.lblusername.Text = "Username:";
+            this.lblusername.Text = "Username *:";
             // 
             // txtEmail
             // 
@@ -266,9 +268,9 @@
             this.lblRole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.lblRole.Location = new System.Drawing.Point(392, 160);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(43, 18);
+            this.lblRole.Size = new System.Drawing.Size(53, 18);
             this.lblRole.TabIndex = 52;
-            this.lblRole.Text = "Role:";
+            this.lblRole.Text = "Role *:";
             // 
             // cmbRole
             // 
@@ -287,7 +289,7 @@
             this.cmbRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbRole.Name = "cmbRole";
             this.cmbRole.Size = new System.Drawing.Size(330, 47);
-            this.cmbRole.TabIndex = 51;
+            this.cmbRole.TabIndex = 5;
             // 
             // guna2DragControl1
             // 
@@ -301,11 +303,41 @@
             this.guna2DragControl2.TargetControl = this;
             this.guna2DragControl2.UseTransparentDrag = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
+            this.label1.Location = new System.Drawing.Point(69, 340);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(117, 18);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "Show Password";
+            // 
+            // tggMostrarContraseña
+            // 
+            this.tggMostrarContraseña.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tggMostrarContraseña.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tggMostrarContraseña.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.tggMostrarContraseña.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.tggMostrarContraseña.Location = new System.Drawing.Point(15, 333);
+            this.tggMostrarContraseña.Margin = new System.Windows.Forms.Padding(4);
+            this.tggMostrarContraseña.Name = "tggMostrarContraseña";
+            this.tggMostrarContraseña.Size = new System.Drawing.Size(47, 25);
+            this.tggMostrarContraseña.TabIndex = 53;
+            this.tggMostrarContraseña.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.tggMostrarContraseña.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.tggMostrarContraseña.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.tggMostrarContraseña.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.tggMostrarContraseña.CheckedChanged += new System.EventHandler(this.tggMostrarContraseña_CheckedChanged);
+            // 
             // FrmAddU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(750, 445);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tggMostrarContraseña);
             this.Controls.Add(this.lblRole);
             this.Controls.Add(this.cmbRole);
             this.Controls.Add(this.lblEmail);
@@ -348,5 +380,7 @@
         private Guna.UI2.WinForms.Guna2ComboBox cmbRole;
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl2;
+        private System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch tggMostrarContraseña;
     }
 }

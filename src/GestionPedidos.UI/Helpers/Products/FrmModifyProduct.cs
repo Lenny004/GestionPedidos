@@ -51,7 +51,8 @@ namespace GestionPedidos.UI.Helpers.Products
                 txtProductName.Text = fullProduct.ProductName;
                 txtDescription.Text = fullProduct.Description;
                 txtStockQuantity.Value = fullProduct.StockQuantity;
-                txtSalePrice.Text = fullProduct.SalePrice.ToString("C2");
+                // Guardar el precio sin formato de moneda para poder parsearlo después
+                txtSalePrice.Text = fullProduct.SalePrice.ToString("F2");
                 cmbStatus.SelectedValue = (byte)fullProduct.Status;
             }
             else
@@ -62,24 +63,37 @@ namespace GestionPedidos.UI.Helpers.Products
 
         private void btnModifyC_Click(object sender, EventArgs e)
         {
-            var (success, message) = _productController.Update(
-                int.Parse(lblID.Text.TrimStart('#')),
-                txtProductName.Text,
-                txtDescription.Text,
-                (int)txtStockQuantity.Value,
-                decimal.Parse(txtSalePrice.Text),
-                Convert.ToByte(cmbStatus.SelectedValue)
-            );
+            try
+            {
+                // Intentar convertir el precio de forma segura
+                if (!decimal.TryParse(txtSalePrice.Text.Trim(), out decimal price))
+                {
+                    price = 0;
+                }
 
-            if (success)
-            {
-                MessageBox.Show(message, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                var (success, message) = _productController.Update(
+                    int.Parse(lblID.Text.TrimStart('#')),
+                    txtProductName.Text,
+                    txtDescription.Text,
+                    (int)txtStockQuantity.Value,
+                    price,
+                    Convert.ToByte(cmbStatus.SelectedValue)
+                );
+
+                if (success)
+                {
+                    MessageBox.Show(message, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Ocurrió un error inesperado. Mensaje: {ex.Message}", "Error Fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

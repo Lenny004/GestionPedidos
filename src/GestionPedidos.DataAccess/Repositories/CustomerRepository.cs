@@ -95,7 +95,7 @@ namespace GestionPedidos.DataAccess.Repositories
                                 CreatedAt = Convert.ToDateTime(reader["createdAt"]),
                                 UpdatedAt = reader["updatedAt"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(reader["updatedAt"]) : null,
                                 DeletedAt = reader["deletedAt"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(reader["deletedAt"]) : null,
-                                IdCity = reader["idCity"] != DBNull.Value ? Convert.ToInt32(reader["idCity"]) : 0
+                                IdCity = reader["idCity"] != DBNull.Value ? (int?)Convert.ToInt32(reader["idCity"]) : null
                             };
                         }
                     }
@@ -144,7 +144,7 @@ namespace GestionPedidos.DataAccess.Repositories
                     cmd.Parameters.AddWithValue("@LastName", customer.LastName);
                     cmd.Parameters.AddWithValue("@Phone", (object)customer.Phone ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@Address", (object)customer.Address ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@IdCity", customer.IdCity);
+                    cmd.Parameters.AddWithValue("@IdCity", (object)customer.IdCity ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@UserCreation", userId);
                     return cmd.ExecuteNonQuery() > 0;
                 }
@@ -171,7 +171,7 @@ namespace GestionPedidos.DataAccess.Repositories
                     cmd.Parameters.AddWithValue("@LastName", customer.LastName);
                     cmd.Parameters.AddWithValue("@Phone", (object)customer.Phone ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@Address", (object)customer.Address ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@IdCity", customer.IdCity);
+                    cmd.Parameters.AddWithValue("@IdCity", (object)customer.IdCity ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@IsActive", customer.IsActive);
                     cmd.Parameters.AddWithValue("@UserMod", userId);
                     return cmd.ExecuteNonQuery() > 0;
@@ -216,7 +216,7 @@ namespace GestionPedidos.DataAccess.Repositories
                     uCreated.userName AS CreatedBy
                 FROM Customers c
                 LEFT JOIN Cities ci ON c.idCity = ci.idCity
-                LEFT JOIN Departments d ON ci.idDepartment = d.idDepartment -- <--- CORRECCIÓN CLAVE
+                LEFT JOIN Departments d ON ci.idDepartment = d.idDepartment
                 LEFT JOIN Users uCreated ON c.userCreation = uCreated.idUser
                 WHERE (c.firstName + ' ' + c.lastName LIKE @Val 
                        OR c.firstName LIKE @Val 

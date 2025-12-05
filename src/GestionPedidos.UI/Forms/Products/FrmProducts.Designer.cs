@@ -117,7 +117,7 @@
             this.btnAddProduct.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btnAddProduct.ForeColor = System.Drawing.Color.White;
             this.btnAddProduct.Location = new System.Drawing.Point(667, 193);
-            this.btnAddProduct.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddProduct.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(133, 48);
             this.btnAddProduct.TabIndex = 52;
@@ -254,7 +254,7 @@
             this.btnDeleteC.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btnDeleteC.ForeColor = System.Drawing.Color.White;
             this.btnDeleteC.Location = new System.Drawing.Point(949, 193);
-            this.btnDeleteC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteC.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteC.Name = "btnDeleteC";
             this.btnDeleteC.Size = new System.Drawing.Size(133, 48);
             this.btnDeleteC.TabIndex = 43;
@@ -275,7 +275,7 @@
             this.btnModifyC.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btnModifyC.ForeColor = System.Drawing.Color.White;
             this.btnModifyC.Location = new System.Drawing.Point(808, 193);
-            this.btnModifyC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnModifyC.Margin = new System.Windows.Forms.Padding(4);
             this.btnModifyC.Name = "btnModifyC";
             this.btnModifyC.Size = new System.Drawing.Size(133, 48);
             this.btnModifyC.TabIndex = 42;
@@ -364,6 +364,8 @@
             // 
             // DataGridProduct
             // 
+            this.DataGridProduct.AllowUserToAddRows = false;
+            this.DataGridProduct.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(198)))), ((int)(((byte)(209)))));
             this.DataGridProduct.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
@@ -392,6 +394,7 @@
             this.DataGridProduct.Location = new System.Drawing.Point(21, 283);
             this.DataGridProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DataGridProduct.Name = "DataGridProduct";
+            this.DataGridProduct.ReadOnly = true;
             this.DataGridProduct.RowHeadersVisible = false;
             this.DataGridProduct.RowHeadersWidth = 51;
             this.DataGridProduct.RowTemplate.Height = 24;
@@ -410,7 +413,7 @@
             this.DataGridProduct.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.DataGridProduct.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridProduct.ThemeStyle.HeaderStyle.Height = 35;
-            this.DataGridProduct.ThemeStyle.ReadOnly = false;
+            this.DataGridProduct.ThemeStyle.ReadOnly = true;
             this.DataGridProduct.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.DataGridProduct.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DataGridProduct.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

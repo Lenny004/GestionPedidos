@@ -100,6 +100,8 @@
             // 
             // DataGridUser
             // 
+            this.DataGridUser.AllowUserToAddRows = false;
+            this.DataGridUser.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(198)))), ((int)(((byte)(209)))));
             this.DataGridUser.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
@@ -128,6 +130,7 @@
             this.DataGridUser.Location = new System.Drawing.Point(20, 256);
             this.DataGridUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DataGridUser.Name = "DataGridUser";
+            this.DataGridUser.ReadOnly = true;
             this.DataGridUser.RowHeadersVisible = false;
             this.DataGridUser.RowHeadersWidth = 51;
             this.DataGridUser.RowTemplate.Height = 24;
@@ -146,7 +149,7 @@
             this.DataGridUser.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.DataGridUser.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridUser.ThemeStyle.HeaderStyle.Height = 35;
-            this.DataGridUser.ThemeStyle.ReadOnly = false;
+            this.DataGridUser.ThemeStyle.ReadOnly = true;
             this.DataGridUser.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.DataGridUser.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DataGridUser.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

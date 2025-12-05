@@ -42,6 +42,13 @@ namespace GestionPedidos.Controllers
                     return (false, "La orden debe contener al menos un producto", 0);
                 }
 
+                // Validar que la fecha de entrega sea >= fecha actual
+                if (deliveryDate.Date < DateTime.Now.Date)
+                {
+                    Logger.Warn($"Intento de crear orden con fecha de entrega en el pasado: {deliveryDate}");
+                    return (false, "La fecha de entrega debe ser igual o posterior a hoy", 0);
+                }
+
                 // Obtener ID del usuario logeado
                 int currentUserId = SessionManager.UsuarioId;
                 if (currentUserId <= 0)

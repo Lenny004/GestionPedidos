@@ -45,6 +45,10 @@ namespace GestionPedidos.UI.Forms.Delivery
         /// <param name="e"></param>
         private void FrmDelivery_Load(object sender, EventArgs e)
         {
+            // Configurar el DateTimePicker para no permitir fechas anteriores a hoy
+            dtpDelivery.MinDate = DateTime.Now.Date;
+            dtpDelivery.Value = DateTime.Now.Date;
+            
             // Cargar clientes y productos
             LoadCustomers();
             LoadProducts();
@@ -247,20 +251,7 @@ namespace GestionPedidos.UI.Forms.Delivery
         {
             try
             {
-                // Validar que hay un producto seleccionado
-                if (!(cmbProduct.SelectedItem is ProductSelectDto selectedProduct) || selectedProduct.IdProduct == 0)
-                {
-                    MessageBox.Show("Por favor seleccione un producto.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Validar cantidad
-                if (txtStockQuantity.Value <= 0)
-                {
-                    MessageBox.Show("La cantidad debe ser mayor a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
+                var selectedProduct = cmbProduct.SelectedItem as ProductSelectDto;
                 int quantity = (int)txtStockQuantity.Value;
 
                 // Verificar si el producto ya está en la lista
@@ -270,15 +261,6 @@ namespace GestionPedidos.UI.Forms.Delivery
                 {
                     // Si ya existe, actualizar la cantidad
                     int newQuantity = existingItem.Quantity + quantity;
-                    
-                    // Verificar que no exceda el stock disponible
-                    if (newQuantity > selectedProduct.StockQuantity)
-                    {
-                        MessageBox.Show($"La cantidad total ({newQuantity}) excede el stock disponible ({selectedProduct.StockQuantity}).", 
-                            "Stock insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    
                     existingItem.Quantity = newQuantity;
                     
                     // Forzar actualización del BindingList
@@ -358,52 +340,26 @@ namespace GestionPedidos.UI.Forms.Delivery
         {
             try
             {
-                // Validar que hay un cliente seleccionado
-                if (!(cmbCustomers.SelectedItem is CustomerSelectDto selectedCustomer) || selectedCustomer.IdCustomer == 0)
-                {
-                    MessageBox.Show("Por favor seleccione un cliente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Validar que hay productos en el pedido
-                if (_orderItems.Count == 0)
-                {
-                    MessageBox.Show("Debe agregar al menos un producto al pedido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                var result = MessageBox.Show(
-                    $"¿Confirmar pedido para {selectedCustomer.FullName}?\n" +
-                    $"Total de productos: {_orderItems.Count}\n" +
-                    $"Total: {_orderItems.Sum(i => i.Subtotal):C2}",
-                    "Confirmar pedido",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
+                // Llamar al controlador para guardar el pedido
+                var (success, message, orderId) = _deliveryController.CreateOrder(
+                    ((CustomerSelectDto)cmbCustomers.SelectedItem).IdCustomer,
+                    dtpDelivery.Value,
+                    txtComment.Text,
+                    new List<OrderDetailItem>(_orderItems)
                 );
 
-                if (result == DialogResult.Yes)
+                if (success)
                 {
-                    // Llamar al controlador para guardar el pedido
-                    var (success, message, orderId) = _deliveryController.CreateOrder(
-                        selectedCustomer.IdCustomer,
-                        dtpDelivery.Value,
-                        txtComment.Text,
-                        new List<OrderDetailItem>(_orderItems)
-                    );
-
-                    if (success)
-                    {
-                        MessageBox.Show($"Pedido #{orderId} creado exitosamente.", 
-                            "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
-                        // Limpiar el formulario
-                        ClearOrderForm();
-                    }
-                    else
-                    {
-                        MessageBox.Show($"Error al crear el pedido: {message}", 
-                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show($"Pedido #{orderId} creado exitosamente.", 
+                        "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                    // Limpiar el formulario
+                    ClearOrderForm();
+                }
+                else
+                {
+                    MessageBox.Show($"Error al crear el pedido: {message}", 
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)

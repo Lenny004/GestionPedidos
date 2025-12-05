@@ -35,7 +35,7 @@ namespace GestionPedidos.UI.Helpers.Users
 
                 if (!success || roles == null)
                 {
-                    MessageBox.Show(message, "Error al cargar roles", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(message, "Error al cargar los roles", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -87,13 +87,18 @@ namespace GestionPedidos.UI.Helpers.Users
                 }
                 else
                 {
-                    MessageBox.Show(message, "Error de Registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error inesperado. Mensaje: {ex.Message}", "Error Fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void tggMostrarContraseña_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPassword.PasswordChar = tggMostrarContraseña.Checked ? '\0' : '●';
         }
     }
 }

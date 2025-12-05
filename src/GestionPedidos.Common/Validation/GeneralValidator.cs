@@ -53,10 +53,10 @@ namespace GestionPedidos.Common.Validation
             // Esta expresi�n incluye caracteres que no son letras ni d�gitos
             var specialChars = new char[] { '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '{', '}', '[', ']', ':', ';', '"', '\'', '<', '>', ',', '.', '?', '/' };
 
-            // 1. Regla: M�nimo 6 caracteres
-            if (password.Length < 6)
+            // 1. Regla: Mínimo 16 caracteres
+            if (password.Length < 16)
             {
-                errors.Add("Debe tener al menos 6 caracteres.");
+                errors.Add("Debe tener al menos 16 caracteres.");
             }
 
             // 2. Regla: Al menos una letra may�scula

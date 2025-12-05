@@ -57,11 +57,19 @@ namespace GestionPedidos.UI.Helpers.Costumers
                 lblID.Text = "#" + customer.IdCustomer;
                 txtFirstName.Text = customer.FirstName;
                 txtLastName.Text = customer.LastName;
-                txtPhone.Text = customer.Phone;
-                txtAddress.Text = customer.Address;
+                txtPhone.Text = customer.Phone ?? "";
+                txtAddress.Text = customer.Address ?? "";
 
-                // Seleccionar Ciudad y Estado
-                cmbCities.SelectedValue = customer.IdCity;
+                // Seleccionar Ciudad (solo si tiene valor)
+                if (customer.IdCity.HasValue)
+                {
+                    cmbCities.SelectedValue = customer.IdCity.Value;
+                }
+                else
+                {
+                    cmbCities.SelectedIndex = -1;
+                }
+
                 cmbStatus.SelectedValue = customer.IsActive;
             }
             else
@@ -75,7 +83,7 @@ namespace GestionPedidos.UI.Helpers.Costumers
         {
             try
             {
-                int idCity = cmbCities.SelectedValue != null ? (int)cmbCities.SelectedValue : 0;
+                int? idCity = cmbCities.SelectedValue != null ? (int?)cmbCities.SelectedValue : null;
                 bool isActive = (bool)cmbStatus.SelectedValue;
 
                 var result = _customerController.Update(
@@ -96,12 +104,12 @@ namespace GestionPedidos.UI.Helpers.Costumers
                 }
                 else
                 {
-                    MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(result.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Aviso: " + ex.Message);
             }
         }
 

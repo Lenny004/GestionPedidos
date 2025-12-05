@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GestionPedidos.Controllers;
+using GestionPedidos.Common.Services;
 
 namespace GestionPedidos.UI.Forms.Auth
 {
@@ -62,7 +63,7 @@ namespace GestionPedidos.UI.Forms.Auth
                 }
                 else
                 {
-                    MessageBox.Show(resultado.Message, "Error de Registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(resultado.Message, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtPassword.Clear();
                 }
             }

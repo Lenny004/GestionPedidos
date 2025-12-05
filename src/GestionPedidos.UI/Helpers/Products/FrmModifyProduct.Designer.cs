@@ -132,9 +132,9 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.label2.Location = new System.Drawing.Point(12, 293);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 18);
+            this.label2.Size = new System.Drawing.Size(56, 18);
             this.label2.TabIndex = 42;
-            this.label2.Text = "Price:";
+            this.label2.Text = "Price: *";
             // 
             // txtStockQuantity
             // 
@@ -157,9 +157,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.label1.Location = new System.Drawing.Point(12, 194);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 18);
+            this.label1.Size = new System.Drawing.Size(61, 18);
             this.label1.TabIndex = 39;
-            this.label1.Text = "Stock:";
+            this.label1.Text = "Stock: *";
             // 
             // lblshowpass
             // 
@@ -168,9 +168,9 @@
             this.lblshowpass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.lblshowpass.Location = new System.Drawing.Point(12, 98);
             this.lblshowpass.Name = "lblshowpass";
-            this.lblshowpass.Size = new System.Drawing.Size(105, 18);
+            this.lblshowpass.Size = new System.Drawing.Size(115, 18);
             this.lblshowpass.TabIndex = 38;
-            this.lblshowpass.Text = "Product name:";
+            this.lblshowpass.Text = "Product name: *";
             // 
             // txtProductName
             // 

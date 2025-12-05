@@ -60,7 +60,6 @@ CREATE TABLE Customers (
     lastName VARCHAR(100) NOT NULL,
     phone VARCHAR(20),
     address VARCHAR(255),
-    idDepartment INT,
     idCity INT,
     userCreation INT,
     userModification INT,
@@ -68,7 +67,6 @@ CREATE TABLE Customers (
     createdAt DATETIME DEFAULT GETDATE(),
     updatedAt DATETIME NULL,
     deletedAt DATETIME NULL,
-    FOREIGN KEY (idDepartment) REFERENCES Departments(idDepartment),
     FOREIGN KEY (idCity) REFERENCES Cities(idCity),
     FOREIGN KEY (userCreation) REFERENCES Users(idUser),
     FOREIGN KEY (userModification) REFERENCES Users(idUser)

@@ -75,7 +75,7 @@ namespace GestionPedidos.Controllers
         }
 
         // 4. CREATE
-        public (bool Success, string Message) Create(string fname, string lname, string phone, string address, int idCity)
+        public (bool Success, string Message) Create(string fname, string lname, string phone, string address, int? idCity)
         {
             try
             {
@@ -112,8 +112,8 @@ namespace GestionPedidos.Controllers
                         return (false, "La dirección no puede exceder 255 caracteres.");
                 }
 
-                // Validar ciudad
-                if (idCity <= 0)
+                // Validar ciudad (opcional: si se selecciona, debe ser válida)
+                if (idCity.HasValue && idCity <= 0)
                     return (false, "Seleccione una ciudad válida.");
 
                 var customer = new Customer
@@ -144,7 +144,7 @@ namespace GestionPedidos.Controllers
         }
 
         // 5. UPDATE
-        public (bool Success, string Message) Update(int id, string fname, string lname, string phone, string address, int idCity, bool isActive)
+        public (bool Success, string Message) Update(int id, string fname, string lname, string phone, string address, int? idCity, bool isActive)
         {
             try
             {
@@ -185,8 +185,8 @@ namespace GestionPedidos.Controllers
                         return (false, "La dirección no puede exceder 255 caracteres.");
                 }
 
-                // Validar ciudad
-                if (idCity <= 0)
+                // Validar ciudad (opcional: si se selecciona, debe ser válida)
+                if (idCity.HasValue && idCity <= 0)
                     return (false, "Seleccione una ciudad válida.");
 
                 var customer = new Customer

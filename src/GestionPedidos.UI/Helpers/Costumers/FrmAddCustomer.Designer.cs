@@ -267,9 +267,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.label1.Location = new System.Drawing.Point(27, 164);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 18);
+            this.label1.Size = new System.Drawing.Size(90, 18);
             this.label1.TabIndex = 44;
-            this.label1.Text = "Last Name";
+            this.label1.Text = "Last Name *";
             // 
             // txtFirstName
             // 
@@ -301,9 +301,9 @@
             this.lblshowpass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.lblshowpass.Location = new System.Drawing.Point(27, 74);
             this.lblshowpass.Name = "lblshowpass";
-            this.lblshowpass.Size = new System.Drawing.Size(48, 18);
+            this.lblshowpass.Size = new System.Drawing.Size(58, 18);
             this.lblshowpass.TabIndex = 42;
-            this.lblshowpass.Text = "Name";
+            this.lblshowpass.Text = "Name *";
             // 
             // guna2DragControl1
             // 

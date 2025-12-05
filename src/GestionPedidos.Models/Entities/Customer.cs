@@ -13,7 +13,7 @@ namespace GestionPedidos.Models.Entities
         public string LastName { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-        public int IdCity { get; set; }
+        public int? IdCity { get; set; }
 
         public string City { get; set; }
 

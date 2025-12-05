@@ -37,7 +37,7 @@ namespace GestionPedidos.UI.Helpers.Costumers
         {
             try
             {
-                int idCity = cmbCities.SelectedValue != null ? (int)cmbCities.SelectedValue : 0;
+                int? idCity = cmbCities.SelectedValue != null ? (int?)cmbCities.SelectedValue : null;
                 var result = _customerController.Create(
                     txtFirstName.Text.Trim(), txtLastName.Text.Trim(),
                     txtPhone.Text.Trim(), txtAddress.Text.Trim(), idCity
@@ -51,7 +51,7 @@ namespace GestionPedidos.UI.Helpers.Costumers
                 }
                 else
                 {
-                    MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(result.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }

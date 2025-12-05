@@ -31,7 +31,12 @@ namespace GestionPedidos.UI.Helpers.Products
                 string name = txtProductName.Text.Trim();
                 string description = txtDescription.Text.Trim();
                 int stock = (int)txtStockQuantity.Value;
-                decimal price = decimal.Parse(txtSalePrice.Text.Trim());
+                
+                // Intentar convertir el precio de forma segura
+                if (!decimal.TryParse(txtSalePrice.Text.Trim(), out decimal price))
+                {
+                    price = 0;
+                }
 
                 var resultado = _productController.Create(name, description, stock, price);
 
@@ -43,7 +48,7 @@ namespace GestionPedidos.UI.Helpers.Products
                 }
                 else
                 {
-                    MessageBox.Show(resultado.Message, "Error de Registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(resultado.Message, "Aviso de Registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)

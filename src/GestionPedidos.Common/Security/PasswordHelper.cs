@@ -68,8 +68,8 @@ namespace GestionPedidos.Common.Security
                 return false;
 
             // Requisitos mínimos:
-            // Al menos 6 caracteres
-            if (password.Length < 6)
+            // Al menos 16 caracteres
+            if (password.Length < 16)
                 return false;
 
             return true;

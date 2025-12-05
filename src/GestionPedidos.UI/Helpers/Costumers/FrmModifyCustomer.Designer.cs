@@ -99,9 +99,9 @@
             this.lblshowpass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.lblshowpass.Location = new System.Drawing.Point(21, 90);
             this.lblshowpass.Name = "lblshowpass";
-            this.lblshowpass.Size = new System.Drawing.Size(48, 18);
+            this.lblshowpass.Size = new System.Drawing.Size(54, 18);
             this.lblshowpass.TabIndex = 29;
-            this.lblshowpass.Text = "Name";
+            this.lblshowpass.Text = "Name*";
             // 
             // txtFirstName
             // 
@@ -156,9 +156,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
             this.label1.Location = new System.Drawing.Point(21, 180);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 18);
+            this.label1.Size = new System.Drawing.Size(86, 18);
             this.label1.TabIndex = 31;
-            this.label1.Text = "Last Name";
+            this.label1.Text = "Last Name*";
             // 
             // txtPhone
             // 
@@ -208,7 +208,7 @@
             this.txtAddress.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtAddress.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtAddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtAddress.Location = new System.Drawing.Point(385, 90);
+            this.txtAddress.Location = new System.Drawing.Point(385, 118);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.PasswordChar = '\0';
@@ -222,11 +222,11 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
-            this.label3.Location = new System.Drawing.Point(381, 68);
+            this.label3.Location = new System.Drawing.Point(382, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 18);
             this.label3.TabIndex = 35;
-            this.label3.Text = "Adress";
+            this.label3.Text = "Addres";
             // 
             // cmbCities
             // 
@@ -239,7 +239,7 @@
             this.cmbCities.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cmbCities.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cmbCities.ItemHeight = 30;
-            this.cmbCities.Location = new System.Drawing.Point(385, 180);
+            this.cmbCities.Location = new System.Drawing.Point(384, 217);
             this.cmbCities.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbCities.Name = "cmbCities";
             this.cmbCities.Size = new System.Drawing.Size(244, 36);
@@ -250,7 +250,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
-            this.label4.Location = new System.Drawing.Point(381, 158);
+            this.label4.Location = new System.Drawing.Point(381, 180);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(33, 18);
             this.label4.TabIndex = 38;
@@ -329,7 +329,7 @@
             this.cmbStatus.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cmbStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cmbStatus.ItemHeight = 30;
-            this.cmbStatus.Location = new System.Drawing.Point(385, 260);
+            this.cmbStatus.Location = new System.Drawing.Point(385, 310);
             this.cmbStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(140, 36);
@@ -340,11 +340,11 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(12)))), ((int)(((byte)(69)))));
-            this.label5.Location = new System.Drawing.Point(381, 239);
+            this.label5.Location = new System.Drawing.Point(385, 278);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 18);
+            this.label5.Size = new System.Drawing.Size(56, 18);
             this.label5.TabIndex = 48;
-            this.label5.Text = "Status";
+            this.label5.Text = "Status*";
             // 
             // guna2DragControl1
             // 
